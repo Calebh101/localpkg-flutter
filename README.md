@@ -2,7 +2,7 @@
 
 ## Why?
 
-This is a package I use to keep all my global tools in one place. On all my machines, I keep this at /localpkg so it works on my main Linux computer, my side iMac 2011 that I upgraded so I can build to iOS. I will dual-boot or VM into Windows to build to Windows, but **A** that's not my biggest priority and **B** I don't know how to implement /localpkg as a package path on Windows.
+This is a Flutter package I made to keep all my global tools in one place. On all my machines, I keep this at /localpkg so it works on my main Linux computer, my side iMac 2011 that I upgraded so I can build to iOS. I will dual-boot or VM into Windows to build to Windows, but **A** that's not my biggest priority and **B** I don't know how to implement /localpkg as a package path on Windows.
 
 ## What does it have?
 
