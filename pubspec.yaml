@@ -1,0 +1,17 @@
+name: personal
+description: My personal local package for all utilities
+version: 1.0.0
+
+environment:
+  sdk: ^3.5.4
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  lints: ^4.0.0
+  test: ^1.24.0
+
+  flutter_test:
+    sdk: flutter
