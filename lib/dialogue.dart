@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:personal/functions.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void showSnackBar(context, String content) {
   ScaffoldMessenger.of(context).clearSnackBars();
@@ -10,7 +11,7 @@ void showSnackBar(context, String content) {
   );
 }
 
-Future<bool> showAlertDialogue(BuildContext context, String title, String text, bool cancel, Map copy) {
+Future<bool?> showAlertDialogue(BuildContext context, String title, String text, bool cancel, Map copy) {
   return showDialog(
     context: context,
     builder: (BuildContext context) {
@@ -75,10 +76,6 @@ Future<void> openUrlConf(BuildContext context, Uri url) async {
   }
 }
 
-Future<void> openUrl(BuildContext context, Uri url) async { // I am deprecating openUrl in favor of openUrlConf, so I made this is a backwards-compatibility layer
-  await openUrlConf(context, url);
-}
-
 void showConstantDialogue(BuildContext context, String title, String message) {
   showDialog(
     context: context,
@@ -96,13 +93,13 @@ void showConstantDialogue(BuildContext context, String title, String message) {
   );
 }
 
-Future<bool?> showConfirmDialogue(BuildContext context, String title) async {
+Future<bool?> showConfirmDialogue(BuildContext context, String title, String description) async {
   return showDialog<bool>(
     context: context,
     builder: (BuildContext context) {
       return AlertDialog(
-        title: Text('Confirm Action'),
-        content: Text(title),
+        title: Text(title),
+        content: Text(description),
         actions: <Widget>[
           TextButton(
             onPressed: () {
@@ -126,4 +123,21 @@ Future<bool?> showConfirmDialogue(BuildContext context, String title) async {
       );
     },
   );
+}
+
+Future<bool> showFirstTimeDialogue(context, String title, String description, bool cancel) async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  bool firstTimeDialogueShown = prefs.getBool("firstTimeDialogueShown") ?? false;
+  bool? selection = false;
+
+  if (!firstTimeDialogueShown) {
+    print("showing first time dialogue");
+    prefs.setBool("firstTimeDialogueShown", true);
+    selection = await showAlertDialogue(context, title, description, cancel, {"show": false}) ?? false;
+  } else {
+    print("not showing first time dialogue");
+    selection = false;
+  }
+
+  return selection;
 }
