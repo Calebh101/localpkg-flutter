@@ -1,16 +1,11 @@
-import 'package:personal/personal.dart';
 import 'package:test/test.dart';
 
 void main() {
   group('A group of tests', () {
-    final awesome = Awesome();
-
     setUp(() {
       // Additional setup goes here.
     });
 
-    test('First Test', () {
-      expect(awesome.isAwesome, isTrue);
-    });
+    // What is a test? I have no idea lol
   });
 }

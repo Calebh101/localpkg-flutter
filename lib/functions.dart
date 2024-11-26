@@ -1,42 +1,22 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:url_launcher/url_launcher.dart';
 
-void showSnackBar(context, String content) {
-  ScaffoldMessenger.of(context).clearSnackBars();
-  ScaffoldMessenger.of(context).showSnackBar(
-    SnackBar(content: Text(content)),
-  );
+Future<void> launchURL(Uri url) async {
+  if (await canLaunchUrl(url)) {
+    await launchUrl(url);
+  } else {
+    throw 'Could not launch $url';
+  }
 }
 
-Future<bool> showAlertDialogue(BuildContext context, String title, String text, bool cancel, Map copy) {
-  return showDialog(
-    context: context,
-    builder: (BuildContext context) {
-      return AlertDialog(
-        title: Text(title),
-        content: Text(text),
-        actions: [
-          copy["show"] ? TextButton(
-            child: const Text('Copy'),
-            onPressed: () {
-              Clipboard.setData(ClipboardData(text: copy.containsKey("text") ? copy["text"] : text));
-              showSnackBar(context, "Copied to clipboard!");
-            },
-          ) : const SizedBox.shrink(),
-          cancel ? TextButton(
-            child: const Text('Cancel'),
-            onPressed: () {
-              Navigator.of(context).pop(false);
-            },
-          ) : const SizedBox.shrink(),
-          TextButton(
-            child: const Text('OK'),
-            onPressed: () {
-              Navigator.of(context).pop(true);
-            },
-          ),
-        ],
-      );
-    },
-  ) as Future<bool>;
+String addHttpPrefix(String url) {
+  if (!url.startsWith('http://') && !url.startsWith('https://')) {
+    return 'http://$url';
+  }
+  return url;
+}
+
+String removeHttpPrefix(String url) {
+  url = url.replaceAll("http://", "");
+  url = url.replaceAll("https://", "");
+  return url;
 }
