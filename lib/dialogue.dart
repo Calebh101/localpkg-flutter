@@ -11,37 +11,47 @@ void showSnackBar(context, String content) {
   );
 }
 
-Future<bool?> showAlertDialogue(BuildContext context, String title, String text, bool cancel, Map copy) {
-  return showDialog(
+Future<bool?> showAlertDialogue(
+  BuildContext context,
+  String title,
+  String text,
+  bool cancel,
+  Map copy,
+) {
+  return showDialog<bool>(
     context: context,
     builder: (BuildContext context) {
       return AlertDialog(
         title: Text(title),
         content: Text(text),
         actions: [
-          copy["show"] ? TextButton(
-            child: const Text('Copy'),
-            onPressed: () {
-              Clipboard.setData(ClipboardData(text: copy.containsKey("text") ? copy["text"] : text));
-              showSnackBar(context, "Copied to clipboard!");
-            },
-          ) : const SizedBox.shrink(),
-          cancel ? TextButton(
-            child: const Text('Cancel'),
-            onPressed: () {
-              Navigator.of(context).pop(false);
-            },
-          ) : const SizedBox.shrink(),
+          copy["show"] 
+              ? TextButton(
+                  child: const Text('Copy'),
+                  onPressed: () {
+                    Clipboard.setData(ClipboardData(text: copy.containsKey("text") ? copy["text"] : text));
+                    showSnackBar(context, "Copied to clipboard!");
+                  },
+                )
+              : const SizedBox.shrink(),
+          cancel
+              ? TextButton(
+                  child: const Text('Cancel'),
+                  onPressed: () {
+                    Navigator.of(context).pop(false); 
+                  },
+                )
+              : const SizedBox.shrink(),
           TextButton(
             child: const Text('OK'),
             onPressed: () {
-              Navigator.of(context).pop(true);
+              Navigator.of(context).pop(true); 
             },
           ),
         ],
       );
     },
-  ) as Future<bool>;
+  );
 }
 
 Future<void> openUrlConf(BuildContext context, Uri url) async {
