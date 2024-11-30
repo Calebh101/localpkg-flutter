@@ -47,12 +47,15 @@ Widget Setting({
 Widget SettingTitle({
   required String title,
 }) {
-  return Padding(
-    padding: const EdgeInsets.symmetric(horizontal: 12),
-    child: Text(
-      title,
-      style: const TextStyle(
-        fontSize: 20,
+  return Align(
+    alignment: Alignment.centerLeft,
+    child: Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 12),
+      child: Text(
+        title,
+        style: const TextStyle(
+          fontSize: 20,
+        ),
       ),
     ),
   );
