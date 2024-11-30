@@ -62,7 +62,7 @@ Future<void> openUrlConf(BuildContext context, Uri url) async {
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
-                launchURL(url);
+                launchURL(url, null);
               },
               child: Text('Yes'),
             ),
@@ -72,7 +72,7 @@ Future<void> openUrlConf(BuildContext context, Uri url) async {
     );
   } else {
     Navigator.of(context).pop();
-    launchURL(url);
+    launchURL(url, null);
   }
 }
 
