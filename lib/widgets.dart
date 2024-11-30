@@ -51,7 +51,7 @@ Widget SettingTitle({
   return Align(
     alignment: Alignment.centerLeft,
     child: Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 12),
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       child: Text(
         title,
         style: const TextStyle(
