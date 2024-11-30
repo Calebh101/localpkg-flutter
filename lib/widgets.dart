@@ -92,25 +92,20 @@ Widget AboutSettings({
       Setting(
         title: "About",
         desc: about,
-        text: "",
-        action: () {},
       ),
       Setting(
         title: "Version",
         desc: "Version and channel info.",
         text: "Version: $version\nChannel: ${beta ? "Beta" : "Stable"}",
-        action: () {},
       ),
       Setting(
         title: "Author",
         desc: "Author and ownership info.",
         text: "Author: Calebh101",
-        action: () {},
       ),
       Setting(
         title: "Licenses",
         desc: "License and engine info.",
-        text: "",
         action: () {
           showLicensePage(context: context, applicationVersion: version, applicationLegalese: about);
         }
