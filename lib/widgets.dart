@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 Widget Setting({
   required String title,
   required String desc,
-  required String text,
+  String? text,
   required GestureTapCallback action,
   }) {
   return InkWell(
@@ -35,9 +35,10 @@ Widget Setting({
               ],
             ),
           ),
-          Text(
-            text,
-          )
+          if (text != null)
+            Text(
+              text,
+            )
         ],
       ),
     ),
