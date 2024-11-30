@@ -46,10 +46,10 @@ String toTitleCase(String input) {
     .join(' ');
 }
 
-Future<bool> shareTextFile(bool allowShareContent, String subject, String content) async {
+Future<bool> shareTextFile(bool allowShareContent, String subject, String content, String extension) async {
   try {
     final directory = await getApplicationDocumentsDirectory();
-    final file = File('${directory.path}/data.json');
+    final file = File('${directory.path}/data.$extension');
     final file2 = await file.writeAsString(content);
     await Share.shareXFiles([XFile(file2.path)], text: subject);
     return true;
