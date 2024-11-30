@@ -85,6 +85,7 @@ Widget AboutSettings({
   required String version,
   required bool beta,
   required String about,
+  Widget? icon,
 }) {
   return Column(
     children: [
@@ -107,7 +108,7 @@ Widget AboutSettings({
         title: "Licenses",
         desc: "License and engine info.",
         action: () {
-          showLicensePage(context: context, applicationVersion: version, applicationLegalese: about);
+          showLicensePage(context: context, applicationVersion: version, applicationLegalese: about, applicationIcon: icon);
         }
       ),
     ],
