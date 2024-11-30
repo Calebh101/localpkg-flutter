@@ -5,10 +5,10 @@ Widget Setting({
   required String title,
   required String desc,
   String? text,
-  required GestureTapCallback action,
+  GestureTapCallback? action,
   }) {
   return InkWell(
-    onTap: action,
+    onTap: action ?? () {},
     child: Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 20),
       decoration: BoxDecoration(
