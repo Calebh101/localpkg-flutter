@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:path_provider/path_provider.dart';
 
 Future<void> launchURL(Uri url, LaunchMode? launchMode) async {
   if (await canLaunchUrl(url)) {
@@ -45,9 +46,12 @@ String toTitleCase(String input) {
     .join(' ');
 }
 
-Future<bool> shareFile(bool allowShareContent, String subject, File file, String content) async {
+Future<bool> shareTextFile(bool allowShareContent, String subject, String content) async {
   try {
-    await Share.shareXFiles([XFile(file.path)], text: subject);
+    final directory = await getApplicationDocumentsDirectory();
+    final file = File('${directory.path}/data.json');
+    final file2 = await file.writeAsString(content);
+    await Share.shareXFiles([XFile(file2.path)], text: subject);
     return true;
   } catch (e) {
     if (allowShareContent) {
