@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 Widget Setting({
   required String title,
-  required String desc,
+  String? desc,
   String? text,
   GestureTapCallback? action,
   }) {
@@ -26,12 +26,13 @@ Widget Setting({
                     fontSize: 16,
                   ),
                 ),
-                Text(
-                  desc,
-                  style: const TextStyle(
-                    fontSize: 11,
+                if (desc != null)
+                  Text(
+                    desc,
+                    style: const TextStyle(
+                      fontSize: 11,
+                    ),
                   ),
-                ),
               ],
             ),
           ),
@@ -110,6 +111,9 @@ Widget AboutSettings({
         action: () {
           showLicensePage(context: context, applicationVersion: version, applicationLegalese: about, applicationIcon: icon);
         }
+      ),
+      Setting(
+        title: "Tip Jar"
       ),
     ],
   );
