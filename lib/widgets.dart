@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:personal/tipjar.dart';
 
 Widget Setting({
   required String title,
@@ -113,7 +114,14 @@ Widget AboutSettings({
         }
       ),
       Setting(
-        title: "Tip Jar"
+        title: "Tip Jar",
+        desc: "If you want to support me, here is the place!",
+        action: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => TipJar()),
+          );
+        }
       ),
     ],
   );

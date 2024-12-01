@@ -1,4 +1,7 @@
 # This is a generated file; do not edit or check into version control.
+in_app_purchase=/home/caleb/.pub-cache/hosted/pub.dev/in_app_purchase-3.2.0/
+in_app_purchase_android=/home/caleb/.pub-cache/hosted/pub.dev/in_app_purchase_android-0.3.6+12/
+in_app_purchase_storekit=/home/caleb/.pub-cache/hosted/pub.dev/in_app_purchase_storekit-0.3.20+2/
 path_provider=/home/caleb/.pub-cache/hosted/pub.dev/path_provider-2.1.5/
 path_provider_android=/home/caleb/.pub-cache/hosted/pub.dev/path_provider_android-2.2.14/
 path_provider_foundation=/home/caleb/.pub-cache/hosted/pub.dev/path_provider_foundation-2.4.0/
