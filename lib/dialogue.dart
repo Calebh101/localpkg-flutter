@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:personal/functions.dart';
+import 'package:localpkg/functions.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void showSnackBar(context, String content) {

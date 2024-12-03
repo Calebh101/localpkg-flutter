@@ -1,7 +1,7 @@
 // This file is used for testing. This is not to be used as a public API.
 
 import 'package:flutter/material.dart';
-import 'package:personal/tipjar.dart';
+import 'package:localpkg/tipjar.dart';
 import 'package:quick_navbar/quick_navbar.dart';
 
 void main() {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:personal/dialogue.dart';
-import 'package:personal/widgets.dart';
+import 'package:localpkg/dialogue.dart';
+import 'package:localpkg/widgets.dart';
 
 class TipJar extends StatefulWidget {
   const TipJar({super.key});

@@ -1,6 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:personal/tipjar.dart';
+import 'package:localpkg/tipjar.dart';
 
 Widget Setting({
   required String title,
