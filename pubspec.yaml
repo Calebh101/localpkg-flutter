@@ -1,5 +1,5 @@
 name: localpkg
-description: My personal local package for all utilities
+description: My personal local package for all utilities.
 version: 1.0.0
 
 environment:
