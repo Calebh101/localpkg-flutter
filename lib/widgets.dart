@@ -135,13 +135,18 @@ Widget customFaIcon(
   double? setHeight,
   Color? color,
 }) {
-  return Container(
-    width: setWidth,
-    height: setHeight,
-    child: FaIcon(
-      icon,
-      size: size,
-      color: color,
-    ),
+  return Row(
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: [
+      Container(
+        width: setWidth,
+        height: setHeight,
+        child: FaIcon(
+          icon,
+          size: size,
+          color: color,
+        ),
+      ),
+    ]
   );
 }
