@@ -2,7 +2,6 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:localpkg/tipjar.dart';
-import 'package:icons_plus/icons_plus.dart';
 
 Widget Setting({
   required String title,
@@ -130,7 +129,7 @@ Widget AboutSettings({
 }
 
 Widget CustomFontAwesomeIcon({
-  FontAwesomeIconData? icon,
+  IconData? icon,
   Color? color,
   double size = 24,
 }) {
