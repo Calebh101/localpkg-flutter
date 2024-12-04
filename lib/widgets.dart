@@ -128,14 +128,20 @@ Widget AboutSettings({
   );
 }
 
-Widget customFaIcon({
-  required IconData icon,
-  double size = 20,
+Widget customFaIcon(
+  IconData icon, {
+  double size = 22,
+  double? setWidth,
+  double? setHeight,
   Color? color,
 }) {
-  return FaIcon(
-    icon,
-    size: size,
-    color: color,
+  return Container(
+    width: setWidth,
+    height: setHeight,
+    child: FaIcon(
+      icon,
+      size: size,
+      color: color,
+    ),
   );
 }
