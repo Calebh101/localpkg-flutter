@@ -127,3 +127,15 @@ Widget AboutSettings({
     ],
   );
 }
+
+Widget customFaIcon({
+  required IconData icon,
+  double size = 20,
+  Color? color,
+}) {
+  return FaIcon(
+    icon,
+    size: size,
+    color: color,
+  );
+}
