@@ -127,15 +127,3 @@ Widget AboutSettings({
     ],
   );
 }
-
-Widget CustomFontAwesomeIcon({
-  IconData? icon,
-  Color? color,
-  double size = 24,
-}) {
-  return FaIcon(
-    icon,
-    color: color,
-    size: size,
-  );
-}
