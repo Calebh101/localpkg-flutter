@@ -8,7 +8,7 @@ Widget Setting({
   String? desc,
   String? text,
   GestureTapCallback? action,
-  }) {
+}) {
   return InkWell(
     onTap: action ?? () {},
     child: Container(
@@ -70,15 +70,18 @@ Widget SettingButton({
   required GestureTapCallback action,
   required BuildContext context,
 }) {
-  return Center(
-    child: ElevatedButton(
-      onPressed: action,
-      style: ElevatedButton.styleFrom(
-        minimumSize: Size(MediaQuery.of(context).size.width * 0.9, 40),
-        padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
-        textStyle: const TextStyle(fontSize: 18),
+  return Padding(
+    padding: const EdgeInsets.all(10.0),
+    child: Center(
+      child: ElevatedButton(
+        onPressed: action,
+        style: ElevatedButton.styleFrom(
+          minimumSize: Size(MediaQuery.of(context).size.width * 0.9, 40),
+          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+          textStyle: const TextStyle(fontSize: 18),
+        ),
+        child: Text(title),
       ),
-      child: Text(title),
     ),
   );
 }
@@ -88,6 +91,7 @@ Widget AboutSettings({
   required String version,
   required bool beta,
   required String about,
+  bool tipjar = false,
   Widget? icon,
 }) {
   return Column(
@@ -108,22 +112,25 @@ Widget AboutSettings({
         text: "Author: Calebh101",
       ),
       Setting(
-        title: "Licenses",
-        desc: "License and engine info.",
-        action: () {
-          showLicensePage(context: context, applicationVersion: version, applicationLegalese: about, applicationIcon: icon);
-        }
-      ),
-      Setting(
-        title: "Tip Jar",
-        desc: "If you want to support me, here is the place!",
-        action: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => TipJar()),
-          );
-        }
-      ),
+          title: "Licenses",
+          desc: "License and engine info.",
+          action: () {
+            showLicensePage(
+                context: context,
+                applicationVersion: version,
+                applicationLegalese: about,
+                applicationIcon: icon);
+          }),
+      if (tipjar)
+        Setting(
+            title: "Tip Jar",
+            desc: "If you want to support me, here is the place!",
+            action: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => TipJar()),
+              );
+            }),
     ],
   );
 }
@@ -135,18 +142,15 @@ Widget customFaIcon(
   double? setHeight,
   Color? color,
 }) {
-  return Row(
-    mainAxisAlignment: MainAxisAlignment.center,
-    children: [
-      Container(
-        width: setWidth,
-        height: setHeight,
-        child: FaIcon(
-          icon,
-          size: size,
-          color: color,
-        ),
+  return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+    Container(
+      width: setWidth,
+      height: setHeight,
+      child: FaIcon(
+        icon,
+        size: size,
+        color: color,
       ),
-    ]
-  );
+    ),
+  ]);
 }
