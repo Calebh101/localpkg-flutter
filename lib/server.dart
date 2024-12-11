@@ -107,7 +107,7 @@ void handleRequests(
       }
     } catch (e) {
       print("unable to handle incoming request from ${request.uri}");
-      printResponse(false, request, e.toString(), "generic");
+      printResponse(false, request, e.toString(), request.method);
       request.response
         ..statusCode = HttpStatus.internalServerError
         ..write('500');
