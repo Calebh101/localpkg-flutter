@@ -106,7 +106,7 @@ void handleRequests(
         }
       }
     } catch (e) {
-      print("unable to handle incoming request from ${request.uri}");
+      print("unable to handle incoming ${request.method} from ${request.uri}");
       printResponse(false, request, e.toString(), request.method);
       request.response
         ..statusCode = HttpStatus.internalServerError
@@ -121,6 +121,6 @@ void printResponse(bool success, request, String? error, String type) {
     print("$type request successful: ${request.uri}");
   } else {
     print(
-        "$type request unsuccessful: ${request.uri}${error != null ? ": ${error}" : ""}");
+        "$type request unsuccessful: ${request.uri}${error != null ? ": $error" : ""}");
   }
 }

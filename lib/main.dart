@@ -1,6 +1,7 @@
 // This file is used for testing. This is not to be used as a public API.
 
 import 'package:flutter/material.dart';
+import 'package:localpkg/theme.dart';
 import 'package:localpkg/tipjar.dart';
 import 'package:quick_navbar/quick_navbar.dart';
 
@@ -16,19 +17,15 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Reminders+',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.blue,
-          brightness: Brightness.light, // Explicitly specify light mode
-        ),
-        useMaterial3: true, // Enable Material 3
+      theme: brandTheme(
+        darkMode: false,
+        seedColor: Colors.orange,
+        iconSize: 12,
       ),
-      darkTheme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.blue,
-          brightness: Brightness.dark, // Explicitly specify dark mode
-        ),
-        useMaterial3: true, // Enable Material 3
+      darkTheme: brandTheme(
+        darkMode: true,
+        seedColor: Colors.orange,
+        iconSize: 12,
       ),
       home: QuickNavBar(
         items: [
@@ -42,7 +39,8 @@ class MyApp extends StatelessWidget {
             "icon": Icons.settings,
             "widget": TipJar(),
           },
-        ], selectedColor: Colors.blue,
+        ],
+        selectedColor: Colors.blue,
       ),
     );
   }
