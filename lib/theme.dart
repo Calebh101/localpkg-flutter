@@ -14,6 +14,8 @@ ThemeData brandTheme({
       defaultTargetPlatform == TargetPlatform.macOS;
   TextTheme textTheme = customFont ?? GoogleFonts.poppinsTextTheme();
   bool darkBackground = useDarkBackground ?? onApple;
+  Color? background = darkBackground ? Colors.black : null;
+
   return ThemeData(
     colorScheme: ColorScheme.fromSeed(
       seedColor: seedColor,
@@ -23,7 +25,10 @@ ThemeData brandTheme({
       bodyColor: darkMode ? Colors.white : Colors.black,
       displayColor: darkMode ? Colors.white : Colors.black,
     ),
-    scaffoldBackgroundColor: darkBackground ? Colors.black : null,
+    scaffoldBackgroundColor: background,
+    appBarTheme: AppBarTheme(backgroundColor: background),
+    bottomNavigationBarTheme:
+        BottomNavigationBarThemeData(backgroundColor: background),
     iconTheme: IconThemeData(size: iconSize),
     useMaterial3: true,
   );
