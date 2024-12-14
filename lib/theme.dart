@@ -13,7 +13,7 @@ ThemeData brandTheme({
   bool onApple = defaultTargetPlatform == TargetPlatform.iOS ||
       defaultTargetPlatform == TargetPlatform.macOS;
   TextTheme textTheme = customFont ?? GoogleFonts.poppinsTextTheme();
-  bool darkBackground = darkMode ? useDarkBackground ?? onApple : false;
+  bool darkBackground = useDarkBackground ?? onApple;
   return ThemeData(
     colorScheme: ColorScheme.fromSeed(
       seedColor: seedColor,
