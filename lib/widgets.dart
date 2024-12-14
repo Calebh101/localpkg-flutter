@@ -90,6 +90,8 @@ Widget AboutSettings({
   required String version,
   required bool beta,
   required String about,
+  bool debug = false,
+  GestureTapCallback? debugAction,
   bool tipjar = false,
   Widget? icon,
 }) {
@@ -130,6 +132,13 @@ Widget AboutSettings({
                 MaterialPageRoute(builder: (context) => TipJar()),
               );
             }),
+      if (debug)
+        Setting(
+          title: "Debug Options",
+          desc:
+              "Show debug options. This can mess up the user interface and/or show unreliable/empty data.",
+          action: debugAction,
+        ),
     ],
   );
 }
