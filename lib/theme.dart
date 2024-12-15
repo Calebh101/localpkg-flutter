@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 ThemeData brandTheme({
   bool darkMode = false,
   bool? useDarkBackground,
+  Color darkBackgroundColor = Colors.black,
   Color seedColor = Colors.red,
   TextTheme? customFont,
   double iconSize = 30,
@@ -14,7 +15,7 @@ ThemeData brandTheme({
       defaultTargetPlatform == TargetPlatform.macOS;
   TextTheme textTheme = customFont ?? GoogleFonts.poppinsTextTheme();
   bool darkBackground = useDarkBackground ?? onApple;
-  Color? background = darkBackground ? Colors.black : null;
+  Color? background = darkBackground ? darkBackgroundColor : null;
 
   return ThemeData(
     colorScheme: ColorScheme.fromSeed(
