@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter/material.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:path_provider/path_provider.dart';
@@ -39,14 +40,15 @@ String toTitleCase(String input) {
   if (input.isEmpty) return input;
 
   return input
-    .split(' ')
-    .map((word) => word.isNotEmpty
-      ? '${word[0].toUpperCase()}${word.substring(1).toLowerCase()}'
-      : word)
-    .join(' ');
+      .split(' ')
+      .map((word) => word.isNotEmpty
+          ? '${word[0].toUpperCase()}${word.substring(1).toLowerCase()}'
+          : word)
+      .join(' ');
 }
 
-Future<bool> shareTextFile(bool allowShareContent, String subject, String content, String extension) async {
+Future<bool> shareTextFile(bool allowShareContent, String subject,
+    String content, String extension) async {
   try {
     final directory = await getApplicationDocumentsDirectory();
     final file = File('${directory.path}/data.$extension');
@@ -68,4 +70,46 @@ Future<bool> shareTextFile(bool allowShareContent, String subject, String conten
       return false;
     }
   }
+}
+
+double getSizeFactor(
+    {required BuildContext context,
+    int mode = 1,
+    double maxSize = 3,
+    bool forceUseWidth = true}) {
+  double size;
+  Size screenSize = MediaQuery.of(context).size;
+
+  if ((screenSize.width > screenSize.height) && !forceUseWidth) {
+    size = screenSize.height;
+  } else {
+    size = screenSize.width;
+  }
+
+  switch (mode) {
+    case 1: // width
+      size = screenSize.width;
+      break;
+    case 2: // height
+      size = screenSize.height;
+      break;
+    case 3: // auto
+      if (screenSize.width > screenSize.height) {
+        size = screenSize.height;
+      } else {
+        size = screenSize.width;
+      }
+      break;
+  }
+
+  size = size * 0.003;
+  size = size > maxSize ? maxSize : size;
+  return size;
+}
+
+int getCrossAxisCount({required BuildContext context, int factor = 180}) {
+  double screenWidth = MediaQuery.of(context).size.width;
+  int crossAxisCount = (screenWidth / factor).floor();
+  crossAxisCount = crossAxisCount < 1 ? 1 : crossAxisCount;
+  return crossAxisCount;
 }
