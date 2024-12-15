@@ -6,7 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 ThemeData brandTheme({
   bool darkMode = false,
   bool? useDarkBackground,
-  Color darkBackgroundColor = Colors.black,
+  Color darkBackgroundColor = const Color.fromARGB(255, 17, 17, 17),
   Color seedColor = Colors.red,
   TextTheme? customFont,
   double iconSize = 30,
