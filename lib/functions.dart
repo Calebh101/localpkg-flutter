@@ -5,6 +5,22 @@ import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:path_provider/path_provider.dart';
 
+Future<void> openUrl({required Uri url, LaunchMode launchMode = LaunchMode.externalApplication}) async {
+  try {
+    if (await canLaunchUrl(url)) {
+      await launchUrl(
+        url,
+        mode: launchMode,
+      );
+    } else {
+      throw Exception('Could not launch $url: canLaunchUrl returned false');
+    }
+  } catch (e) {
+    throw Exception("Could not launch $url: $e");
+  }
+}
+
+@Deprecated("Use openUrl instead.")
 Future<void> launchURL(Uri url, LaunchMode? launchMode) async {
   if (await canLaunchUrl(url)) {
     await launchUrl(
