@@ -8,7 +8,7 @@ import 'package:localpkg/dialogue.dart';
 String host = "localhost";
 int mode = 1; // 1 is http, 2 is self-signed https, 3 is https
 
-Future<http.Response> getData(String endpoint) async {
+Future<http.Response> getServerData(String endpoint) async {
   http.Response response;
   if (mode == 1) {
     response = await http.get(Uri.parse('http://$host:5000$endpoint'));
@@ -34,7 +34,7 @@ Future<http.Response> getData(String endpoint) async {
 /// For checking if the server has a message, warning, or is disabled, and showing messages based on that
 Future<bool> serverlaunch(context) async {
   try {
-    http.Response response = await getData("/api/launch/check");
+    http.Response response = await getServerData("/api/launch/check");
     if (response.statusCode == 200) {
       var data = json.decode(response.body);
       var status = true;
