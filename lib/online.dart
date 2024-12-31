@@ -3,27 +3,38 @@ import 'dart:io';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/io_client.dart';
-
 import 'package:localpkg/dialogue.dart';
 
 String host = "localhost";
+int mode = 1; // 1 is http, 2 is self-signed https, 3 is https
+
+Future<http.Response> getData(String endpoint) async {
+  http.Response response;
+  if (mode == 1) {
+    response = await http.get(Uri.parse('http://$host:5000$endpoint'));
+  } else if (mode == 2) {
+    final byteData = await rootBundle.load('assets/cert/cert.pem');
+    final certificate = byteData.buffer.asUint8List();
+    final context = SecurityContext(withTrustedRoots: false);
+    context.setTrustedCertificatesBytes(certificate);
+    final httpClient = HttpClient(context: context)
+      ..badCertificateCallback = (X509Certificate cert, String host, int port) {
+        return true;
+      };
+    final ioClient = IOClient(httpClient);
+    response = await ioClient.get(Uri.parse('https://$host:5000$endpoint'));
+  } else if (mode == 3) {
+    response = await http.get(Uri.parse('https://$host:5000$endpoint'));
+  } else {
+    response = await http.get(Uri.parse('http://$host:5000$endpoint'));
+  }
+  return response;
+}
 
 /// For checking if the server has a message, warning, or is disabled, and showing messages based on that
 Future<bool> serverlaunch(context) async {
-  http.Response response;
-
   try {
-    if (host == "localhost") {
-      response = await http.get(Uri.parse('http://$host:5000/api/launch/check'));
-    } else {
-      final byteData = await rootBundle.load('assets/cert/cert.pem');
-      final certificate = byteData.buffer.asUint8List();
-      final contextS = SecurityContext(withTrustedRoots: false);
-      contextS.setTrustedCertificatesBytes(certificate);
-      final ioClient = IOClient(HttpClient(context: contextS));
-      response = await ioClient.get(Uri.parse('https://$host:5000/api/launch/check'));
-    }
-
+    http.Response response = await getData("/api/launch/check");
     if (response.statusCode == 200) {
       var data = json.decode(response.body);
       var status = true;
