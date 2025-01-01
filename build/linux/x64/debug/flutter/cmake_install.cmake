@@ -1,8 +1,8 @@
-# Install script for directory: /localpkg/linux/flutter
+# Install script for directory: /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/localpkg/build/linux/x64/debug/bundle")
+  set(CMAKE_INSTALL_PREFIX "/usr/local")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
