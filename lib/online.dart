@@ -8,10 +8,43 @@ import 'package:localpkg/dialogue.dart';
 String host = "localhost";
 int mode = 1; // 1 is http, 2 is self-signed https, 3 is https
 
-Future<http.Response> getServerResponse(String endpoint) async {
+Future<http.Response> _getServerResponse({required Uri url, required String method, dynamic client, Map? body, Map<String, String>? headers}) async {
+  try {
+    switch(method) {
+      case 'GET':
+        if (client == null) {
+          return await http.get(url);
+        } else {
+          return await client.get(url);
+        }
+      case 'POST':
+        if (client == null) {
+          return await http.post(
+            url,
+            headers: headers,
+            body: jsonEncode(body),
+          );
+        } else {
+          return await client.post(
+            url,
+            headers: headers,
+            body: jsonEncode(body),
+          );
+        }
+      case 'OPTIONS':
+        throw Exception("OPTIONS is currently not supported as a method.");
+      default:
+        throw Exception("Unknown method: $method (tip: it needs to be in all caps, like GET or OPTIONS)");
+    }
+  } catch (e) {
+    throw Exception("_getServerResponse Exception: $e");
+  }
+}
+
+Future<http.Response> getServerResponse({required String endpoint, String method = "POST"}) async {
   http.Response response;
   if (mode == 1) {
-    response = await http.get(Uri.parse('http://$host:5000$endpoint'));
+    response = await _getServerResponse(url: Uri.parse('http://$host:5000$endpoint'), method: method);
   } else if (mode == 2) {
     final byteData = await rootBundle.load('assets/cert/cert.pem');
     final certificate = byteData.buffer.asUint8List();
@@ -21,25 +54,25 @@ Future<http.Response> getServerResponse(String endpoint) async {
       ..badCertificateCallback = (X509Certificate cert, String host, int port) {
         return true;
       };
-    final ioClient = IOClient(httpClient);
-    response = await ioClient.get(Uri.parse('https://$host:5000$endpoint'));
+    final client = IOClient(httpClient);
+    response = await _getServerResponse(url: Uri.parse('https://$host:5000$endpoint'), method: method, client: client);
   } else if (mode == 3) {
-    response = await http.get(Uri.parse('https://$host:5000$endpoint'));
+    response = await _getServerResponse(url: Uri.parse('https://$host:5000$endpoint'), method: method);
   } else {
-    response = await http.get(Uri.parse('http://$host:5000$endpoint'));
+    throw Exception("Unknown mode: $mode");
   }
   return response;
 }
 
 Future<dynamic> getServerJsonData(String endpoint) async {
-  http.Response response = await getServerResponse(endpoint);
+  http.Response response = await getServerResponse(endpoint: endpoint);
   return json.decode(response.body) ?? {"error": "no data"};
 }
 
 /// For checking if the server has a message, warning, or is disabled, and showing messages based on that
 Future<bool> serverlaunch(context) async {
   try {
-    http.Response response = await getServerResponse("/api/launch/check");
+    http.Response response = await getServerResponse(endpoint: "/api/launch/check");
     if (response.statusCode == 200) {
       var data = json.decode(response.body);
       var status = true;
