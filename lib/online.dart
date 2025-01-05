@@ -41,10 +41,10 @@ Future<http.Response> _getServerResponse({required Uri url, required String meth
   }
 }
 
-Future<http.Response> getServerResponse({required String endpoint, String method = "POST"}) async {
+Future<http.Response> getServerResponse({required String endpoint, String method = "POST", Map? body, Map<String, String>? headers}) async {
   http.Response response;
   if (mode == 1) {
-    response = await _getServerResponse(url: Uri.parse('http://$host:5000$endpoint'), method: method);
+    response = await _getServerResponse(url: Uri.parse('http://$host:5000$endpoint'), method: method, body: body, headers: headers);
   } else if (mode == 2) {
     final byteData = await rootBundle.load('assets/cert/cert.pem');
     final certificate = byteData.buffer.asUint8List();
@@ -55,18 +55,27 @@ Future<http.Response> getServerResponse({required String endpoint, String method
         return true;
       };
     final client = IOClient(httpClient);
-    response = await _getServerResponse(url: Uri.parse('https://$host:5000$endpoint'), method: method, client: client);
+    response = await _getServerResponse(url: Uri.parse('https://$host:5000$endpoint'), method: method, client: client, body: body, headers: headers);
   } else if (mode == 3) {
-    response = await _getServerResponse(url: Uri.parse('https://$host:5000$endpoint'), method: method);
+    response = await _getServerResponse(url: Uri.parse('https://$host:5000$endpoint'), method: method, body: body, headers: headers);
   } else {
     throw Exception("Unknown mode: $mode");
   }
   return response;
 }
 
+@ Deprecated("Use getServerData instead.")
 Future<dynamic> getServerJsonData(String endpoint) async {
+  return await getServerData(endpoint: endpoint);
+}
+
+Future<dynamic> getServerData({required String endpoint}) async {
   http.Response response = await getServerResponse(endpoint: endpoint);
-  return json.decode(response.body) ?? {"error": "no data"};
+  try {
+    return json.decode(response.body);
+  } catch (e) {
+    return response.body;
+  }
 }
 
 /// For checking if the server has a message, warning, or is disabled, and showing messages based on that
