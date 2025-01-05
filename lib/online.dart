@@ -72,7 +72,7 @@ Future<dynamic> getServerJsonData(String endpoint) async {
 /// For checking if the server has a message, warning, or is disabled, and showing messages based on that
 Future<bool> serverlaunch(context) async {
   try {
-    http.Response response = await getServerResponse(endpoint: "/api/launch/check");
+    http.Response response = await getServerResponse(endpoint: "/api/launch/check", method: "GET");
     if (response.statusCode == 200) {
       var data = json.decode(response.body);
       var status = true;
