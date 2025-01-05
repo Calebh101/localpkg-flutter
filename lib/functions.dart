@@ -129,3 +129,19 @@ int getCrossAxisCount({required BuildContext context, int factor = 180}) {
   crossAxisCount = crossAxisCount < 1 ? 1 : crossAxisCount;
   return crossAxisCount;
 }
+
+void navigate(BuildContext context, Widget page, int mode) {
+  if (mode == 1) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => page),
+    );
+  } else if (mode == 2) {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => page),
+    );
+  } else {
+    throw Exception("Invalid mode in navigate: $mode");
+  }
+}
