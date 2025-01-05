@@ -5,6 +5,7 @@ import 'package:localpkg/online.dart';
 import 'package:localpkg/theme.dart';
 import 'package:localpkg/tipjar.dart';
 import 'package:quick_navbar/quick_navbar.dart';
+import 'package:http/http.dart' as http;
 
 void main() {
   runApp(const MyApp());
@@ -58,11 +59,22 @@ class _TestPageState extends State<TestPage> {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: TextButton(
-        child: Text("Test Server Launch"),
-        onPressed: () {
-          serverlaunch(context);
-        },
+      child: Column(
+        children: [
+          TextButton(
+            child: Text("Test Server Launch"),
+            onPressed: () {
+              serverlaunch(context);
+            },
+          ),
+          TextButton(
+            child: Text("Test Server Post"),
+            onPressed: () async {
+              http.Response response = await getServerResponse(endpoint: "/api/services/trafficlightsimulator/join", body: {"id": "999999999"});
+              print("response[${response.statusCode}]: ${response.body}");
+            },
+          ),
+        ],
       ),
     );
   }

@@ -7,7 +7,6 @@
 pubspec.lock
 
 build/*
-build/**
 
 .flutter-plugins
 .flutter-plugins-dependencies

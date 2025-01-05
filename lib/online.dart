@@ -8,7 +8,15 @@ import 'package:localpkg/dialogue.dart';
 String host = "localhost";
 int mode = 1; // 1 is http, 2 is self-signed https, 3 is https
 
-Future<http.Response> _getServerResponse({required Uri url, required String method, dynamic client, Map? body, Map<String, String>? headers}) async {
+Future<http.Response> _getServerResponse({required Uri url, required String method, dynamic client, Map? body, String contentType = "application/json"}) async {
+  Map<String, String> headers = {
+    'Content-Type': contentType,
+  };
+  String? bodyS;
+  if (body != null) {
+    bodyS = jsonEncode(body);
+  }
+  print("--- sending request ---\nto:   $url\nas:   $headers\nwith: $bodyS");
   try {
     switch(method) {
       case 'GET':
@@ -22,13 +30,13 @@ Future<http.Response> _getServerResponse({required Uri url, required String meth
           return await http.post(
             url,
             headers: headers,
-            body: jsonEncode(body),
+            body: bodyS,
           );
         } else {
           return await client.post(
             url,
             headers: headers,
-            body: jsonEncode(body),
+            body: bodyS,
           );
         }
       case 'OPTIONS':
@@ -41,10 +49,10 @@ Future<http.Response> _getServerResponse({required Uri url, required String meth
   }
 }
 
-Future<http.Response> getServerResponse({required String endpoint, String method = "POST", Map? body, Map<String, String>? headers}) async {
+Future<http.Response> getServerResponse({required String endpoint, String method = "POST", Map? body}) async {
   http.Response response;
   if (mode == 1) {
-    response = await _getServerResponse(url: Uri.parse('http://$host:5000$endpoint'), method: method, body: body, headers: headers);
+    response = await _getServerResponse(url: Uri.parse('http://$host:5000$endpoint'), method: method, body: body);
   } else if (mode == 2) {
     final byteData = await rootBundle.load('assets/cert/cert.pem');
     final certificate = byteData.buffer.asUint8List();
@@ -55,9 +63,9 @@ Future<http.Response> getServerResponse({required String endpoint, String method
         return true;
       };
     final client = IOClient(httpClient);
-    response = await _getServerResponse(url: Uri.parse('https://$host:5000$endpoint'), method: method, client: client, body: body, headers: headers);
+    response = await _getServerResponse(url: Uri.parse('https://$host:5000$endpoint'), method: method, client: client, body: body);
   } else if (mode == 3) {
-    response = await _getServerResponse(url: Uri.parse('https://$host:5000$endpoint'), method: method, body: body, headers: headers);
+    response = await _getServerResponse(url: Uri.parse('https://$host:5000$endpoint'), method: method, body: body);
   } else {
     throw Exception("Unknown mode: $mode");
   }
