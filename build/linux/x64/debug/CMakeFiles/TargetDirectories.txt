@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /home/caleb/projects/localpkg/localpkg-flutter/build/linux/x64/debug/CMakeFiles/localpkg.dir
 /home/caleb/projects/localpkg/localpkg-flutter/build/linux/x64/debug/CMakeFiles/edit_cache.dir
 /home/caleb/projects/localpkg/localpkg-flutter/build/linux/x64/debug/CMakeFiles/rebuild_cache.dir
@@ -19,3 +20,26 @@
 /home/caleb/projects/localpkg/localpkg-flutter/build/linux/x64/debug/plugins/url_launcher_linux/CMakeFiles/install.dir
 /home/caleb/projects/localpkg/localpkg-flutter/build/linux/x64/debug/plugins/url_launcher_linux/CMakeFiles/install/local.dir
 /home/caleb/projects/localpkg/localpkg-flutter/build/linux/x64/debug/plugins/url_launcher_linux/CMakeFiles/install/strip.dir
+=======
+/home/caleb/projects/flutter/localpkg-flutter/build/linux/x64/debug/CMakeFiles/localpkg.dir
+/home/caleb/projects/flutter/localpkg-flutter/build/linux/x64/debug/CMakeFiles/edit_cache.dir
+/home/caleb/projects/flutter/localpkg-flutter/build/linux/x64/debug/CMakeFiles/rebuild_cache.dir
+/home/caleb/projects/flutter/localpkg-flutter/build/linux/x64/debug/CMakeFiles/list_install_components.dir
+/home/caleb/projects/flutter/localpkg-flutter/build/linux/x64/debug/CMakeFiles/install.dir
+/home/caleb/projects/flutter/localpkg-flutter/build/linux/x64/debug/CMakeFiles/install/local.dir
+/home/caleb/projects/flutter/localpkg-flutter/build/linux/x64/debug/CMakeFiles/install/strip.dir
+/home/caleb/projects/flutter/localpkg-flutter/build/linux/x64/debug/flutter/CMakeFiles/flutter_assemble.dir
+/home/caleb/projects/flutter/localpkg-flutter/build/linux/x64/debug/flutter/CMakeFiles/edit_cache.dir
+/home/caleb/projects/flutter/localpkg-flutter/build/linux/x64/debug/flutter/CMakeFiles/rebuild_cache.dir
+/home/caleb/projects/flutter/localpkg-flutter/build/linux/x64/debug/flutter/CMakeFiles/list_install_components.dir
+/home/caleb/projects/flutter/localpkg-flutter/build/linux/x64/debug/flutter/CMakeFiles/install.dir
+/home/caleb/projects/flutter/localpkg-flutter/build/linux/x64/debug/flutter/CMakeFiles/install/local.dir
+/home/caleb/projects/flutter/localpkg-flutter/build/linux/x64/debug/flutter/CMakeFiles/install/strip.dir
+/home/caleb/projects/flutter/localpkg-flutter/build/linux/x64/debug/plugins/url_launcher_linux/CMakeFiles/url_launcher_linux_plugin.dir
+/home/caleb/projects/flutter/localpkg-flutter/build/linux/x64/debug/plugins/url_launcher_linux/CMakeFiles/edit_cache.dir
+/home/caleb/projects/flutter/localpkg-flutter/build/linux/x64/debug/plugins/url_launcher_linux/CMakeFiles/rebuild_cache.dir
+/home/caleb/projects/flutter/localpkg-flutter/build/linux/x64/debug/plugins/url_launcher_linux/CMakeFiles/list_install_components.dir
+/home/caleb/projects/flutter/localpkg-flutter/build/linux/x64/debug/plugins/url_launcher_linux/CMakeFiles/install.dir
+/home/caleb/projects/flutter/localpkg-flutter/build/linux/x64/debug/plugins/url_launcher_linux/CMakeFiles/install/local.dir
+/home/caleb/projects/flutter/localpkg-flutter/build/linux/x64/debug/plugins/url_launcher_linux/CMakeFiles/install/strip.dir
+>>>>>>> 0b419b36b7ef80fd15c723c3f3e9e41db3feb30a

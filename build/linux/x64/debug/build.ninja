@@ -39,7 +39,11 @@ include CMakeFiles/rules.ninja
 #############################################
 # Logical path to working directory; prefix for absolute paths.
 
+<<<<<<< HEAD
 cmake_ninja_workdir = /home/caleb/projects/localpkg/localpkg-flutter/build/linux/x64/debug/
+=======
+cmake_ninja_workdir = /home/caleb/projects/flutter/localpkg-flutter/build/linux/x64/debug/
+>>>>>>> 0b419b36b7ef80fd15c723c3f3e9e41db3feb30a
 # =============================================================================
 # Object build statements for EXECUTABLE target localpkg
 
@@ -49,6 +53,7 @@ cmake_ninja_workdir = /home/caleb/projects/localpkg/localpkg-flutter/build/linux
 
 build cmake_object_order_depends_target_localpkg: phony || cmake_object_order_depends_target_url_launcher_linux_plugin flutter/flutter_assemble
 
+<<<<<<< HEAD
 build CMakeFiles/localpkg.dir/main.cc.o: CXX_COMPILER__localpkg_unscanned_Debug /home/caleb/projects/localpkg/localpkg-flutter/linux/main.cc || cmake_object_order_depends_target_localpkg
   DEFINES = -DAPPLICATION_ID=\"com.example.localpkg\"
   DEP_FILE = CMakeFiles/localpkg.dir/main.cc.o.d
@@ -70,6 +75,29 @@ build CMakeFiles/localpkg.dir/flutter/generated_plugin_registrant.cc.o: CXX_COMP
   DEP_FILE = CMakeFiles/localpkg.dir/flutter/generated_plugin_registrant.cc.o.d
   FLAGS = -g -Wall -Werror -pthread
   INCLUDES = -I/home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral -I/home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/.plugin_symlinks/url_launcher_linux/linux/include -isystem /usr/include/gtk-3.0 -isystem /usr/include/pango-1.0 -isystem /usr/include/glib-2.0 -isystem /usr/lib/x86_64-linux-gnu/glib-2.0/include -isystem /usr/include/harfbuzz -isystem /usr/include/freetype2 -isystem /usr/include/libpng16 -isystem /usr/include/libmount -isystem /usr/include/blkid -isystem /usr/include/fribidi -isystem /usr/include/cairo -isystem /usr/include/pixman-1 -isystem /usr/include/gdk-pixbuf-2.0 -isystem /usr/include/webp -isystem /usr/include/gio-unix-2.0 -isystem /usr/include/atk-1.0 -isystem /usr/include/at-spi2-atk/2.0 -isystem /usr/include/at-spi-2.0 -isystem /usr/include/dbus-1.0 -isystem /usr/lib/x86_64-linux-gnu/dbus-1.0/include
+=======
+build CMakeFiles/localpkg.dir/main.cc.o: CXX_COMPILER__localpkg_unscanned_Debug /home/caleb/projects/flutter/localpkg-flutter/linux/main.cc || cmake_object_order_depends_target_localpkg
+  DEFINES = -DAPPLICATION_ID=\"com.example.localpkg\"
+  DEP_FILE = CMakeFiles/localpkg.dir/main.cc.o.d
+  FLAGS = -g -Wall -Werror -pthread
+  INCLUDES = -I/home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral -I/home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/.plugin_symlinks/url_launcher_linux/linux/include -isystem /usr/include/gtk-3.0 -isystem /usr/include/pango-1.0 -isystem /usr/include/glib-2.0 -isystem /usr/lib/x86_64-linux-gnu/glib-2.0/include -isystem /usr/include/harfbuzz -isystem /usr/include/freetype2 -isystem /usr/include/libpng16 -isystem /usr/include/libmount -isystem /usr/include/blkid -isystem /usr/include/fribidi -isystem /usr/include/cairo -isystem /usr/include/pixman-1 -isystem /usr/include/gdk-pixbuf-2.0 -isystem /usr/include/webp -isystem /usr/include/gio-unix-2.0 -isystem /usr/include/atk-1.0 -isystem /usr/include/at-spi2-atk/2.0 -isystem /usr/include/at-spi-2.0 -isystem /usr/include/dbus-1.0 -isystem /usr/lib/x86_64-linux-gnu/dbus-1.0/include
+  OBJECT_DIR = CMakeFiles/localpkg.dir
+  OBJECT_FILE_DIR = CMakeFiles/localpkg.dir
+
+build CMakeFiles/localpkg.dir/my_application.cc.o: CXX_COMPILER__localpkg_unscanned_Debug /home/caleb/projects/flutter/localpkg-flutter/linux/my_application.cc || cmake_object_order_depends_target_localpkg
+  DEFINES = -DAPPLICATION_ID=\"com.example.localpkg\"
+  DEP_FILE = CMakeFiles/localpkg.dir/my_application.cc.o.d
+  FLAGS = -g -Wall -Werror -pthread
+  INCLUDES = -I/home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral -I/home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/.plugin_symlinks/url_launcher_linux/linux/include -isystem /usr/include/gtk-3.0 -isystem /usr/include/pango-1.0 -isystem /usr/include/glib-2.0 -isystem /usr/lib/x86_64-linux-gnu/glib-2.0/include -isystem /usr/include/harfbuzz -isystem /usr/include/freetype2 -isystem /usr/include/libpng16 -isystem /usr/include/libmount -isystem /usr/include/blkid -isystem /usr/include/fribidi -isystem /usr/include/cairo -isystem /usr/include/pixman-1 -isystem /usr/include/gdk-pixbuf-2.0 -isystem /usr/include/webp -isystem /usr/include/gio-unix-2.0 -isystem /usr/include/atk-1.0 -isystem /usr/include/at-spi2-atk/2.0 -isystem /usr/include/at-spi-2.0 -isystem /usr/include/dbus-1.0 -isystem /usr/lib/x86_64-linux-gnu/dbus-1.0/include
+  OBJECT_DIR = CMakeFiles/localpkg.dir
+  OBJECT_FILE_DIR = CMakeFiles/localpkg.dir
+
+build CMakeFiles/localpkg.dir/flutter/generated_plugin_registrant.cc.o: CXX_COMPILER__localpkg_unscanned_Debug /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/generated_plugin_registrant.cc || cmake_object_order_depends_target_localpkg
+  DEFINES = -DAPPLICATION_ID=\"com.example.localpkg\"
+  DEP_FILE = CMakeFiles/localpkg.dir/flutter/generated_plugin_registrant.cc.o.d
+  FLAGS = -g -Wall -Werror -pthread
+  INCLUDES = -I/home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral -I/home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/.plugin_symlinks/url_launcher_linux/linux/include -isystem /usr/include/gtk-3.0 -isystem /usr/include/pango-1.0 -isystem /usr/include/glib-2.0 -isystem /usr/lib/x86_64-linux-gnu/glib-2.0/include -isystem /usr/include/harfbuzz -isystem /usr/include/freetype2 -isystem /usr/include/libpng16 -isystem /usr/include/libmount -isystem /usr/include/blkid -isystem /usr/include/fribidi -isystem /usr/include/cairo -isystem /usr/include/pixman-1 -isystem /usr/include/gdk-pixbuf-2.0 -isystem /usr/include/webp -isystem /usr/include/gio-unix-2.0 -isystem /usr/include/atk-1.0 -isystem /usr/include/at-spi2-atk/2.0 -isystem /usr/include/at-spi-2.0 -isystem /usr/include/dbus-1.0 -isystem /usr/lib/x86_64-linux-gnu/dbus-1.0/include
+>>>>>>> 0b419b36b7ef80fd15c723c3f3e9e41db3feb30a
   OBJECT_DIR = CMakeFiles/localpkg.dir
   OBJECT_FILE_DIR = CMakeFiles/localpkg.dir/flutter
 
@@ -81,9 +109,15 @@ build CMakeFiles/localpkg.dir/flutter/generated_plugin_registrant.cc.o: CXX_COMP
 #############################################
 # Link the executable intermediates_do_not_run/localpkg
 
+<<<<<<< HEAD
 build intermediates_do_not_run/localpkg: CXX_EXECUTABLE_LINKER__localpkg_Debug CMakeFiles/localpkg.dir/main.cc.o CMakeFiles/localpkg.dir/my_application.cc.o CMakeFiles/localpkg.dir/flutter/generated_plugin_registrant.cc.o | plugins/url_launcher_linux/liburl_launcher_linux_plugin.so /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/libflutter_linux_gtk.so /usr/lib/x86_64-linux-gnu/libgtk-3.so /usr/lib/x86_64-linux-gnu/libgdk-3.so /usr/lib/x86_64-linux-gnu/libz.so /usr/lib/x86_64-linux-gnu/libpangocairo-1.0.so /usr/lib/x86_64-linux-gnu/libpango-1.0.so /usr/lib/x86_64-linux-gnu/libharfbuzz.so /usr/lib/x86_64-linux-gnu/libatk-1.0.so /usr/lib/x86_64-linux-gnu/libcairo-gobject.so /usr/lib/x86_64-linux-gnu/libcairo.so /usr/lib/x86_64-linux-gnu/libgdk_pixbuf-2.0.so /usr/lib/x86_64-linux-gnu/libgio-2.0.so /usr/lib/x86_64-linux-gnu/libgobject-2.0.so /usr/lib/x86_64-linux-gnu/libglib-2.0.so || flutter/flutter_assemble plugins/url_launcher_linux/liburl_launcher_linux_plugin.so
   FLAGS = -g
   LINK_LIBRARIES = -Wl,-rpath,/home/caleb/projects/localpkg/localpkg-flutter/build/linux/x64/debug/plugins/url_launcher_linux:/home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral:  plugins/url_launcher_linux/liburl_launcher_linux_plugin.so  /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/libflutter_linux_gtk.so  /usr/lib/x86_64-linux-gnu/libgtk-3.so  /usr/lib/x86_64-linux-gnu/libgdk-3.so  /usr/lib/x86_64-linux-gnu/libz.so  /usr/lib/x86_64-linux-gnu/libpangocairo-1.0.so  /usr/lib/x86_64-linux-gnu/libpango-1.0.so  /usr/lib/x86_64-linux-gnu/libharfbuzz.so  /usr/lib/x86_64-linux-gnu/libatk-1.0.so  /usr/lib/x86_64-linux-gnu/libcairo-gobject.so  /usr/lib/x86_64-linux-gnu/libcairo.so  /usr/lib/x86_64-linux-gnu/libgdk_pixbuf-2.0.so  /usr/lib/x86_64-linux-gnu/libgio-2.0.so  /usr/lib/x86_64-linux-gnu/libgobject-2.0.so  /usr/lib/x86_64-linux-gnu/libglib-2.0.so
+=======
+build intermediates_do_not_run/localpkg: CXX_EXECUTABLE_LINKER__localpkg_Debug CMakeFiles/localpkg.dir/main.cc.o CMakeFiles/localpkg.dir/my_application.cc.o CMakeFiles/localpkg.dir/flutter/generated_plugin_registrant.cc.o | plugins/url_launcher_linux/liburl_launcher_linux_plugin.so /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/libflutter_linux_gtk.so /usr/lib/x86_64-linux-gnu/libgtk-3.so /usr/lib/x86_64-linux-gnu/libgdk-3.so /usr/lib/x86_64-linux-gnu/libz.so /usr/lib/x86_64-linux-gnu/libpangocairo-1.0.so /usr/lib/x86_64-linux-gnu/libpango-1.0.so /usr/lib/x86_64-linux-gnu/libharfbuzz.so /usr/lib/x86_64-linux-gnu/libatk-1.0.so /usr/lib/x86_64-linux-gnu/libcairo-gobject.so /usr/lib/x86_64-linux-gnu/libcairo.so /usr/lib/x86_64-linux-gnu/libgdk_pixbuf-2.0.so /usr/lib/x86_64-linux-gnu/libgio-2.0.so /usr/lib/x86_64-linux-gnu/libgobject-2.0.so /usr/lib/x86_64-linux-gnu/libglib-2.0.so || flutter/flutter_assemble plugins/url_launcher_linux/liburl_launcher_linux_plugin.so
+  FLAGS = -g
+  LINK_LIBRARIES = -Wl,-rpath,/home/caleb/projects/flutter/localpkg-flutter/build/linux/x64/debug/plugins/url_launcher_linux:/home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral:  plugins/url_launcher_linux/liburl_launcher_linux_plugin.so  /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/libflutter_linux_gtk.so  /usr/lib/x86_64-linux-gnu/libgtk-3.so  /usr/lib/x86_64-linux-gnu/libgdk-3.so  /usr/lib/x86_64-linux-gnu/libz.so  /usr/lib/x86_64-linux-gnu/libpangocairo-1.0.so  /usr/lib/x86_64-linux-gnu/libpango-1.0.so  /usr/lib/x86_64-linux-gnu/libharfbuzz.so  /usr/lib/x86_64-linux-gnu/libatk-1.0.so  /usr/lib/x86_64-linux-gnu/libcairo-gobject.so  /usr/lib/x86_64-linux-gnu/libcairo.so  /usr/lib/x86_64-linux-gnu/libgdk_pixbuf-2.0.so  /usr/lib/x86_64-linux-gnu/libgio-2.0.so  /usr/lib/x86_64-linux-gnu/libgobject-2.0.so  /usr/lib/x86_64-linux-gnu/libglib-2.0.so
+>>>>>>> 0b419b36b7ef80fd15c723c3f3e9e41db3feb30a
   OBJECT_DIR = CMakeFiles/localpkg.dir
   POST_BUILD = :
   PRE_LINK = :
@@ -95,7 +129,11 @@ build intermediates_do_not_run/localpkg: CXX_EXECUTABLE_LINKER__localpkg_Debug C
 # Utility command for edit_cache
 
 build CMakeFiles/edit_cache.util: CUSTOM_COMMAND
+<<<<<<< HEAD
   COMMAND = cd /home/caleb/projects/localpkg/localpkg-flutter/build/linux/x64/debug && /usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+=======
+  COMMAND = cd /home/caleb/projects/flutter/localpkg-flutter/build/linux/x64/debug && /usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+>>>>>>> 0b419b36b7ef80fd15c723c3f3e9e41db3feb30a
   DESC = No interactive CMake dialog available...
   restat = 1
 
@@ -106,7 +144,11 @@ build edit_cache: phony CMakeFiles/edit_cache.util
 # Utility command for rebuild_cache
 
 build CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
+<<<<<<< HEAD
   COMMAND = cd /home/caleb/projects/localpkg/localpkg-flutter/build/linux/x64/debug && /usr/bin/cmake --regenerate-during-build -S/home/caleb/projects/localpkg/localpkg-flutter/linux -B/home/caleb/projects/localpkg/localpkg-flutter/build/linux/x64/debug
+=======
+  COMMAND = cd /home/caleb/projects/flutter/localpkg-flutter/build/linux/x64/debug && /usr/bin/cmake --regenerate-during-build -S/home/caleb/projects/flutter/localpkg-flutter/linux -B/home/caleb/projects/flutter/localpkg-flutter/build/linux/x64/debug
+>>>>>>> 0b419b36b7ef80fd15c723c3f3e9e41db3feb30a
   DESC = Running CMake to regenerate build system...
   pool = console
   restat = 1
@@ -124,7 +166,11 @@ build list_install_components: phony
 # Utility command for install
 
 build CMakeFiles/install.util: CUSTOM_COMMAND all
+<<<<<<< HEAD
   COMMAND = cd /home/caleb/projects/localpkg/localpkg-flutter/build/linux/x64/debug && /usr/bin/cmake -P cmake_install.cmake
+=======
+  COMMAND = cd /home/caleb/projects/flutter/localpkg-flutter/build/linux/x64/debug && /usr/bin/cmake -P cmake_install.cmake
+>>>>>>> 0b419b36b7ef80fd15c723c3f3e9e41db3feb30a
   DESC = Install the project...
   pool = console
   restat = 1
@@ -136,7 +182,11 @@ build install: phony CMakeFiles/install.util
 # Utility command for install/local
 
 build CMakeFiles/install/local.util: CUSTOM_COMMAND all
+<<<<<<< HEAD
   COMMAND = cd /home/caleb/projects/localpkg/localpkg-flutter/build/linux/x64/debug && /usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+=======
+  COMMAND = cd /home/caleb/projects/flutter/localpkg-flutter/build/linux/x64/debug && /usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+>>>>>>> 0b419b36b7ef80fd15c723c3f3e9e41db3feb30a
   DESC = Installing only the local directory...
   pool = console
   restat = 1
@@ -148,7 +198,11 @@ build install/local: phony CMakeFiles/install/local.util
 # Utility command for install/strip
 
 build CMakeFiles/install/strip.util: CUSTOM_COMMAND all
+<<<<<<< HEAD
   COMMAND = cd /home/caleb/projects/localpkg/localpkg-flutter/build/linux/x64/debug && /usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+=======
+  COMMAND = cd /home/caleb/projects/flutter/localpkg-flutter/build/linux/x64/debug && /usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+>>>>>>> 0b419b36b7ef80fd15c723c3f3e9e41db3feb30a
   DESC = Installing the project stripped...
   pool = console
   restat = 1
@@ -157,21 +211,33 @@ build install/strip: phony CMakeFiles/install/strip.util
 
 # =============================================================================
 # Write statements declared in CMakeLists.txt:
+<<<<<<< HEAD
 # /home/caleb/projects/localpkg/localpkg-flutter/linux/CMakeLists.txt
+=======
+# /home/caleb/projects/flutter/localpkg-flutter/linux/CMakeLists.txt
+>>>>>>> 0b419b36b7ef80fd15c723c3f3e9e41db3feb30a
 # =============================================================================
 
 
 #############################################
 # Utility command for flutter_assemble
 
+<<<<<<< HEAD
 build flutter/flutter_assemble: phony flutter/CMakeFiles/flutter_assemble /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/libflutter_linux_gtk.so /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_basic_message_channel.h /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_binary_codec.h /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_binary_messenger.h /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_dart_project.h /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_engine.h /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_json_message_codec.h /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_json_method_codec.h /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_message_codec.h /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_method_call.h /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_method_channel.h /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_method_codec.h /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_method_response.h /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_plugin_registrar.h /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_plugin_registry.h /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_standard_message_codec.h /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_standard_method_codec.h /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_string_codec.h /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_value.h /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_view.h /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/flutter_linux.h flutter/_phony_
+=======
+build flutter/flutter_assemble: phony flutter/CMakeFiles/flutter_assemble /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/libflutter_linux_gtk.so /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_basic_message_channel.h /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_binary_codec.h /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_binary_messenger.h /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_dart_project.h /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_engine.h /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_json_message_codec.h /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_json_method_codec.h /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_message_codec.h /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_method_call.h /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_method_channel.h /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_method_codec.h /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_method_response.h /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_plugin_registrar.h /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_plugin_registry.h /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_standard_message_codec.h /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_standard_method_codec.h /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_string_codec.h /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_value.h /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_view.h /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/flutter_linux.h flutter/_phony_
+>>>>>>> 0b419b36b7ef80fd15c723c3f3e9e41db3feb30a
 
 
 #############################################
 # Utility command for edit_cache
 
 build flutter/CMakeFiles/edit_cache.util: CUSTOM_COMMAND
+<<<<<<< HEAD
   COMMAND = cd /home/caleb/projects/localpkg/localpkg-flutter/build/linux/x64/debug/flutter && /usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+=======
+  COMMAND = cd /home/caleb/projects/flutter/localpkg-flutter/build/linux/x64/debug/flutter && /usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+>>>>>>> 0b419b36b7ef80fd15c723c3f3e9e41db3feb30a
   DESC = No interactive CMake dialog available...
   restat = 1
 
@@ -182,7 +248,11 @@ build flutter/edit_cache: phony flutter/CMakeFiles/edit_cache.util
 # Utility command for rebuild_cache
 
 build flutter/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
+<<<<<<< HEAD
   COMMAND = cd /home/caleb/projects/localpkg/localpkg-flutter/build/linux/x64/debug/flutter && /usr/bin/cmake --regenerate-during-build -S/home/caleb/projects/localpkg/localpkg-flutter/linux -B/home/caleb/projects/localpkg/localpkg-flutter/build/linux/x64/debug
+=======
+  COMMAND = cd /home/caleb/projects/flutter/localpkg-flutter/build/linux/x64/debug/flutter && /usr/bin/cmake --regenerate-during-build -S/home/caleb/projects/flutter/localpkg-flutter/linux -B/home/caleb/projects/flutter/localpkg-flutter/build/linux/x64/debug
+>>>>>>> 0b419b36b7ef80fd15c723c3f3e9e41db3feb30a
   DESC = Running CMake to regenerate build system...
   pool = console
   restat = 1
@@ -200,7 +270,11 @@ build flutter/list_install_components: phony
 # Utility command for install
 
 build flutter/CMakeFiles/install.util: CUSTOM_COMMAND flutter/all
+<<<<<<< HEAD
   COMMAND = cd /home/caleb/projects/localpkg/localpkg-flutter/build/linux/x64/debug/flutter && /usr/bin/cmake -P cmake_install.cmake
+=======
+  COMMAND = cd /home/caleb/projects/flutter/localpkg-flutter/build/linux/x64/debug/flutter && /usr/bin/cmake -P cmake_install.cmake
+>>>>>>> 0b419b36b7ef80fd15c723c3f3e9e41db3feb30a
   DESC = Install the project...
   pool = console
   restat = 1
@@ -212,7 +286,11 @@ build flutter/install: phony flutter/CMakeFiles/install.util
 # Utility command for install/local
 
 build flutter/CMakeFiles/install/local.util: CUSTOM_COMMAND flutter/all
+<<<<<<< HEAD
   COMMAND = cd /home/caleb/projects/localpkg/localpkg-flutter/build/linux/x64/debug/flutter && /usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+=======
+  COMMAND = cd /home/caleb/projects/flutter/localpkg-flutter/build/linux/x64/debug/flutter && /usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+>>>>>>> 0b419b36b7ef80fd15c723c3f3e9e41db3feb30a
   DESC = Installing only the local directory...
   pool = console
   restat = 1
@@ -224,7 +302,11 @@ build flutter/install/local: phony flutter/CMakeFiles/install/local.util
 # Utility command for install/strip
 
 build flutter/CMakeFiles/install/strip.util: CUSTOM_COMMAND flutter/all
+<<<<<<< HEAD
   COMMAND = cd /home/caleb/projects/localpkg/localpkg-flutter/build/linux/x64/debug/flutter && /usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+=======
+  COMMAND = cd /home/caleb/projects/flutter/localpkg-flutter/build/linux/x64/debug/flutter && /usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+>>>>>>> 0b419b36b7ef80fd15c723c3f3e9e41db3feb30a
   DESC = Installing the project stripped...
   pool = console
   restat = 1
@@ -235,6 +317,7 @@ build flutter/install/strip: phony flutter/CMakeFiles/install/strip.util
 #############################################
 # Phony custom command for flutter/CMakeFiles/flutter_assemble
 
+<<<<<<< HEAD
 build flutter/CMakeFiles/flutter_assemble | ${cmake_ninja_workdir}flutter/CMakeFiles/flutter_assemble: phony /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/libflutter_linux_gtk.so /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_basic_message_channel.h /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_binary_codec.h /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_binary_messenger.h /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_dart_project.h /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_engine.h /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_json_message_codec.h /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_json_method_codec.h /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_message_codec.h /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_method_call.h /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_method_channel.h /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_method_codec.h /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_method_response.h /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_plugin_registrar.h /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_plugin_registry.h /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_standard_message_codec.h /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_standard_method_codec.h /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_string_codec.h /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_value.h /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_view.h /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/flutter_linux.h
 
 
@@ -244,11 +327,26 @@ build flutter/CMakeFiles/flutter_assemble | ${cmake_ninja_workdir}flutter/CMakeF
 build /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/libflutter_linux_gtk.so /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_basic_message_channel.h /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_binary_codec.h /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_binary_messenger.h /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_dart_project.h /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_engine.h /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_json_message_codec.h /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_json_method_codec.h /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_message_codec.h /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_method_call.h /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_method_channel.h /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_method_codec.h /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_method_response.h /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_plugin_registrar.h /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_plugin_registry.h /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_standard_message_codec.h /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_standard_method_codec.h /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_string_codec.h /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_value.h /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_view.h /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/flutter_linux.h flutter/_phony_ | ${cmake_ninja_workdir}flutter/_phony_: CUSTOM_COMMAND
   COMMAND = cd /home/caleb/projects/localpkg/localpkg-flutter/build/linux/x64/debug/flutter && /usr/bin/cmake -E env FLUTTER_ROOT=/home/caleb/Flutter/flutter PROJECT_DIR=/home/caleb/projects/localpkg/localpkg-flutter DART_OBFUSCATION=false TRACK_WIDGET_CREATION=true TREE_SHAKE_ICONS=false PACKAGE_CONFIG=/home/caleb/projects/localpkg/localpkg-flutter/.dart_tool/package_config.json FLUTTER_TARGET=/home/caleb/projects/localpkg/localpkg-flutter/lib/main.dart /home/caleb/Flutter/flutter/packages/flutter_tools/bin/tool_backend.sh linux-x64 Debug
   DESC = Generating /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/libflutter_linux_gtk.so, /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_basic_message_channel.h, /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_binary_codec.h, /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_binary_messenger.h, /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_dart_project.h, /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_engine.h, /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_json_message_codec.h, /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_json_method_codec.h, /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_message_codec.h, /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_method_call.h, /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_method_channel.h, /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_method_codec.h, /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_method_response.h, /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_plugin_registrar.h, /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_plugin_registry.h, /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_standard_message_codec.h, /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_standard_method_codec.h, /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_string_codec.h, /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_value.h, /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_view.h, /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/flutter_linux.h, _phony_
+=======
+build flutter/CMakeFiles/flutter_assemble | ${cmake_ninja_workdir}flutter/CMakeFiles/flutter_assemble: phony /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/libflutter_linux_gtk.so /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_basic_message_channel.h /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_binary_codec.h /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_binary_messenger.h /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_dart_project.h /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_engine.h /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_json_message_codec.h /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_json_method_codec.h /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_message_codec.h /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_method_call.h /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_method_channel.h /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_method_codec.h /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_method_response.h /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_plugin_registrar.h /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_plugin_registry.h /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_standard_message_codec.h /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_standard_method_codec.h /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_string_codec.h /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_value.h /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_view.h /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/flutter_linux.h
+
+
+#############################################
+# Custom command for /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/libflutter_linux_gtk.so
+
+build /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/libflutter_linux_gtk.so /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_basic_message_channel.h /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_binary_codec.h /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_binary_messenger.h /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_dart_project.h /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_engine.h /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_json_message_codec.h /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_json_method_codec.h /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_message_codec.h /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_method_call.h /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_method_channel.h /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_method_codec.h /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_method_response.h /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_plugin_registrar.h /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_plugin_registry.h /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_standard_message_codec.h /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_standard_method_codec.h /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_string_codec.h /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_value.h /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_view.h /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/flutter_linux.h flutter/_phony_ | ${cmake_ninja_workdir}flutter/_phony_: CUSTOM_COMMAND
+  COMMAND = cd /home/caleb/projects/flutter/localpkg-flutter/build/linux/x64/debug/flutter && /usr/bin/cmake -E env FLUTTER_ROOT=/home/caleb/Flutter/flutter PROJECT_DIR=/home/caleb/projects/flutter/localpkg-flutter DART_OBFUSCATION=false TRACK_WIDGET_CREATION=true TREE_SHAKE_ICONS=false PACKAGE_CONFIG=/home/caleb/projects/flutter/localpkg-flutter/.dart_tool/package_config.json FLUTTER_TARGET=/home/caleb/projects/flutter/localpkg-flutter/lib/main.dart /home/caleb/Flutter/flutter/packages/flutter_tools/bin/tool_backend.sh linux-x64 Debug
+  DESC = Generating /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/libflutter_linux_gtk.so, /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_basic_message_channel.h, /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_binary_codec.h, /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_binary_messenger.h, /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_dart_project.h, /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_engine.h, /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_json_message_codec.h, /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_json_method_codec.h, /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_message_codec.h, /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_method_call.h, /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_method_channel.h, /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_method_codec.h, /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_method_response.h, /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_plugin_registrar.h, /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_plugin_registry.h, /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_standard_message_codec.h, /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_standard_method_codec.h, /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_string_codec.h, /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_value.h, /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/fl_view.h, /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/flutter_linux/flutter_linux.h, _phony_
+>>>>>>> 0b419b36b7ef80fd15c723c3f3e9e41db3feb30a
   restat = 1
 
 # =============================================================================
 # Write statements declared in CMakeLists.txt:
+<<<<<<< HEAD
 # /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/generated_plugins.cmake
+=======
+# /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/generated_plugins.cmake
+>>>>>>> 0b419b36b7ef80fd15c723c3f3e9e41db3feb30a
 # =============================================================================
 
 # =============================================================================
@@ -260,6 +358,7 @@ build /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/lib
 
 build cmake_object_order_depends_target_url_launcher_linux_plugin: phony || flutter/flutter_assemble
 
+<<<<<<< HEAD
 build plugins/url_launcher_linux/CMakeFiles/url_launcher_linux_plugin.dir/messages.g.cc.o: CXX_COMPILER__url_launcher_linux_plugin_unscanned_Debug /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/.plugin_symlinks/url_launcher_linux/linux/messages.g.cc || cmake_object_order_depends_target_url_launcher_linux_plugin
   DEFINES = -DAPPLICATION_ID=\"com.example.localpkg\" -DFLUTTER_PLUGIN_IMPL -Durl_launcher_linux_plugin_EXPORTS
   DEP_FILE = plugins/url_launcher_linux/CMakeFiles/url_launcher_linux_plugin.dir/messages.g.cc.o.d
@@ -273,6 +372,21 @@ build plugins/url_launcher_linux/CMakeFiles/url_launcher_linux_plugin.dir/url_la
   DEP_FILE = plugins/url_launcher_linux/CMakeFiles/url_launcher_linux_plugin.dir/url_launcher_plugin.cc.o.d
   FLAGS = -g -fPIC -fvisibility=hidden -Wall -Werror -pthread
   INCLUDES = -I/home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral -isystem /usr/include/gtk-3.0 -isystem /usr/include/pango-1.0 -isystem /usr/include/glib-2.0 -isystem /usr/lib/x86_64-linux-gnu/glib-2.0/include -isystem /usr/include/harfbuzz -isystem /usr/include/freetype2 -isystem /usr/include/libpng16 -isystem /usr/include/libmount -isystem /usr/include/blkid -isystem /usr/include/fribidi -isystem /usr/include/cairo -isystem /usr/include/pixman-1 -isystem /usr/include/gdk-pixbuf-2.0 -isystem /usr/include/webp -isystem /usr/include/gio-unix-2.0 -isystem /usr/include/atk-1.0 -isystem /usr/include/at-spi2-atk/2.0 -isystem /usr/include/at-spi-2.0 -isystem /usr/include/dbus-1.0 -isystem /usr/lib/x86_64-linux-gnu/dbus-1.0/include
+=======
+build plugins/url_launcher_linux/CMakeFiles/url_launcher_linux_plugin.dir/messages.g.cc.o: CXX_COMPILER__url_launcher_linux_plugin_unscanned_Debug /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/.plugin_symlinks/url_launcher_linux/linux/messages.g.cc || cmake_object_order_depends_target_url_launcher_linux_plugin
+  DEFINES = -DAPPLICATION_ID=\"com.example.localpkg\" -DFLUTTER_PLUGIN_IMPL -Durl_launcher_linux_plugin_EXPORTS
+  DEP_FILE = plugins/url_launcher_linux/CMakeFiles/url_launcher_linux_plugin.dir/messages.g.cc.o.d
+  FLAGS = -g -fPIC -fvisibility=hidden -Wall -Werror -pthread
+  INCLUDES = -I/home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral -isystem /usr/include/gtk-3.0 -isystem /usr/include/pango-1.0 -isystem /usr/include/glib-2.0 -isystem /usr/lib/x86_64-linux-gnu/glib-2.0/include -isystem /usr/include/harfbuzz -isystem /usr/include/freetype2 -isystem /usr/include/libpng16 -isystem /usr/include/libmount -isystem /usr/include/blkid -isystem /usr/include/fribidi -isystem /usr/include/cairo -isystem /usr/include/pixman-1 -isystem /usr/include/gdk-pixbuf-2.0 -isystem /usr/include/webp -isystem /usr/include/gio-unix-2.0 -isystem /usr/include/atk-1.0 -isystem /usr/include/at-spi2-atk/2.0 -isystem /usr/include/at-spi-2.0 -isystem /usr/include/dbus-1.0 -isystem /usr/lib/x86_64-linux-gnu/dbus-1.0/include
+  OBJECT_DIR = plugins/url_launcher_linux/CMakeFiles/url_launcher_linux_plugin.dir
+  OBJECT_FILE_DIR = plugins/url_launcher_linux/CMakeFiles/url_launcher_linux_plugin.dir
+
+build plugins/url_launcher_linux/CMakeFiles/url_launcher_linux_plugin.dir/url_launcher_plugin.cc.o: CXX_COMPILER__url_launcher_linux_plugin_unscanned_Debug /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/.plugin_symlinks/url_launcher_linux/linux/url_launcher_plugin.cc || cmake_object_order_depends_target_url_launcher_linux_plugin
+  DEFINES = -DAPPLICATION_ID=\"com.example.localpkg\" -DFLUTTER_PLUGIN_IMPL -Durl_launcher_linux_plugin_EXPORTS
+  DEP_FILE = plugins/url_launcher_linux/CMakeFiles/url_launcher_linux_plugin.dir/url_launcher_plugin.cc.o.d
+  FLAGS = -g -fPIC -fvisibility=hidden -Wall -Werror -pthread
+  INCLUDES = -I/home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral -isystem /usr/include/gtk-3.0 -isystem /usr/include/pango-1.0 -isystem /usr/include/glib-2.0 -isystem /usr/lib/x86_64-linux-gnu/glib-2.0/include -isystem /usr/include/harfbuzz -isystem /usr/include/freetype2 -isystem /usr/include/libpng16 -isystem /usr/include/libmount -isystem /usr/include/blkid -isystem /usr/include/fribidi -isystem /usr/include/cairo -isystem /usr/include/pixman-1 -isystem /usr/include/gdk-pixbuf-2.0 -isystem /usr/include/webp -isystem /usr/include/gio-unix-2.0 -isystem /usr/include/atk-1.0 -isystem /usr/include/at-spi2-atk/2.0 -isystem /usr/include/at-spi-2.0 -isystem /usr/include/dbus-1.0 -isystem /usr/lib/x86_64-linux-gnu/dbus-1.0/include
+>>>>>>> 0b419b36b7ef80fd15c723c3f3e9e41db3feb30a
   OBJECT_DIR = plugins/url_launcher_linux/CMakeFiles/url_launcher_linux_plugin.dir
   OBJECT_FILE_DIR = plugins/url_launcher_linux/CMakeFiles/url_launcher_linux_plugin.dir
 
@@ -284,9 +398,15 @@ build plugins/url_launcher_linux/CMakeFiles/url_launcher_linux_plugin.dir/url_la
 #############################################
 # Link the shared library plugins/url_launcher_linux/liburl_launcher_linux_plugin.so
 
+<<<<<<< HEAD
 build plugins/url_launcher_linux/liburl_launcher_linux_plugin.so: CXX_SHARED_LIBRARY_LINKER__url_launcher_linux_plugin_Debug plugins/url_launcher_linux/CMakeFiles/url_launcher_linux_plugin.dir/messages.g.cc.o plugins/url_launcher_linux/CMakeFiles/url_launcher_linux_plugin.dir/url_launcher_plugin.cc.o | /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/libflutter_linux_gtk.so /usr/lib/x86_64-linux-gnu/libgtk-3.so /usr/lib/x86_64-linux-gnu/libgdk-3.so /usr/lib/x86_64-linux-gnu/libz.so /usr/lib/x86_64-linux-gnu/libpangocairo-1.0.so /usr/lib/x86_64-linux-gnu/libpango-1.0.so /usr/lib/x86_64-linux-gnu/libharfbuzz.so /usr/lib/x86_64-linux-gnu/libatk-1.0.so /usr/lib/x86_64-linux-gnu/libcairo-gobject.so /usr/lib/x86_64-linux-gnu/libcairo.so /usr/lib/x86_64-linux-gnu/libgdk_pixbuf-2.0.so /usr/lib/x86_64-linux-gnu/libgio-2.0.so /usr/lib/x86_64-linux-gnu/libgobject-2.0.so /usr/lib/x86_64-linux-gnu/libglib-2.0.so || flutter/flutter_assemble
   LANGUAGE_COMPILE_FLAGS = -g
   LINK_LIBRARIES = -Wl,-rpath,/home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral  /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/libflutter_linux_gtk.so  /usr/lib/x86_64-linux-gnu/libgtk-3.so  /usr/lib/x86_64-linux-gnu/libgdk-3.so  /usr/lib/x86_64-linux-gnu/libz.so  /usr/lib/x86_64-linux-gnu/libpangocairo-1.0.so  /usr/lib/x86_64-linux-gnu/libpango-1.0.so  /usr/lib/x86_64-linux-gnu/libharfbuzz.so  /usr/lib/x86_64-linux-gnu/libatk-1.0.so  /usr/lib/x86_64-linux-gnu/libcairo-gobject.so  /usr/lib/x86_64-linux-gnu/libcairo.so  /usr/lib/x86_64-linux-gnu/libgdk_pixbuf-2.0.so  /usr/lib/x86_64-linux-gnu/libgio-2.0.so  /usr/lib/x86_64-linux-gnu/libgobject-2.0.so  /usr/lib/x86_64-linux-gnu/libglib-2.0.so
+=======
+build plugins/url_launcher_linux/liburl_launcher_linux_plugin.so: CXX_SHARED_LIBRARY_LINKER__url_launcher_linux_plugin_Debug plugins/url_launcher_linux/CMakeFiles/url_launcher_linux_plugin.dir/messages.g.cc.o plugins/url_launcher_linux/CMakeFiles/url_launcher_linux_plugin.dir/url_launcher_plugin.cc.o | /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/libflutter_linux_gtk.so /usr/lib/x86_64-linux-gnu/libgtk-3.so /usr/lib/x86_64-linux-gnu/libgdk-3.so /usr/lib/x86_64-linux-gnu/libz.so /usr/lib/x86_64-linux-gnu/libpangocairo-1.0.so /usr/lib/x86_64-linux-gnu/libpango-1.0.so /usr/lib/x86_64-linux-gnu/libharfbuzz.so /usr/lib/x86_64-linux-gnu/libatk-1.0.so /usr/lib/x86_64-linux-gnu/libcairo-gobject.so /usr/lib/x86_64-linux-gnu/libcairo.so /usr/lib/x86_64-linux-gnu/libgdk_pixbuf-2.0.so /usr/lib/x86_64-linux-gnu/libgio-2.0.so /usr/lib/x86_64-linux-gnu/libgobject-2.0.so /usr/lib/x86_64-linux-gnu/libglib-2.0.so || flutter/flutter_assemble
+  LANGUAGE_COMPILE_FLAGS = -g
+  LINK_LIBRARIES = -Wl,-rpath,/home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral  /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/libflutter_linux_gtk.so  /usr/lib/x86_64-linux-gnu/libgtk-3.so  /usr/lib/x86_64-linux-gnu/libgdk-3.so  /usr/lib/x86_64-linux-gnu/libz.so  /usr/lib/x86_64-linux-gnu/libpangocairo-1.0.so  /usr/lib/x86_64-linux-gnu/libpango-1.0.so  /usr/lib/x86_64-linux-gnu/libharfbuzz.so  /usr/lib/x86_64-linux-gnu/libatk-1.0.so  /usr/lib/x86_64-linux-gnu/libcairo-gobject.so  /usr/lib/x86_64-linux-gnu/libcairo.so  /usr/lib/x86_64-linux-gnu/libgdk_pixbuf-2.0.so  /usr/lib/x86_64-linux-gnu/libgio-2.0.so  /usr/lib/x86_64-linux-gnu/libgobject-2.0.so  /usr/lib/x86_64-linux-gnu/libglib-2.0.so
+>>>>>>> 0b419b36b7ef80fd15c723c3f3e9e41db3feb30a
   OBJECT_DIR = plugins/url_launcher_linux/CMakeFiles/url_launcher_linux_plugin.dir
   POST_BUILD = :
   PRE_LINK = :
@@ -300,7 +420,11 @@ build plugins/url_launcher_linux/liburl_launcher_linux_plugin.so: CXX_SHARED_LIB
 # Utility command for edit_cache
 
 build plugins/url_launcher_linux/CMakeFiles/edit_cache.util: CUSTOM_COMMAND
+<<<<<<< HEAD
   COMMAND = cd /home/caleb/projects/localpkg/localpkg-flutter/build/linux/x64/debug/plugins/url_launcher_linux && /usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+=======
+  COMMAND = cd /home/caleb/projects/flutter/localpkg-flutter/build/linux/x64/debug/plugins/url_launcher_linux && /usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+>>>>>>> 0b419b36b7ef80fd15c723c3f3e9e41db3feb30a
   DESC = No interactive CMake dialog available...
   restat = 1
 
@@ -311,7 +435,11 @@ build plugins/url_launcher_linux/edit_cache: phony plugins/url_launcher_linux/CM
 # Utility command for rebuild_cache
 
 build plugins/url_launcher_linux/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
+<<<<<<< HEAD
   COMMAND = cd /home/caleb/projects/localpkg/localpkg-flutter/build/linux/x64/debug/plugins/url_launcher_linux && /usr/bin/cmake --regenerate-during-build -S/home/caleb/projects/localpkg/localpkg-flutter/linux -B/home/caleb/projects/localpkg/localpkg-flutter/build/linux/x64/debug
+=======
+  COMMAND = cd /home/caleb/projects/flutter/localpkg-flutter/build/linux/x64/debug/plugins/url_launcher_linux && /usr/bin/cmake --regenerate-during-build -S/home/caleb/projects/flutter/localpkg-flutter/linux -B/home/caleb/projects/flutter/localpkg-flutter/build/linux/x64/debug
+>>>>>>> 0b419b36b7ef80fd15c723c3f3e9e41db3feb30a
   DESC = Running CMake to regenerate build system...
   pool = console
   restat = 1
@@ -329,7 +457,11 @@ build plugins/url_launcher_linux/list_install_components: phony
 # Utility command for install
 
 build plugins/url_launcher_linux/CMakeFiles/install.util: CUSTOM_COMMAND plugins/url_launcher_linux/all
+<<<<<<< HEAD
   COMMAND = cd /home/caleb/projects/localpkg/localpkg-flutter/build/linux/x64/debug/plugins/url_launcher_linux && /usr/bin/cmake -P cmake_install.cmake
+=======
+  COMMAND = cd /home/caleb/projects/flutter/localpkg-flutter/build/linux/x64/debug/plugins/url_launcher_linux && /usr/bin/cmake -P cmake_install.cmake
+>>>>>>> 0b419b36b7ef80fd15c723c3f3e9e41db3feb30a
   DESC = Install the project...
   pool = console
   restat = 1
@@ -341,7 +473,11 @@ build plugins/url_launcher_linux/install: phony plugins/url_launcher_linux/CMake
 # Utility command for install/local
 
 build plugins/url_launcher_linux/CMakeFiles/install/local.util: CUSTOM_COMMAND plugins/url_launcher_linux/all
+<<<<<<< HEAD
   COMMAND = cd /home/caleb/projects/localpkg/localpkg-flutter/build/linux/x64/debug/plugins/url_launcher_linux && /usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+=======
+  COMMAND = cd /home/caleb/projects/flutter/localpkg-flutter/build/linux/x64/debug/plugins/url_launcher_linux && /usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+>>>>>>> 0b419b36b7ef80fd15c723c3f3e9e41db3feb30a
   DESC = Installing only the local directory...
   pool = console
   restat = 1
@@ -353,7 +489,11 @@ build plugins/url_launcher_linux/install/local: phony plugins/url_launcher_linux
 # Utility command for install/strip
 
 build plugins/url_launcher_linux/CMakeFiles/install/strip.util: CUSTOM_COMMAND plugins/url_launcher_linux/all
+<<<<<<< HEAD
   COMMAND = cd /home/caleb/projects/localpkg/localpkg-flutter/build/linux/x64/debug/plugins/url_launcher_linux && /usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+=======
+  COMMAND = cd /home/caleb/projects/flutter/localpkg-flutter/build/linux/x64/debug/plugins/url_launcher_linux && /usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+>>>>>>> 0b419b36b7ef80fd15c723c3f3e9e41db3feb30a
   DESC = Installing the project stripped...
   pool = console
   restat = 1
@@ -377,21 +517,33 @@ build url_launcher_linux_plugin: phony plugins/url_launcher_linux/liburl_launche
 # =============================================================================
 
 #############################################
+<<<<<<< HEAD
 # Folder: /home/caleb/projects/localpkg/localpkg-flutter/build/linux/x64/debug
+=======
+# Folder: /home/caleb/projects/flutter/localpkg-flutter/build/linux/x64/debug
+>>>>>>> 0b419b36b7ef80fd15c723c3f3e9e41db3feb30a
 
 build all: phony intermediates_do_not_run/localpkg flutter/all plugins/url_launcher_linux/all
 
 # =============================================================================
 
 #############################################
+<<<<<<< HEAD
 # Folder: /home/caleb/projects/localpkg/localpkg-flutter/build/linux/x64/debug/flutter
+=======
+# Folder: /home/caleb/projects/flutter/localpkg-flutter/build/linux/x64/debug/flutter
+>>>>>>> 0b419b36b7ef80fd15c723c3f3e9e41db3feb30a
 
 build flutter/all: phony
 
 # =============================================================================
 
 #############################################
+<<<<<<< HEAD
 # Folder: /home/caleb/projects/localpkg/localpkg-flutter/build/linux/x64/debug/plugins/url_launcher_linux
+=======
+# Folder: /home/caleb/projects/flutter/localpkg-flutter/build/linux/x64/debug/plugins/url_launcher_linux
+>>>>>>> 0b419b36b7ef80fd15c723c3f3e9e41db3feb30a
 
 build plugins/url_launcher_linux/all: phony plugins/url_launcher_linux/liburl_launcher_linux_plugin.so
 
@@ -402,14 +554,22 @@ build plugins/url_launcher_linux/all: phony plugins/url_launcher_linux/liburl_la
 #############################################
 # Re-run CMake if any of its inputs changed.
 
+<<<<<<< HEAD
 build build.ninja: RERUN_CMAKE | /home/caleb/projects/localpkg/localpkg-flutter/linux/CMakeLists.txt /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/CMakeLists.txt /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/.plugin_symlinks/url_launcher_linux/linux/CMakeLists.txt /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/generated_config.cmake /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/generated_plugins.cmake /usr/share/cmake-3.28/Modules/CMakeCXXInformation.cmake /usr/share/cmake-3.28/Modules/CMakeCommonLanguageInclude.cmake /usr/share/cmake-3.28/Modules/CMakeGenericSystem.cmake /usr/share/cmake-3.28/Modules/CMakeInitializeConfigs.cmake /usr/share/cmake-3.28/Modules/CMakeLanguageInformation.cmake /usr/share/cmake-3.28/Modules/CMakeSystemSpecificInformation.cmake /usr/share/cmake-3.28/Modules/CMakeSystemSpecificInitialize.cmake /usr/share/cmake-3.28/Modules/Compiler/CMakeCommonCompilerMacros.cmake /usr/share/cmake-3.28/Modules/Compiler/Clang-CXX.cmake /usr/share/cmake-3.28/Modules/Compiler/Clang.cmake /usr/share/cmake-3.28/Modules/Compiler/GNU.cmake /usr/share/cmake-3.28/Modules/FindPackageHandleStandardArgs.cmake /usr/share/cmake-3.28/Modules/FindPackageMessage.cmake /usr/share/cmake-3.28/Modules/FindPkgConfig.cmake /usr/share/cmake-3.28/Modules/Platform/Linux-Clang-CXX.cmake /usr/share/cmake-3.28/Modules/Platform/Linux-GNU-CXX.cmake /usr/share/cmake-3.28/Modules/Platform/Linux-GNU.cmake /usr/share/cmake-3.28/Modules/Platform/Linux-Initialize.cmake /usr/share/cmake-3.28/Modules/Platform/Linux.cmake /usr/share/cmake-3.28/Modules/Platform/UnixPaths.cmake CMakeCache.txt CMakeFiles/3.28.3/CMakeCXXCompiler.cmake CMakeFiles/3.28.3/CMakeSystem.cmake
+=======
+build build.ninja: RERUN_CMAKE | /home/caleb/projects/flutter/localpkg-flutter/linux/CMakeLists.txt /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/CMakeLists.txt /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/.plugin_symlinks/url_launcher_linux/linux/CMakeLists.txt /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/generated_config.cmake /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/generated_plugins.cmake /usr/share/cmake-3.28/Modules/CMakeCXXInformation.cmake /usr/share/cmake-3.28/Modules/CMakeCommonLanguageInclude.cmake /usr/share/cmake-3.28/Modules/CMakeGenericSystem.cmake /usr/share/cmake-3.28/Modules/CMakeInitializeConfigs.cmake /usr/share/cmake-3.28/Modules/CMakeLanguageInformation.cmake /usr/share/cmake-3.28/Modules/CMakeSystemSpecificInformation.cmake /usr/share/cmake-3.28/Modules/CMakeSystemSpecificInitialize.cmake /usr/share/cmake-3.28/Modules/Compiler/CMakeCommonCompilerMacros.cmake /usr/share/cmake-3.28/Modules/Compiler/Clang-CXX.cmake /usr/share/cmake-3.28/Modules/Compiler/Clang.cmake /usr/share/cmake-3.28/Modules/Compiler/GNU.cmake /usr/share/cmake-3.28/Modules/FindPackageHandleStandardArgs.cmake /usr/share/cmake-3.28/Modules/FindPackageMessage.cmake /usr/share/cmake-3.28/Modules/FindPkgConfig.cmake /usr/share/cmake-3.28/Modules/Platform/Linux-Clang-CXX.cmake /usr/share/cmake-3.28/Modules/Platform/Linux-GNU-CXX.cmake /usr/share/cmake-3.28/Modules/Platform/Linux-GNU.cmake /usr/share/cmake-3.28/Modules/Platform/Linux-Initialize.cmake /usr/share/cmake-3.28/Modules/Platform/Linux.cmake /usr/share/cmake-3.28/Modules/Platform/UnixPaths.cmake CMakeCache.txt CMakeFiles/3.28.3/CMakeCXXCompiler.cmake CMakeFiles/3.28.3/CMakeSystem.cmake
+>>>>>>> 0b419b36b7ef80fd15c723c3f3e9e41db3feb30a
   pool = console
 
 
 #############################################
 # A missing CMake input file is not an error.
 
+<<<<<<< HEAD
 build /home/caleb/projects/localpkg/localpkg-flutter/linux/CMakeLists.txt /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/CMakeLists.txt /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/.plugin_symlinks/url_launcher_linux/linux/CMakeLists.txt /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/ephemeral/generated_config.cmake /home/caleb/projects/localpkg/localpkg-flutter/linux/flutter/generated_plugins.cmake /usr/share/cmake-3.28/Modules/CMakeCXXInformation.cmake /usr/share/cmake-3.28/Modules/CMakeCommonLanguageInclude.cmake /usr/share/cmake-3.28/Modules/CMakeGenericSystem.cmake /usr/share/cmake-3.28/Modules/CMakeInitializeConfigs.cmake /usr/share/cmake-3.28/Modules/CMakeLanguageInformation.cmake /usr/share/cmake-3.28/Modules/CMakeSystemSpecificInformation.cmake /usr/share/cmake-3.28/Modules/CMakeSystemSpecificInitialize.cmake /usr/share/cmake-3.28/Modules/Compiler/CMakeCommonCompilerMacros.cmake /usr/share/cmake-3.28/Modules/Compiler/Clang-CXX.cmake /usr/share/cmake-3.28/Modules/Compiler/Clang.cmake /usr/share/cmake-3.28/Modules/Compiler/GNU.cmake /usr/share/cmake-3.28/Modules/FindPackageHandleStandardArgs.cmake /usr/share/cmake-3.28/Modules/FindPackageMessage.cmake /usr/share/cmake-3.28/Modules/FindPkgConfig.cmake /usr/share/cmake-3.28/Modules/Platform/Linux-Clang-CXX.cmake /usr/share/cmake-3.28/Modules/Platform/Linux-GNU-CXX.cmake /usr/share/cmake-3.28/Modules/Platform/Linux-GNU.cmake /usr/share/cmake-3.28/Modules/Platform/Linux-Initialize.cmake /usr/share/cmake-3.28/Modules/Platform/Linux.cmake /usr/share/cmake-3.28/Modules/Platform/UnixPaths.cmake CMakeCache.txt CMakeFiles/3.28.3/CMakeCXXCompiler.cmake CMakeFiles/3.28.3/CMakeSystem.cmake: phony
+=======
+build /home/caleb/projects/flutter/localpkg-flutter/linux/CMakeLists.txt /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/CMakeLists.txt /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/.plugin_symlinks/url_launcher_linux/linux/CMakeLists.txt /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/ephemeral/generated_config.cmake /home/caleb/projects/flutter/localpkg-flutter/linux/flutter/generated_plugins.cmake /usr/share/cmake-3.28/Modules/CMakeCXXInformation.cmake /usr/share/cmake-3.28/Modules/CMakeCommonLanguageInclude.cmake /usr/share/cmake-3.28/Modules/CMakeGenericSystem.cmake /usr/share/cmake-3.28/Modules/CMakeInitializeConfigs.cmake /usr/share/cmake-3.28/Modules/CMakeLanguageInformation.cmake /usr/share/cmake-3.28/Modules/CMakeSystemSpecificInformation.cmake /usr/share/cmake-3.28/Modules/CMakeSystemSpecificInitialize.cmake /usr/share/cmake-3.28/Modules/Compiler/CMakeCommonCompilerMacros.cmake /usr/share/cmake-3.28/Modules/Compiler/Clang-CXX.cmake /usr/share/cmake-3.28/Modules/Compiler/Clang.cmake /usr/share/cmake-3.28/Modules/Compiler/GNU.cmake /usr/share/cmake-3.28/Modules/FindPackageHandleStandardArgs.cmake /usr/share/cmake-3.28/Modules/FindPackageMessage.cmake /usr/share/cmake-3.28/Modules/FindPkgConfig.cmake /usr/share/cmake-3.28/Modules/Platform/Linux-Clang-CXX.cmake /usr/share/cmake-3.28/Modules/Platform/Linux-GNU-CXX.cmake /usr/share/cmake-3.28/Modules/Platform/Linux-GNU.cmake /usr/share/cmake-3.28/Modules/Platform/Linux-Initialize.cmake /usr/share/cmake-3.28/Modules/Platform/Linux.cmake /usr/share/cmake-3.28/Modules/Platform/UnixPaths.cmake CMakeCache.txt CMakeFiles/3.28.3/CMakeCXXCompiler.cmake CMakeFiles/3.28.3/CMakeSystem.cmake: phony
+>>>>>>> 0b419b36b7ef80fd15c723c3f3e9e41db3feb30a
 
 
 #############################################
