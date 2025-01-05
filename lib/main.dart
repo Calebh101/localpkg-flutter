@@ -1,6 +1,7 @@
 // This file is used for testing. This is not to be used as a public API.
 
 import 'package:flutter/material.dart';
+import 'package:localpkg/online.dart';
 import 'package:localpkg/theme.dart';
 import 'package:localpkg/tipjar.dart';
 import 'package:quick_navbar/quick_navbar.dart';
@@ -56,6 +57,13 @@ class TestPage extends StatefulWidget {
 class _TestPageState extends State<TestPage> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Center(
+      child: TextButton(
+        child: Text("Test Server Launch"),
+        onPressed: () {
+          serverlaunch(context);
+        },
+      ),
+    );
   }
 }
