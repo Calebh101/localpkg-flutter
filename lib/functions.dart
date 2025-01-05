@@ -130,7 +130,11 @@ int getCrossAxisCount({required BuildContext context, int factor = 180}) {
   return crossAxisCount;
 }
 
-void navigate(BuildContext context, Widget page, int mode) {
+void navigate({required BuildContext context, required Widget page,
+    /// mode 1: push
+    /// mode 2: push and replace
+    int mode = 1,
+  }) {
   if (mode == 1) {
     Navigator.push(
       context,
