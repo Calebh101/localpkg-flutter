@@ -15,7 +15,7 @@ Future<http.Response> _getServerResponse({required Uri url, required String meth
   if (body != null) {
     bodyS = jsonEncode(body);
   } else {
-    bodyS = "null";
+    bodyS = "{}";
   }
 
   print("${'-' * ((75 - " SERVER REQUEST ".length) ~/ 2)} SERVER REQUEST ${'-' * ((75 - " SERVER REQUEST ".length + 1) ~/ 2)}");
@@ -34,6 +34,9 @@ Future<http.Response> _getServerResponse({required Uri url, required String meth
           return await client.get(url);
         }
       case 'POST':
+        if (bodyS == "") {
+          throw Exception("A body is required.");
+        }
         if (client == null) {
           return await http.post(
             url,
