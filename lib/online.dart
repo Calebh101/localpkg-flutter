@@ -51,10 +51,22 @@ Future<http.Response> _getServerResponse({required Uri url, required String meth
   }
 }
 
-Future<http.Response> getServerResponse({required String endpoint, String method = "POST", Map? body, bool? debug}) async {
+Map getFetchInfo({bool? debug}) {
   debug ??= kDebugMode;
   String host = debug ? "192.168.0.26" : "calebh101.ddns.net";
   int mode = debug ? 1 : 2; // 1 is http, 2 is self-signed https, 3 is https
+  return {
+    "debug": debug,
+    "host": host,
+    "mode": mode,
+  };
+}
+
+Future<http.Response> getServerResponse({required String endpoint, String method = "POST", Map? body, bool? debug}) async {
+  Map info = getInfo(debug: debug);
+  String host = info["host"];
+  int mode = info["mode"];
+  debug = info["debug"];
   http.Response response;
 
   if (mode == 1) {
