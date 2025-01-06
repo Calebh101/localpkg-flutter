@@ -2,10 +2,11 @@ import 'dart:io';
 import 'package:flutter/services.dart';
 import 'package:http_server/http_server.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:localpkg/override.dart';
 
 Future<Map> hostFile(File file, String name,
     {int port = 4285, bool useHttps = false, bool useHttpsUrl = false}) async {
-  print("Hosting file...");
+  print("hosting file...");
 
   try {
     // Get the application documents directory
@@ -20,7 +21,7 @@ Future<Map> hostFile(File file, String name,
     // Save the file to the assets directory
     final filePath = '${staticFilesDirectory.path}/$name';
     await file.copy(filePath);
-    print('File saved at: $filePath');
+    print('file saved at: $filePath');
 
     // Set up the server URL
     const hostname = 'localhost';
@@ -54,11 +55,11 @@ Future<Map> hostFile(File file, String name,
       } else {
         server = await HttpServer.bind(hostname, port, shared: true);
       }
-      print('Server is now running at $url');
+      print('server is now running at $url');
     } catch (e) {
       if (e is SocketException) {
         // If the port is in use, try a different port (or handle accordingly)
-        print('Port $port is already in use. Trying a different port...');
+        print('port $port is taken, trying different port...');
         return await hostFile(file, name, port: port + 1);
       } else {
         rethrow; // Rethrow other exceptions
