@@ -124,7 +124,7 @@ Future<bool?> showConfirmDialogue(BuildContext context, String title, String des
           ),
           TextButton(
             onPressed: () {
-              Navigator.of(context).pop(false);
+              Navigator.of(context).pop(null);
             },
             child: Text('Cancel'),
           ),
