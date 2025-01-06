@@ -1,12 +1,13 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/io_client.dart';
 import 'package:localpkg/dialogue.dart';
 
-String host = "localhost";
-int mode = 1; // 1 is http, 2 is self-signed https, 3 is https
+String host = kDebugMode ? "192.168.0.26" : "calebh101.ddns.net";
+int mode = kDebugMode ? 1 : 2; // 1 is http, 2 is self-signed https, 3 is https
 
 Future<http.Response> _getServerResponse({required Uri url, required String method, dynamic client, Map? body, String contentType = "application/json"}) async {
   Map<String, String> headers = {
@@ -16,7 +17,7 @@ Future<http.Response> _getServerResponse({required Uri url, required String meth
   if (body != null) {
     bodyS = jsonEncode(body);
   }
-  print("--- sending request ---\nto:   $url\nas:   $headers\nwith: $bodyS");
+  print("--- sending server request ---\nurl:      $url\nheaders:  $headers\nbody:     $bodyS\n------------------------------");
   try {
     switch(method) {
       case 'GET':
@@ -49,8 +50,12 @@ Future<http.Response> _getServerResponse({required Uri url, required String meth
   }
 }
 
-Future<http.Response> getServerResponse({required String endpoint, String method = "POST", Map? body}) async {
+Future<http.Response> getServerResponse({required String endpoint, String method = "POST", Map? body, bool? debug}) async {
+  debug ??= kDebugMode;
+  String host = debug ? "192.168.0.26" : "calebh101.ddns.net";
+  int mode = debug ? 1 : 2; // 1 is http, 2 is self-signed https, 3 is https
   http.Response response;
+
   if (mode == 1) {
     response = await _getServerResponse(url: Uri.parse('http://$host:5000$endpoint'), method: method, body: body);
   } else if (mode == 2) {
@@ -69,6 +74,7 @@ Future<http.Response> getServerResponse({required String endpoint, String method
   } else {
     throw Exception("Unknown mode: $mode");
   }
+
   return response;
 }
 
