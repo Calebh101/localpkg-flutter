@@ -63,7 +63,7 @@ Map getFetchInfo({bool? debug}) {
 }
 
 Future<http.Response> getServerResponse({required String endpoint, String method = "POST", Map? body, bool? debug}) async {
-  Map info = getInfo(debug: debug);
+  Map info = getFetchInfo(debug: debug);
   String host = info["host"];
   int mode = info["mode"];
   debug = info["debug"];
