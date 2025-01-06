@@ -78,13 +78,13 @@ Future<http.Response> getServerResponse({required String endpoint, String method
   return response;
 }
 
-@ Deprecated("Use getServerData instead.")
+@Deprecated("Use getServerData instead.")
 Future<dynamic> getServerJsonData(String endpoint) async {
   return await getServerData(endpoint: endpoint);
 }
 
-Future<dynamic> getServerData({required String endpoint}) async {
-  http.Response response = await getServerResponse(endpoint: endpoint);
+Future<dynamic> getServerData({required String endpoint, bool? debug}) async {
+  http.Response response = await getServerResponse(endpoint: endpoint, debug: debug);
   try {
     return json.decode(response.body);
   } catch (e) {
