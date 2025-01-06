@@ -5,9 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/io_client.dart';
 import 'package:localpkg/dialogue.dart';
-
-String host = kDebugMode ? "192.168.0.26" : "calebh101.ddns.net";
-int mode = kDebugMode ? 1 : 2; // 1 is http, 2 is self-signed https, 3 is https
+import 'package:localpkg/override.dart';
 
 Future<http.Response> _getServerResponse({required Uri url, required String method, dynamic client, Map? body, String contentType = "application/json"}) async {
   Map<String, String> headers = {
@@ -16,9 +14,17 @@ Future<http.Response> _getServerResponse({required Uri url, required String meth
   String? bodyS;
   if (body != null) {
     bodyS = jsonEncode(body);
+  } else {
+    bodyS = "null";
   }
-  print("--- sending server request ---\nurl:      $url\nheaders:  ${jsonEncode(headers)}\nbody:     $bodyS");
-  print("------------------------------");
+
+  print("${'-' * ((75 - " SERVER REQUEST ".length) ~/ 2)} SERVER REQUEST ${'-' * ((75 - " SERVER REQUEST ".length + 1) ~/ 2)}");
+  print("method".padRight(10) + method);
+  print("url".padRight(10) + url.toString());
+  print("headers".padRight(10) + jsonEncode(headers));
+  print("body".padRight(10) + jsonEncode(body));
+  print('-' * 75);
+
   try {
     switch(method) {
       case 'GET':
