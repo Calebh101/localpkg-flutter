@@ -17,7 +17,7 @@ Future<http.Response> _getServerResponse({required Uri url, required String meth
   if (body != null) {
     bodyS = jsonEncode(body);
   }
-  print("--- sending server request ---\nurl:      $url\nheaders:  $headers\nbody:     $bodyS");
+  print("--- sending server request ---\nurl:      $url\nheaders:  ${jsonEncode(headers)}\nbody:     $bodyS");
   print("------------------------------");
   try {
     switch(method) {
