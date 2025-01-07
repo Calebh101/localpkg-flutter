@@ -1,6 +1,8 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/io_client.dart';
@@ -10,6 +12,7 @@ import 'package:localpkg/override.dart';
 bool? serverDisabled;
 bool _checkServerDisabled = false;
 bool _status = true;
+final _serverDisabledFuture = Completer<String>();
 
 Future<http.Response> _getServerResponse({required Uri url, required String method, dynamic client, Map? body, String contentType = "application/json"}) async {
   Map<String, String> headers = {
@@ -119,8 +122,8 @@ Future<dynamic> getServerData({required String endpoint, bool? debug}) async {
 }
 
 /// For checking if the server has a message, warning, or is disabled, and showing messages based on that
-Future<bool> serverlaunch(context) async {
-  if (_checkServerDisabled) {
+Future<bool> serverlaunch({required BuildContext context, bool override = false}) async {
+  if (_checkServerDisabled && !override) {
     return _status;
   }
   try {
@@ -150,6 +153,7 @@ Future<bool> serverlaunch(context) async {
         serverDisabled = false;
       }
       _checkServerDisabled = true;
+      _serverDisabledFuture.complete('{"status":$_status}');
       return _status;
     } else {
       print('server.launch error: ${response.statusCode}');
@@ -159,4 +163,9 @@ Future<bool> serverlaunch(context) async {
     print('server.launch error: $e');
     return false;
   }
+}
+
+Future<bool> checkDisabled() async {
+  await _serverDisabledFuture.future;
+  return !_status;
 }
