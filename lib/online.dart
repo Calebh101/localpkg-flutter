@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
@@ -137,7 +138,7 @@ Future<bool> serverlaunch(context) async {
       }
       if (config["disable"]) {
         print("server.launch status: disable");
-        await showAlertDialogue(context, "Server Disabled", message["disable"], false, {"show": true});
+        showConstantDialogue(context, "Server Disabled", message["disable"]);
         status = false;
       }
       return status;
