@@ -122,36 +122,18 @@ Future<dynamic> getServerData({required String endpoint, bool? debug}) async {
 }
 
 /// For checking if the server has a message, warning, or is disabled, and showing messages based on that
-Future<bool> serverlaunch({required BuildContext context, bool override = false}) async {
+/// set service to general to not fetch a specific service
+Future<bool> serverlaunch({required BuildContext context, required String service, bool override = false}) async {
   if (_checkServerDisabled && !override) {
     return _status;
   }
   try {
-    http.Response response = await getServerResponse(endpoint: "/api/launch/check", method: "GET");
+    http.Response response = await getServerResponse(endpoint: "/api/launch/check?service=all", method: "GET");
     if (response.statusCode == 200) {
       Map data = json.decode(response.body);
-      print('server.launch data: $data');
       Map general = data["general"];
-      Map config = general["config"];
-      Map message = general["message"];
-      if (config["message"]) {
-        print("server.launch status: message");
-        showAlertDialogue(context, "Server Message", message["message"], false, {"show": true});
-        _status = true;
-      }
-      if (config["warning"]) {
-        print("server.launch status: warning");
-        showAlertDialogue(context, "Server Message: Warning", message["warning"], false, {"show": true});
-        _status = true;
-      }
-      if (config["disable"]) {
-        print("server.launch status: disable");
-        showAlertDialogue(context, "Server Disabled", message["disable"], false, {"show": true});
-        _status = false;
-        serverDisabled = true;
-      } else {
-        serverDisabled = false;
-      }
+      _status = _checkDisabled(context, general);
+      _status = service == "general" || service == "all" ? _status : _checkDisabled(context, data["services"][service]);
       _checkServerDisabled = true;
       _serverDisabledFuture.complete('{"status":$_status}');
       return _status;
@@ -163,6 +145,26 @@ Future<bool> serverlaunch({required BuildContext context, bool override = false}
     print('server.launch error: $e');
     return false;
   }
+}
+
+bool _checkDisabled(context, data) {
+  bool _statusS = true;
+  Map config = data["config"];
+  Map message = data["message"];
+  if (config["message"]) {
+    print("server.launch status: message");
+    showAlertDialogue(context, "Server Message", message["message"], false, {"show": true});
+  }
+  if (config["warning"]) {
+    print("server.launch status: warning");
+    showAlertDialogue(context, "Server Warning", message["warning"], false, {"show": true});
+  }
+  if (config["disable"]) {
+    print("server.launch status: disable");
+    showAlertDialogue(context, "Server Disabled", message["disable"], false, {"show": true});
+    _statusS = false;
+  }
+  return _statusS;
 }
 
 Future<bool> checkDisabled() async {

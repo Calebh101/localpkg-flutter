@@ -65,7 +65,7 @@ class _TestPageState extends State<TestPage> {
           TextButton(
             child: Text("Test Server Launch"),
             onPressed: () {
-              serverlaunch(context: context);
+              serverlaunch(context: context, service: "general");
             },
           ),
           TextButton(
