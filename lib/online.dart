@@ -8,6 +8,8 @@ import 'package:localpkg/dialogue.dart';
 import 'package:localpkg/override.dart';
 
 bool? serverDisabled;
+bool _checkServerDisabled = false;
+bool _status = true;
 
 Future<http.Response> _getServerResponse({required Uri url, required String method, dynamic client, Map? body, String contentType = "application/json"}) async {
   Map<String, String> headers = {
@@ -118,34 +120,37 @@ Future<dynamic> getServerData({required String endpoint, bool? debug}) async {
 
 /// For checking if the server has a message, warning, or is disabled, and showing messages based on that
 Future<bool> serverlaunch(context) async {
+  if (_checkServerDisabled) {
+    return _status;
+  }
   try {
     http.Response response = await getServerResponse(endpoint: "/api/launch/check", method: "GET");
     if (response.statusCode == 200) {
-      var data = json.decode(response.body);
-      var status = true;
+      Map data = json.decode(response.body);
       print('server.launch data: $data');
-      var general = data["general"];
-      var config = general["config"];
-      var message = general["message"];
+      Map general = data["general"];
+      Map config = general["config"];
+      Map message = general["message"];
       if (config["message"]) {
         print("server.launch status: message");
         showAlertDialogue(context, "Server Message", message["message"], false, {"show": true});
-        status = true;
+        _status = true;
       }
       if (config["warning"]) {
         print("server.launch status: warning");
         showAlertDialogue(context, "Server Message: Warning", message["warning"], false, {"show": true});
-        status = true;
+        _status = true;
       }
       if (config["disable"]) {
         print("server.launch status: disable");
         showAlertDialogue(context, "Server Disabled", message["disable"], false, {"show": true});
-        status = false;
+        _status = false;
         serverDisabled = true;
       } else {
         serverDisabled = false;
       }
-      return status;
+      _checkServerDisabled = true;
+      return _status;
     } else {
       print('server.launch error: ${response.statusCode}');
       return false;
