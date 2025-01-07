@@ -7,6 +7,8 @@ import 'package:http/io_client.dart';
 import 'package:localpkg/dialogue.dart';
 import 'package:localpkg/override.dart';
 
+bool? serverDisabled;
+
 Future<http.Response> _getServerResponse({required Uri url, required String method, dynamic client, Map? body, String contentType = "application/json"}) async {
   Map<String, String> headers = {
     'Content-Type': contentType,
@@ -139,6 +141,9 @@ Future<bool> serverlaunch(context) async {
         print("server.launch status: disable");
         showAlertDialogue(context, "Server Disabled", message["disable"], false, {"show": true});
         status = false;
+        serverDisabled = true;
+      } else {
+        serverDisabled = false;
       }
       return status;
     } else {
