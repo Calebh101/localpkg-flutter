@@ -6,6 +6,8 @@ import 'package:google_fonts/google_fonts.dart';
 ThemeData brandTheme({
   bool darkMode = false,
   bool? useDarkBackground,
+  Color? backgroundColor,
+  Color? textColor,
   Color darkBackgroundColor = const Color.fromARGB(255, 17, 17, 17),
   Color seedColor = Colors.red,
   TextTheme? customFont,
@@ -15,7 +17,8 @@ ThemeData brandTheme({
       defaultTargetPlatform == TargetPlatform.macOS;
   TextTheme textTheme = customFont ?? GoogleFonts.poppinsTextTheme();
   bool darkBackground = useDarkBackground ?? onApple;
-  Color? background = darkBackground ? darkBackgroundColor : null;
+  Color? background = backgroundColor ?? (darkBackground ? darkBackgroundColor : null);
+  Color text = textColor ?? (darkMode ? Colors.white : Colors.black);
 
   return ThemeData(
     colorScheme: ColorScheme.fromSeed(
@@ -23,8 +26,8 @@ ThemeData brandTheme({
       brightness: darkMode ? Brightness.dark : Brightness.light,
     ),
     textTheme: textTheme.apply(
-      bodyColor: darkMode ? Colors.white : Colors.black,
-      displayColor: darkMode ? Colors.white : Colors.black,
+      bodyColor: text,
+      displayColor: text,
     ),
     scaffoldBackgroundColor: background,
     appBarTheme: AppBarTheme(backgroundColor: background),
@@ -43,8 +46,9 @@ ThemeData customTheme({
   double iconSize = 30,
 }) {
   return brandTheme(
-      darkMode: darkMode,
-      seedColor: seedColor,
-      customFont: textStyle,
-      iconSize: iconSize);
+    darkMode: darkMode,
+    seedColor: seedColor,
+    customFont: textStyle,
+    iconSize: iconSize
+  );
 }
