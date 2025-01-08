@@ -5,6 +5,7 @@ import 'package:localpkg/online.dart';
 import 'package:localpkg/theme.dart';
 import 'package:localpkg/tipjar.dart';
 import 'package:localpkg/override.dart';
+import 'package:localpkg/widgets.dart';
 import 'package:quick_navbar/quick_navbar.dart';
 import 'package:http/http.dart' as http;
 
@@ -75,6 +76,9 @@ class _TestPageState extends State<TestPage> {
               print("response[${response.statusCode}]: ${response.body}");
             },
           ),
+          BlockButton(text: "Size: 160", action: () {}, size: 160),
+          BlockButton(text: "Size: 320", action: () {}, size: 320),
+          BlockButton(text: "Size: 480", action: () {}, size: 480),
         ],
       ),
     );

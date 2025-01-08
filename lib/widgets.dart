@@ -162,3 +162,26 @@ Widget customFaIcon(
     ),
   ]);
 }
+
+Widget BlockButton({required String text, required double size, required VoidCallback action, double? width, double? height}) {
+  width ??= size;
+  height ??= size / 2;
+  return Padding(
+    padding: const EdgeInsets.all(12.0),
+    child: ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        minimumSize: Size(width, height),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(10)), // Square edges
+        ),
+      ),
+      onPressed: action,
+      child: Text(
+        text,
+        style: TextStyle(
+          fontSize: size / 10,
+        ),
+      ),
+    ),
+  );
+}
