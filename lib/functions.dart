@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:localpkg/override.dart';
+import 'package:localpkg/logging.dart';
 
 Future<void> openUrl({required Uri url, LaunchMode launchMode = LaunchMode.externalApplication}) async {
   try {

@@ -2,7 +2,7 @@ import 'dart:io';
 import 'package:flutter/services.dart';
 import 'package:http_server/http_server.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:localpkg/override.dart';
+import 'package:localpkg/logging.dart';
 
 Future<Map> hostFile(File file, String name,
     {int port = 4285, bool useHttps = false, bool useHttpsUrl = false}) async {

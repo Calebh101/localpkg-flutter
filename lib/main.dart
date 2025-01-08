@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:localpkg/online.dart';
 import 'package:localpkg/theme.dart';
 import 'package:localpkg/tipjar.dart';
-import 'package:localpkg/override.dart';
+import 'package:localpkg/logging.dart';
 import 'package:localpkg/widgets.dart';
 import 'package:quick_navbar/quick_navbar.dart';
 import 'package:http/http.dart' as http;
@@ -74,6 +74,18 @@ class _TestPageState extends State<TestPage> {
             onPressed: () async {
               http.Response response = await getServerResponse(endpoint: "/api/services/trafficlightsimulator/join", body: {"id": "999999999"});
               print("response[${response.statusCode}]: ${response.body}");
+            },
+          ),
+          TextButton(
+            child: Text("LOG"),
+            onPressed: () async {
+              print("Test");
+            },
+          ),
+          TextButton(
+            child: Text("WARN"),
+            onPressed: () async {
+              warn("Test");
             },
           ),
           BlockButton(text: "Size: 160", action: () {}, size: 160),
