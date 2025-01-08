@@ -83,9 +83,15 @@ class _TestPageState extends State<TestPage> {
             },
           ),
           TextButton(
-            child: Text("WARN"),
+            child: Text("WARN CODE"),
             onPressed: () async {
-              warn("Test");
+              warn("Test", code: "200");
+            },
+          ),
+          TextButton(
+            child: Text("ERROR CODE"),
+            onPressed: () async {
+              error("Test", code: "200");
             },
           ),
           BlockButton(text: "Size: 160", action: () {}, size: 160),
