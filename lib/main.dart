@@ -126,6 +126,18 @@ class _TestPageState extends State<TestPage> {
                 error("Test", code: "200");
               },
             ),
+            TextButton(
+              child: Text("STACK"),
+              onPressed: () async {
+                stack();
+              },
+            ),
+            TextButton(
+              child: Text("STACK CODE"),
+              onPressed: () async {
+                stack(code: "200");
+              },
+            ),
             BlockButton(text: "Size: 160", action: () {}, size: 160),
             BlockButton(text: "Size: 320", action: () {}, size: 320),
             BlockButton(text: "Size: 480", action: () {}, size: 480),
