@@ -7,32 +7,32 @@ String _line = "----------------";
 
 /// Takes any input and outputs a simple log
 /// If this file is imported, it will override any print() called to use custom logging
-void print(dynamic input) {
-  _handle(input, "log", "0");
+void print(dynamic input, {String? code, bool trace = false}) {
+  _handle(input, "log", code, trace);
 }
 
 /// Takes any input and code and outputs a warning in yellow text
-void warn(dynamic input, {String? code}) {
-  _handle(input, "warning", code);
+void warn(dynamic input, {String? code, bool trace = true}) {
+  _handle(input, "warning", code, trace);
 }
 
 /// Takes any input and code and outputs an error in red text
-void error(dynamic input, {String? code}) {
-  _handle(input, "error", code);
+void error(dynamic input, {String? code, bool trace = true}) {
+  _handle(input, "error", code, trace);
 }
 
-void _handle(dynamic input, String type, String? code) {
+void _handle(dynamic input, String type, String? code, bool stackTrace) {
   input = _encodeInput(input);
   String abbr = (type == "log" ? "log" : (type == "warning" ? "warn" : (type == "error" ? "err" : "null-")));
-  String output = _getOutput(input, type.toUpperCase(), abbr.toUpperCase(), code: code);
+  String output = _getOutput(input, type.toUpperCase(), abbr.toUpperCase(), code, stackTrace);
   List<String> lines = output.split('\n');
   for (String line in lines) {
     debugPrint("${type == "error" ? "\x1B[31m" : (type == "warning" ? "\x1B[33m" : "")}$line$_reset");
   }
 }
 
-String _getOutput(dynamic input, String type, String abbr, {String? code}) {
-  return "${_getLine(abbr, code)}\n$abbr ${DateTime.now().toIso8601String()}: ${type == "log" ? "$input ${code != null ? "(code $code)" : ""}" : "$type${code != null ? " (CODE $code) " : " "}CAUGHT BY LOCALPKG HANDLER:\n$type: $input\n\n${StackTrace.current}\n$type: $input\n${_getLine(abbr, code)}"}";
+String _getOutput(dynamic input, String type, String abbr, String? code, bool stackTrace) {
+  return "${_getLine(abbr, code)}\n$abbr ${DateTime.now().toIso8601String()}: ${type == "log" ? "$input ${code != null ? "(code $code)" : ""}" : "$type${code != null ? " (CODE $code) " : " "}CAUGHT BY LOCALPKG HANDLER:\n$type: $input\n${stackTrace ? "\n${StackTrace.current}" : ""}\n$type: $input\n${_getLine(abbr, code)}"}";
 }
 
 String _getLine(String abbr, String? code) {
