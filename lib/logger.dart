@@ -6,20 +6,37 @@ String _line = "----------------";
 
 /// Takes any input and outputs a simple log
 /// If this file is imported, it will override any print() called to use custom logging
-void print(dynamic input, {String? code, bool trace = false, String? color}) {
+/// Input: the log
+/// Code: the log code
+/// Color: the ANSI color for the terminal (default is default)
+/// Trace: show stack trace (default is false)
+void print(dynamic input, {String? code, String? color, bool trace = false}) {
   _handle(input, "log", code, trace, color);
 }
 
-/// Takes any input and code and outputs a warning in yellow text
+/// Takes any input and code and outputs a warning
+/// Input: the warning
+/// Code: the warn code
+/// Color: the ANSI color for the terminal (default is yellow)
+/// Trace: show stack trace (default is true)
 void warn(dynamic input, {String? code, bool trace = true, String color = "\x1B[33m"}) {
   _handle(input, "warning", code, trace, color);
 }
 
-/// Takes any input and code and outputs an error in red text
-void error(dynamic input, {String? code, bool trace = true, String color = "\x1B[31m"}) {
+/// Takes any input and code and outputs an error
+/// Input: the error
+/// Code: the error code
+/// Color: the ANSI color for the terminal (default is red)
+/// Trace: show stack trace (default is true)
+void error(dynamic input, {String? code, String color = "\x1B[31m", bool trace = true}) {
   _handle(input, "error", code, trace, color);
 }
 
+/// Outputs the stack trace
+/// Code: the log code
+/// Color: the ANSI color for the terminal (default is default)
+/// You don't have a choice to show the stack trace here lol
+/// It looks weird though, calling a dedicated show stack trace function but disabling stack trace
 void stack({String? code, String? color}) {
   _handle("null", "stack", code, true, color);
 }
