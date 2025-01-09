@@ -125,10 +125,11 @@ Widget AboutSettings({
           desc: "License and engine info.",
           action: () {
             showLicensePage(
-                context: context,
-                applicationVersion: version,
-                applicationLegalese: about,
-                applicationIcon: icon);
+              context: context,
+              applicationVersion: version,
+              applicationLegalese: about,
+              applicationIcon: icon,
+            );
           }),
       if (tipjar)
         Setting(
