@@ -1,6 +1,7 @@
 // This file is used for testing. This is not to be used as a public API.
 
 import 'package:flutter/material.dart';
+import 'package:localpkg/dialogue.dart';
 import 'package:localpkg/online.dart';
 import 'package:localpkg/theme.dart';
 import 'package:localpkg/tipjar.dart';
@@ -61,43 +62,46 @@ class _TestPageState extends State<TestPage> {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Column(
-        children: [
-          TextButton(
-            child: Text("Test Server Launch"),
-            onPressed: () {
-              serverlaunch(context: context, service: "general");
-            },
-          ),
-          TextButton(
-            child: Text("Test Server Post"),
-            onPressed: () async {
-              http.Response response = await getServerResponse(endpoint: "/api/services/trafficlightsimulator/join", body: {"id": "999999999"});
-              print("response[${response.statusCode}]: ${response.body}");
-            },
-          ),
-          TextButton(
-            child: Text("LOG"),
-            onPressed: () async {
-              print("Test");
-            },
-          ),
-          TextButton(
-            child: Text("WARN CODE"),
-            onPressed: () async {
-              warn("Test", code: "200");
-            },
-          ),
-          TextButton(
-            child: Text("ERROR CODE"),
-            onPressed: () async {
-              error("Test", code: "200");
-            },
-          ),
-          BlockButton(text: "Size: 160", action: () {}, size: 160),
-          BlockButton(text: "Size: 320", action: () {}, size: 320),
-          BlockButton(text: "Size: 480", action: () {}, size: 480),
-        ],
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            TextButton(
+              child: Text("Test Server Launch"),
+              onPressed: () {
+                serverlaunch(context: context, service: "general");
+              },
+            ),
+            TextButton(
+              child: Text("Test Server Post"),
+              onPressed: () async {
+                http.Response response = await getServerResponse(endpoint: "/api/services/trafficlightsimulator/join", body: {"id": "999999999"});
+                print("response[${response.statusCode}]: ${response.body}");
+              },
+            ),
+            TextButton(
+              child: Text("LOG"),
+              onPressed: () async {
+                print("Test");
+              },
+            ),
+            TextButton(
+              child: Text("WARN CODE"),
+              onPressed: () async {
+                warn("Test", code: "200");
+              },
+            ),
+            TextButton(
+              child: Text("ERROR CODE"),
+              onPressed: () async {
+                error("Test", code: "200");
+              },
+            ),
+            BlockButton(text: "Size: 160", action: () {}, size: 160),
+            BlockButton(text: "Size: 320", action: () {}, size: 320),
+            BlockButton(text: "Size: 480", action: () {}, size: 480),
+            AboutSettings(context: context, version: "0.0.0A", beta: true, about: "About", instructionsAction: () {showAlertDialogue(context, "Instructions", "instructions", false, {"show": false});}),
+          ],
+        ),
       ),
     );
   }

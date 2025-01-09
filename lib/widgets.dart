@@ -91,9 +91,11 @@ Widget AboutSettings({
   required bool beta,
   required String about,
   bool debug = false,
-  GestureTapCallback? debugAction,
   bool tipjar = false,
+  bool instructionsPage = true,
   Widget? icon,
+  GestureTapCallback? debugAction,
+  GestureTapCallback? instructionsAction,
 }) {
   return Column(
     children: [
@@ -101,6 +103,12 @@ Widget AboutSettings({
       Setting(
         title: "About",
         desc: about,
+      ),
+      if (instructionsPage)
+      Setting(
+        title: "Instructions",
+        desc: "How to use this application and service.",
+        action: instructionsAction,
       ),
       Setting(
         title: "Version",
