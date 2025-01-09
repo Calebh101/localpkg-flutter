@@ -79,9 +79,39 @@ class _TestPageState extends State<TestPage> {
               },
             ),
             TextButton(
-              child: Text("LOG"),
+              child: Text("LOG NO STACK"),
               onPressed: () async {
                 print("Test");
+              },
+            ),
+            TextButton(
+              child: Text("WARN NO STACK"),
+              onPressed: () async {
+                warn("Test", trace: false);
+              },
+            ),
+            TextButton(
+              child: Text("ERROR NO STACK"),
+              onPressed: () async {
+                error("Test", trace: false);
+              },
+            ),
+            TextButton(
+              child: Text("LOG (STACK)"),
+              onPressed: () async {
+                print("Test", trace: true);
+              },
+            ),
+            TextButton(
+              child: Text("WARN"),
+              onPressed: () async {
+                warn("Test");
+              },
+            ),
+            TextButton(
+              child: Text("ERROR"),
+              onPressed: () async {
+                error("Test");
               },
             ),
             TextButton(

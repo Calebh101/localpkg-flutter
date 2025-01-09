@@ -32,11 +32,11 @@ void _handle(dynamic input, String type, String? code, bool stackTrace) {
 }
 
 String _getOutput(dynamic input, String type, String abbr, String? code, bool stackTrace) {
-  return "${_getLine(abbr, code)}\n$abbr ${DateTime.now().toIso8601String()}: ${type == "log" ? "$input ${code != null ? "(code $code)" : ""}" : "$type${code != null ? " (CODE $code) " : " "}CAUGHT BY LOCALPKG HANDLER:\n$type: $input\n${stackTrace ? "\n${StackTrace.current}" : ""}\n$type: $input\n${_getLine(abbr, code)}"}";
+  return "${type == "LOG" ? "" : "${_getLine(abbr, code)}\n"}$abbr ${DateTime.now().toIso8601String()}: ${type == "LOG" ? "$input ${code != null ? "(code $code)" : ""}" : "$type${code != null ? " (CODE $code) " : " "}CAUGHT BY LOCALPKG HANDLER:\n$type: $input${stackTrace ? "\n\n${StackTrace.current}\n$type: $input" : ""}\n${_getLine(abbr, code)}"}";
 }
 
 String _getLine(String abbr, String? code) {
-  return "$_line $abbr ${code != null ? "(code $code)" : ""} $_line";
+  return "$_line $abbr${code != null ? " (code $code) " : " "}$_line";
 }
 
 String _encodeInput(dynamic input) {
