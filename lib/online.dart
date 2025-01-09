@@ -7,7 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/io_client.dart';
 import 'package:localpkg/dialogue.dart';
-import 'package:localpkg/logging.dart';
+import 'package:localpkg/logger.dart';
 
 bool? serverDisabled;
 bool _checkServerDisabled = false;
