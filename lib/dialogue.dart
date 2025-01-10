@@ -15,29 +15,32 @@ void showSnackBar(context, String content) {
 Future<bool?> showDialogue({
   required BuildContext context,
   required String title,
-  required String text,
+  required Widget content,
   bool cancel = false,
-  Map? copy,
+  bool fullscreen = false,
+  bool copy = false,
+  String? copyText,
 }) {
-  copy ??= {"show": false};
   return showDialog<bool>(
     context: context,
     builder: (BuildContext context) {
       return AlertDialog(
         title: Text(title),
-        content: Text(text),
+        content: Container(
+          width: fullscreen ? MediaQuery.of(context).size.width * 0.95 : null,
+          height: fullscreen ? MediaQuery.of(context).size.height * 0.95 : null,
+          child: content,
+        ),
         actions: [
-          copy!["show"] 
-              ? TextButton(
+          copy ? TextButton(
                   child: const Text('Copy'),
                   onPressed: () {
-                    Clipboard.setData(ClipboardData(text: copy!.containsKey("text") ? copy["text"] : text));
+                    Clipboard.setData(ClipboardData(text: copyText ?? ""));
                     showSnackBar(context, "Copied to clipboard!");
                   },
                 )
               : const SizedBox.shrink(),
-          cancel
-              ? TextButton(
+          cancel  ? TextButton(
                   child: const Text('Cancel'),
                   onPressed: () {
                     Navigator.of(context).pop(false); 
@@ -132,7 +135,7 @@ Future<void> openUrlConf(BuildContext context, Uri url) async {
   }
 }
 
-void showConstantDialogue(BuildContext context, String title, String message) {
+void showConstantDialogue({required BuildContext context, required String title, String? message}) {
   showDialog(
     context: context,
     barrierDismissible: false,
@@ -140,7 +143,7 @@ void showConstantDialogue(BuildContext context, String title, String message) {
       return WillPopScope(
         onWillPop: () async => false,
         child: AlertDialog(
-          content: Text(message),
+          content: message != null ? Text(message) : SizedBox.shrink(),
           actions: [],
         ),
       );
@@ -188,7 +191,7 @@ Future<bool> showFirstTimeDialogue(context, String title, String description, bo
   if (!firstTimeDialogueShown) {
     print("showing first time dialogue");
     prefs.setBool("firstTimeDialogueShown", true);
-    selection = await showDialogue(context: context, title: title, text: description) ?? false;
+    selection = await showDialogue(context: context, title: title, content: Text(description)) ?? false;
   } else {
     print("not showing first time dialogue");
     selection = false;
