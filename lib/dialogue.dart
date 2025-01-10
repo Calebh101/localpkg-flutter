@@ -24,40 +24,36 @@ Future<bool?> showDialogue({
   return showDialog<bool>(
     context: context,
     builder: (BuildContext context) {
-      return StatefulBuilder(
-        builder: (BuildContext context, StateSetter setState) {
-          return AlertDialog(
-            title: Text(title),
-            content: Container(
-              width: fullscreen ? MediaQuery.of(context).size.width * 0.95 : null,
-              height: fullscreen ? MediaQuery.of(context).size.height * 0.95 : null,
-              child: content,
-            ),
-            actions: [
-              copy ? TextButton(
-                      child: const Text('Copy'),
-                      onPressed: () {
-                        Clipboard.setData(ClipboardData(text: copyText ?? ""));
-                        showSnackBar(context, "Copied to clipboard!");
-                      },
-                    )
-                  : const SizedBox.shrink(),
-              cancel  ? TextButton(
-                      child: const Text('Cancel'),
-                      onPressed: () {
-                        Navigator.of(context).pop(false); 
-                      },
-                    )
-                  : const SizedBox.shrink(),
-              TextButton(
-                child: const Text('OK'),
-                onPressed: () {
-                  Navigator.of(context).pop(true); 
-                },
-              ),
-            ],
-          );
-        }
+      return AlertDialog(
+        title: Text(title),
+        content: Container(
+          width: fullscreen ? MediaQuery.of(context).size.width * 0.95 : null,
+          height: fullscreen ? MediaQuery.of(context).size.height * 0.95 : null,
+          child: content,
+        ),
+        actions: [
+          copy ? TextButton(
+                  child: const Text('Copy'),
+                  onPressed: () {
+                    Clipboard.setData(ClipboardData(text: copyText ?? ""));
+                    showSnackBar(context, "Copied to clipboard!");
+                  },
+                )
+              : const SizedBox.shrink(),
+          cancel  ? TextButton(
+                  child: const Text('Cancel'),
+                  onPressed: () {
+                    Navigator.of(context).pop(false); 
+                  },
+                )
+              : const SizedBox.shrink(),
+          TextButton(
+            child: const Text('OK'),
+            onPressed: () {
+              Navigator.of(context).pop(true); 
+            },
+          ),
+        ],
       );
     },
   );
@@ -139,7 +135,7 @@ Future<void> openUrlConf(BuildContext context, Uri url) async {
   }
 }
 
-void showConstantDialogue({required BuildContext context, required String title, String? message}) {
+void showConstantDialogue({required BuildContext context, String? title, String? message}) {
   showDialog(
     context: context,
     barrierDismissible: false,
@@ -147,6 +143,7 @@ void showConstantDialogue({required BuildContext context, required String title,
       return WillPopScope(
         onWillPop: () async => false,
         child: AlertDialog(
+          title: title != null ? Text(title) : SizedBox.shrink(),
           content: message != null ? Text(message) : SizedBox.shrink(),
           actions: [],
         ),
