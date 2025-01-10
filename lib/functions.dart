@@ -64,8 +64,8 @@ String toTitleCase(String input) {
       .join(' ');
 }
 
-Future<bool> shareTextFile(bool allowShareContent, String subject,
-    String content, String extension) async {
+@Deprecated("Use shareText instead.")
+Future<bool> shareTextFile(bool allowShareContent, String subject, String content, String extension) async {
   try {
     final directory = await getApplicationDocumentsDirectory();
     final file = File('${directory.path}/data.$extension');
@@ -74,6 +74,30 @@ Future<bool> shareTextFile(bool allowShareContent, String subject,
     return true;
   } catch (e) {
     if (allowShareContent) {
+      print("Unable to Share.shareXFiles: falling back on Share.share: $e");
+      try {
+        await Share.share(content, subject: subject);
+        return true;
+      } catch (e2) {
+        print("Unable to Share.share: $e2");
+        return false;
+      }
+    } else {
+      print("Unable to Share.share: action not allowed");
+      return false;
+    }
+  }
+}
+
+Future<bool> shareText({required String content, required String filename,bool allowTextShare = true, String? subject}) async {
+  try {
+    final directory = await getApplicationDocumentsDirectory();
+    final file = File('${directory.path}/$filename');
+    final file2 = await file.writeAsString(content);
+    await Share.shareXFiles([XFile(file2.path)], text: subject);
+    return true;
+  } catch (e) {
+    if (allowTextShare) {
       print("Unable to Share.shareXFiles: falling back on Share.share: $e");
       try {
         await Share.share(content, subject: subject);
