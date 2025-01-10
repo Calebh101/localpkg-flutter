@@ -141,7 +141,7 @@ class _TestPageState extends State<TestPage> {
             BlockButton(text: "Size: 160", action: () {}, size: 160),
             BlockButton(text: "Size: 320", action: () {}, size: 320),
             BlockButton(text: "Size: 480", action: () {}, size: 480),
-            AboutSettings(context: context, version: "0.0.0A", beta: true, about: "About", instructionsAction: () {showAlertDialogue(context, "Instructions", "instructions", false, {"show": false});}),
+            AboutSettings(context: context, version: "0.0.0A", beta: true, about: "About", instructionsAction: () {showDialogue(context: context, title: "Instructions", text: "instructions");}),
           ],
         ),
       ),

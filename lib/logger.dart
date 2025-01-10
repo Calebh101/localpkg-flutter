@@ -19,7 +19,7 @@ void print(dynamic input, {String? code, String? color, bool trace = false}) {
 /// Code: the warn code
 /// Color: the ANSI color for the terminal (default is yellow)
 /// Trace: show stack trace (default is true)
-void warn(dynamic input, {String? code, bool trace = true, String color = "\x1B[33m"}) {
+void warn(dynamic input, {String? code, bool trace = true, String? color = "\x1B[33m"}) {
   _handle(input, "warning", code, trace, color);
 }
 
@@ -28,7 +28,7 @@ void warn(dynamic input, {String? code, bool trace = true, String color = "\x1B[
 /// Code: the error code
 /// Color: the ANSI color for the terminal (default is red)
 /// Trace: show stack trace (default is true)
-void error(dynamic input, {String? code, String color = "\x1B[31m", bool trace = true}) {
+void error(dynamic input, {String? code, String? color = "\x1B[31m", bool trace = true}) {
   _handle(input, "error", code, trace, color);
 }
 

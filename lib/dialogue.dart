@@ -12,6 +12,51 @@ void showSnackBar(context, String content) {
   );
 }
 
+Future<bool?> showDialogue({
+  required BuildContext context,
+  required String title,
+  required String text,
+  bool cancel = false,
+  Map? copy,
+}) {
+  copy ??= {"show": false};
+  return showDialog<bool>(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text(title),
+        content: Text(text),
+        actions: [
+          copy!["show"] 
+              ? TextButton(
+                  child: const Text('Copy'),
+                  onPressed: () {
+                    Clipboard.setData(ClipboardData(text: copy!.containsKey("text") ? copy["text"] : text));
+                    showSnackBar(context, "Copied to clipboard!");
+                  },
+                )
+              : const SizedBox.shrink(),
+          cancel
+              ? TextButton(
+                  child: const Text('Cancel'),
+                  onPressed: () {
+                    Navigator.of(context).pop(false); 
+                  },
+                )
+              : const SizedBox.shrink(),
+          TextButton(
+            child: const Text('OK'),
+            onPressed: () {
+              Navigator.of(context).pop(true); 
+            },
+          ),
+        ],
+      );
+    },
+  );
+}
+
+@Deprecated("Use showDialogue instead.")
 Future<bool?> showAlertDialogue(
   BuildContext context,
   String title,
@@ -143,7 +188,7 @@ Future<bool> showFirstTimeDialogue(context, String title, String description, bo
   if (!firstTimeDialogueShown) {
     print("showing first time dialogue");
     prefs.setBool("firstTimeDialogueShown", true);
-    selection = await showAlertDialogue(context, title, description, cancel, {"show": false}) ?? false;
+    selection = await showDialogue(context: context, title: title, text: description) ?? false;
   } else {
     print("not showing first time dialogue");
     selection = false;

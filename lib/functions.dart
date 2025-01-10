@@ -6,6 +6,40 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:localpkg/logger.dart';
 
+String formatTime({
+  required int input,
+  /// amount of time that your input holds
+  /// 1: milliseconds
+  /// 2: seconds
+  /// 3: minutes
+  int mode = 1,
+  /// type of output
+  /// 1: hh:mm:ss
+  /// 2: hh:mm
+  /// 3: mm:ss
+  int output = 1,
+}) {
+  int ms = input;
+  switch (mode) {
+    case 1:
+      ms = input;
+      break;
+    case 2:
+      ms = input % 1000;
+      break;
+    case 3:
+      ms = input % (1000 * 60);
+      break;
+    default:
+      error("Invalid mode: $mode");
+      break;
+  }
+  Duration duration = Duration(milliseconds: ms);
+  int minutes = duration.inMinutes;
+  int seconds = duration.inSeconds % 60;
+  return '${minutes.toString().padLeft(2, '0')}:${seconds.toString().padLeft(2, '0')}';
+}
+
 Future<void> openUrl({required Uri url, LaunchMode launchMode = LaunchMode.externalApplication}) async {
   try {
     if (await canLaunchUrl(url)) {
@@ -33,9 +67,9 @@ Future<void> launchURL(Uri url, LaunchMode? launchMode) async {
   }
 }
 
-String addHttpPrefix(String url) {
+String addHttpPrefix(String url, {String defaultPrefix = "http"}) {
   if (!url.startsWith('http://') && !url.startsWith('https://')) {
-    return 'http://$url';
+    return '$defaultPrefix://$url';
   }
   return url;
 }
@@ -64,7 +98,7 @@ String toTitleCase(String input) {
       .join(' ');
 }
 
-@Deprecated("Use shareText instead.")
+@Deprecated("Use shareText instead. shareText has a different parameter layout.")
 Future<bool> shareTextFile(bool allowShareContent, String subject, String content, String extension) async {
   try {
     final directory = await getApplicationDocumentsDirectory();
@@ -113,11 +147,12 @@ Future<bool> shareText({required String content, required String filename,bool a
   }
 }
 
-double getSizeFactor(
-    {required BuildContext context,
-    int mode = 1,
-    double maxSize = 3,
-    bool forceUseWidth = true}) {
+double getSizeFactor({
+  required BuildContext context,
+  int mode = 1,
+  double maxSize = 3,
+  bool forceUseWidth = true,
+}) {
   double size;
   Size screenSize = MediaQuery.of(context).size;
 
