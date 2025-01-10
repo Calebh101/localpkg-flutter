@@ -148,25 +148,25 @@ void showConstantDialogue(BuildContext context, String title, String message) {
   );
 }
 
-Future<bool?> showConfirmDialogue(BuildContext context, String title, String description) async {
+Future<bool?> showConfirmDialogue({required BuildContext context, required String title, String? description, bool onOff = false}) async {
   return showDialog<bool>(
     context: context,
     builder: (BuildContext context) {
       return AlertDialog(
         title: Text(title),
-        content: Text(description),
+        content: description != null ? Text(description) : SizedBox.shrink(),
         actions: <Widget>[
           TextButton(
             onPressed: () {
               Navigator.of(context).pop(true);
             },
-            child: Text('Yes'),
+            child: Text(onOff ? 'On' : 'Yes'),
           ),
           TextButton(
             onPressed: () {
               Navigator.of(context).pop(false);
             },
-            child: Text('No'),
+            child: Text(onOff ? 'Off' : 'No'),
           ),
           TextButton(
             onPressed: () {
