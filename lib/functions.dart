@@ -17,7 +17,8 @@ String formatTime({
   /// 1: hh:mm:ss
   /// 2: hh:mm
   /// 3: mm:ss
-  int output = 1,
+  int output = 2,
+  bool army = false,
 }) {
   int ms = input;
   switch (mode) {
@@ -34,10 +35,19 @@ String formatTime({
       error("Invalid mode: $mode");
       break;
   }
-  Duration duration = Duration(milliseconds: ms);
-  int minutes = duration.inMinutes;
-  int seconds = duration.inSeconds % 60;
-  return '${minutes.toString().padLeft(2, '0')}:${seconds.toString().padLeft(2, '0')}';
+
+  DateTime time = DateTime.fromMillisecondsSinceEpoch(ms);
+  int hour = time.hour;
+  int minute = time.minute;
+  int second = time.second;
+  int roundedHour = hour;
+  if (army == false) {
+    if (hour > 12) {
+      roundedHour = hour - 12;
+    }
+  }
+  String formatted = "$roundedHour:${minute.toString().padLeft(2, '0')}${output == 1 || output == 3 ? (":${second.toString().padLeft(2, '0')}"): ""}${!army ? (" ${hour >= 12 ? "PM" : "AM"}") : ""}";
+  return formatted;
 }
 
 Future<void> openUrl({required Uri url, LaunchMode launchMode = LaunchMode.externalApplication}) async {
@@ -68,15 +78,19 @@ Future<void> launchURL(Uri url, LaunchMode? launchMode) async {
 }
 
 String addHttpPrefix(String url, {String defaultPrefix = "http"}) {
-  if (!url.startsWith('http://') && !url.startsWith('https://')) {
+  if (!url.startsWith('http://') && !url.startsWith('https://') && !url.startsWith('ws://') && !url.startsWith('wss://')) {
     return '$defaultPrefix://$url';
   }
   return url;
 }
 
-String removeHttpPrefix(String url) {
+String removeHttpPrefix(String url, {bool removeWebsocket = true}) {
   url = url.replaceAll("http://", "");
   url = url.replaceAll("https://", "");
+  if (removeWebsocket) {
+    url = url.replaceAll("ws://", "");
+    url = url.replaceAll("wss://", "");
+  }
   return url;
 }
 
