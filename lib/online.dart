@@ -14,10 +14,15 @@ bool _checkServerDisabled = false;
 bool _status = true;
 final _serverDisabledFuture = Completer<String>();
 
-Future<http.Response> _getServerResponse({required Uri url, required String method, dynamic client, Map? body, String contentType = "application/json"}) async {
+Future<http.Response> _getServerResponse({required Uri url, required String method, dynamic client, Map? body, String contentType = "application/json", String? authToken}) async {
   Map<String, String> headers = {
     'Content-Type': contentType,
   };
+
+  if (authToken != null) {
+    headers["Authorization"] = "Bearer $authToken";
+  }
+
   String? bodyS;
   if (body != null) {
     bodyS = jsonEncode(body);
@@ -78,7 +83,7 @@ Map getFetchInfo({bool? debug}) {
   };
 }
 
-Future<http.Response> getServerResponse({required String endpoint, String method = "POST", Map? body, bool? debug}) async {
+Future<http.Response> getServerResponse({required String endpoint, String method = "POST", Map? body, bool? debug, String? authToken}) async {
   Map info = getFetchInfo(debug: debug);
   String host = info["host"];
   int mode = info["mode"];
@@ -86,7 +91,7 @@ Future<http.Response> getServerResponse({required String endpoint, String method
   http.Response response;
 
   if (mode == 1) {
-    response = await _getServerResponse(url: Uri.parse('http://$host:5000$endpoint'), method: method, body: body);
+    response = await _getServerResponse(url: Uri.parse('http://$host:5000$endpoint'), method: method, body: body, authToken: authToken);
   } else if (mode == 2) {
     final byteData = await rootBundle.load('assets/cert/cert.pem');
     final certificate = byteData.buffer.asUint8List();
@@ -109,11 +114,11 @@ Future<http.Response> getServerResponse({required String endpoint, String method
 
 @Deprecated("Use getServerData instead.")
 Future<dynamic> getServerJsonData(String endpoint) async {
-  return await getServerData(endpoint: endpoint);
+  return await getServerData(method: "GET", endpoint: endpoint);
 }
 
-Future<dynamic> getServerData({required String endpoint, bool? debug}) async {
-  http.Response response = await getServerResponse(endpoint: endpoint, debug: debug);
+Future<dynamic> getServerData({required String endpoint, bool? debug, String? authToken, required String method, Map? body}) async {
+  http.Response response = await getServerResponse(method: method, body: body, endpoint: endpoint, debug: debug, authToken: authToken);
   try {
     return json.decode(response.body);
   } catch (e) {
@@ -170,4 +175,85 @@ bool _checkDisabled(context, data) {
 Future<bool> checkDisabled() async {
   await _serverDisabledFuture.future;
   return !_status;
+}
+
+class User {
+  String email;
+  String password;
+  String username;
+  bool? debug;
+  String? token;
+
+  User({
+    required this.email,
+    required this.password,
+    required this.username,
+    this.debug,
+  });
+
+  int _crashSafe = 0;
+
+  Map info() {
+    return {
+      "email": email,
+      "password": password,
+      "username": username,
+      "token": token ?? "",
+    };
+  }
+
+  @override
+  String toString() {
+    return username;
+  }
+
+  Future<Map> login() async {
+    Map info = getFetchInfo(debug: debug);
+    Map response = await getServerData(method: "POST", endpoint: "/api/auth/login", debug: info["debug"], body: {"email": email, "password": password});
+    if (response.containsKey("error")) {
+      return response;
+    } else {
+      token = response["token"];
+      return response;
+    }
+  }
+
+  Future<Map> register() async {
+    Map info = getFetchInfo(debug: debug);
+    Map response = await getServerData(endpoint: '/api/auth/register', method: "POST", debug: info["debug"], body: {"email": email, "password": password, "username": username});
+    if (response.containsKey("error")) {
+      return response;
+    } else {
+      token = response["token"];
+      return response;
+    }
+  }
+
+  void _resetCrashSafe() {
+    _crashSafe = 0;
+  }
+
+  Future<Map> request({required String method, required String endpoint, Map? body}) async {
+    _resetCrashSafe();
+    return await _request(method: method, endpoint: endpoint, body: body);
+  }
+
+  Future<Map> _request({required String method, required String endpoint, Map? body}) async {
+    _crashSafe++;
+    if (_crashSafe >= 3) {
+      return {"error": "stack overflow"};
+    }
+    if (token?.isNotEmpty == true) {
+      Map info = getFetchInfo(debug: debug);
+      Map response = await getServerData(endpoint: endpoint, method: method, body: body, debug: info["debug"], authToken: token);
+      return response;
+    } else {
+      Map response = await login();
+      if (response.containsKey("error")) {
+        return response;
+      } else {
+        return await _request(method: method, endpoint: endpoint, body: body);
+      }
+    }
+  }
 }

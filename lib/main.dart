@@ -59,6 +59,17 @@ class TestPage extends StatefulWidget {
 }
 
 class _TestPageState extends State<TestPage> {
+  String email = "calebharper5@gmail.com";
+  String username = "Calebh77";
+  String password = "Beach6781!";
+  User? user;
+
+  @override
+  void initState() {
+    user = User(email: email, username: username, password: password);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -138,9 +149,15 @@ class _TestPageState extends State<TestPage> {
                 stack(code: "200");
               },
             ),
-            BlockButton(text: "Size: 160", action: () {}, size: 160),
-            BlockButton(text: "Size: 320", action: () {}, size: 320),
-            BlockButton(text: "Size: 480", action: () {}, size: 480),
+            BlockButton(text: "Info", action: () {
+              print(user!.info());
+            }, size: 160),
+            BlockButton(text: "Login", action: () async {
+              print(await user!.login());
+            }, size: 160),
+            BlockButton(text: "Register", action: () async {
+              print(await user!.register());
+            }, size: 160),
             AboutSettings(context: context, version: "0.0.0A", beta: true, about: "About", instructionsAction: () {showDialogue(context: context, title: "Instructions", content: Text("instructions"));}),
           ],
         ),
