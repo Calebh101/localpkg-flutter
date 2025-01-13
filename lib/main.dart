@@ -158,6 +158,9 @@ class _TestPageState extends State<TestPage> {
             BlockButton(text: "Register", action: () async {
               print(await user!.register());
             }, size: 160),
+            BlockButton(text: "Test", action: () async {
+              print(await user!.request(method: "POST", endpoint: "/api/auth/test"));
+            }, size: 160),
             AboutSettings(context: context, version: "0.0.0A", beta: true, about: "About", instructionsAction: () {showDialogue(context: context, title: "Instructions", content: Text("instructions"));}),
           ],
         ),

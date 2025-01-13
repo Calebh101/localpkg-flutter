@@ -120,7 +120,7 @@ Future<dynamic> getServerJsonData(String endpoint) async {
 Future<dynamic> getServerData({required String endpoint, bool? debug, String? authToken, required String method, Map? body}) async {
   http.Response response = await getServerResponse(method: method, body: body, endpoint: endpoint, debug: debug, authToken: authToken);
   try {
-    return json.decode(response.body);
+    return jsonDecode(response.body);
   } catch (e) {
     return response.body;
   }
@@ -241,8 +241,10 @@ class User {
   Future<Map> _request({required String method, required String endpoint, Map? body}) async {
     _crashSafe++;
     if (_crashSafe >= 3) {
+      error("crashSafe exception: _crashSafe is $_crashSafe");
       return {"error": "stack overflow"};
     }
+    print("token: ${token.runtimeType}:${token?.isNotEmpty}");
     if (token?.isNotEmpty == true) {
       Map info = getFetchInfo(debug: debug);
       Map response = await getServerData(endpoint: endpoint, method: method, body: body, debug: info["debug"], authToken: token);
