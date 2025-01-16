@@ -122,7 +122,8 @@ Future<dynamic> getServerData({required String endpoint, bool? debug, String? au
   try {
     return jsonDecode(response.body);
   } catch (e) {
-    return response.body;
+    warn("invalid response: ${response.body.runtimeType}");
+    print("response: ${response.body.replaceAll("\n", "[newline]")}");
   }
 }
 
