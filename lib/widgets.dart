@@ -195,7 +195,7 @@ Widget BlockButton({required String text, required double size, required VoidCal
   );
 }
 
-Widget Section({Widget? child, double? height}) {
+Widget Section({Widget? child}) {
   Widget childS = Center(
     child: child,
   );
