@@ -1,14 +1,12 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
-import 'package:http/io_client.dart';
 import 'package:localpkg/dialogue.dart';
 import 'package:localpkg/logger.dart';
 
+bool useHttps = false;
 bool? serverDisabled;
 bool _checkServerDisabled = false;
 bool _status = true;
@@ -74,8 +72,8 @@ Future<http.Response> _getServerResponse({required Uri url, required String meth
 
 Map getFetchInfo({bool? debug}) {
   debug ??= kDebugMode;
-  String host = debug ? "192.168.0.26" : "calebh101.ddns.net";
-  int mode = debug ? 1 : 2; // 1 is http, 2 is self-signed https, 3 is https
+  String host = debug ? "192.168.0.26" : "calebh101.com";
+  int mode = useHttps ? 3 : 1;
   return {
     "debug": debug,
     "host": host,
@@ -93,18 +91,9 @@ Future<http.Response> getServerResponse({required String endpoint, String method
   if (mode == 1) {
     response = await _getServerResponse(url: Uri.parse('http://$host:5000$endpoint'), method: method, body: body, authToken: authToken);
   } else if (mode == 2) {
-    final byteData = await rootBundle.load('assets/cert/cert.pem');
-    final certificate = byteData.buffer.asUint8List();
-    final context = SecurityContext(withTrustedRoots: false);
-    context.setTrustedCertificatesBytes(certificate);
-    final httpClient = HttpClient(context: context)
-      ..badCertificateCallback = (X509Certificate cert, String host, int port) {
-        return true;
-      };
-    final client = IOClient(httpClient);
-    response = await _getServerResponse(url: Uri.parse('https://$host:5000$endpoint'), method: method, client: client, body: body);
+    throw UnimplementedError("Using self-signed certificates is deprecated.");
   } else if (mode == 3) {
-    response = await _getServerResponse(url: Uri.parse('https://$host:5000$endpoint'), method: method, body: body);
+    response = await _getServerResponse(url: Uri.parse('https://$host:5000$endpoint'), method: method, body: body, authToken: authToken);
   } else {
     throw Exception("Unknown mode: $mode");
   }
