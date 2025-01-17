@@ -195,11 +195,13 @@ Widget BlockButton({required String text, required double size, required VoidCal
   );
 }
 
-Widget Section({Widget? child}) {
+Widget Section({Widget? child, double? height}) {
   Widget childS = Center(
     child: child,
   );
-  return Expanded(
+  return height == null ? Expanded(
+    child: childS,
+  ) : Container(
     child: childS,
   );
 }
