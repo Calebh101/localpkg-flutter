@@ -50,6 +50,27 @@ String formatTime({
   return formatted;
 }
 
+enum ColorType { theme, primary, secondary }
+
+Color getColor({required BuildContext context, required ColorType type}) {
+  if (type == ColorType.theme) {
+    var brightness = MediaQuery.of(context).platformBrightness;
+    if (brightness == Brightness.dark) {
+      return Colors.white;
+    } else if (brightness == Brightness.light) {
+      return Colors.black;
+    } else {
+      throw Exception("Unknown brightness: $brightness");
+    }
+  } else if (type == ColorType.primary) {
+    return Theme.of(context).colorScheme.primary;
+  } else if (type == ColorType.secondary) {
+    return Theme.of(context).colorScheme.secondary;
+  } else {
+    throw Exception("Unknown ColorType: $type");
+  }
+}
+
 Future<void> openUrl({required Uri url, LaunchMode launchMode = LaunchMode.externalApplication}) async {
   try {
     if (await canLaunchUrl(url)) {
