@@ -199,10 +199,7 @@ Widget Section({Widget? child, double? height}) {
   Widget childS = Center(
     child: child,
   );
-  return Container(
-    height: height,
-    child: Expanded(
-      child: childS,
-    ),
+  return Expanded(
+    child: childS,
   );
 }
