@@ -63,7 +63,7 @@ Color getColor({required BuildContext context, required ColorType type}) {
       throw Exception("Unknown brightness: $brightness");
     }
   } else if (type == ColorType.primary) {
-    return Theme.of(context).colorScheme.primary;
+    return Theme.of(context).primaryColor;
   } else if (type == ColorType.secondary) {
     return Theme.of(context).colorScheme.secondary;
   } else {
