@@ -11,3 +11,4 @@ include: package:lints/recommended.yaml
 analyzer:
   errors:
     non_constant_identifier_names: ignore
+    dead_code: ignore
