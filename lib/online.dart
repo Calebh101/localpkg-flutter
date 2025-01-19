@@ -118,8 +118,6 @@ Future<dynamic> getServerData({required String endpoint, bool? debug, String? au
   }
 }
 
-/// For checking if the server has a message, warning, or is disabled, and showing messages based on that
-/// set service to general to not fetch a specific service
 Future<bool> serverlaunch({required BuildContext context, required String service, bool override = false, String? version}) async {
   if (_checkServerDisabled && !override) {
     return _status;
@@ -142,6 +140,18 @@ Future<bool> serverlaunch({required BuildContext context, required String servic
     print('server.launch error: $e');
     return false;
   }
+}
+
+Future<Map> _report({required String event, required Map report, String? token, bool? debug}) async {
+  return await getServerData(endpoint: '/api/analytics/add', method: 'POST', debug: debug, authToken: token, body: {
+    "event": event,
+    "report": report,
+  });
+}
+
+Future<Map> report({required String event, required Map report}) async {
+  report["feature-flags"] = featureFlags;
+  return await _report(event: event, report: report);
 }
 
 bool _checkDisabled(context, data) {
@@ -199,13 +209,19 @@ class User {
     return username;
   }
 
+  Future<Map> report({required String event, required Map report}) async {
+    return await _report(event: event, report: report);
+  }
+
   Future<Map> login() async {
     Map info = getFetchInfo(debug: debug);
     Map response = await getServerData(method: "POST", endpoint: "/api/auth/login", debug: info["debug"], body: {"email": email, "password": password});
     if (response.containsKey("error")) {
+      report(event: "error-login", report: {"error": response["error"]});
       return response;
     } else {
       token = response["token"];
+      report(event: "login", report: {});
       return response;
     }
   }
@@ -214,9 +230,11 @@ class User {
     Map info = getFetchInfo(debug: debug);
     Map response = await getServerData(endpoint: '/api/auth/register', method: "POST", debug: info["debug"], body: {"email": email, "password": password, "username": username});
     if (response.containsKey("error")) {
+      report(event: "error-register", report: {"error": response["error"]});
       return response;
     } else {
       token = response["token"];
+      report(event: "register", report: {});
       return response;
     }
   }
