@@ -10,6 +10,7 @@ bool useHttps = false;
 bool? serverDisabled;
 bool _checkServerDisabled = false;
 bool _status = true;
+List<String> featureFlags = [];
 final _serverDisabledFuture = Completer<String>();
 
 Future<http.Response> _getServerResponse({required Uri url, required String method, dynamic client, Map? body, String contentType = "application/json", String? authToken}) async {
@@ -98,6 +99,7 @@ Future<http.Response> getServerResponse({required String endpoint, String method
     throw Exception("Unknown mode: $mode");
   }
 
+  featureFlags = response.headers["X-Feature-Flags"]?.split(', ').map((item) => item.trim()).toList() ?? [];
   return response;
 }
 
@@ -118,7 +120,7 @@ Future<dynamic> getServerData({required String endpoint, bool? debug, String? au
 
 /// For checking if the server has a message, warning, or is disabled, and showing messages based on that
 /// set service to general to not fetch a specific service
-Future<bool> serverlaunch({required BuildContext context, required String service, bool override = false}) async {
+Future<bool> serverlaunch({required BuildContext context, required String service, bool override = false, String? version}) async {
   if (_checkServerDisabled && !override) {
     return _status;
   }
@@ -143,7 +145,7 @@ Future<bool> serverlaunch({required BuildContext context, required String servic
 }
 
 bool _checkDisabled(context, data) {
-  bool _statusS = true;
+  bool statusS = true;
   Map config = data["config"];
   Map message = data["message"];
   if (config["message"]) {
@@ -157,9 +159,9 @@ bool _checkDisabled(context, data) {
   if (config["disable"]) {
     print("server.launch status: disable");
     showAlertDialogue(context, "Server Disabled", message["disable"], false, {"show": true});
-    _statusS = false;
+    statusS = false;
   }
-  return _statusS;
+  return statusS;
 }
 
 Future<bool> checkDisabled() async {
