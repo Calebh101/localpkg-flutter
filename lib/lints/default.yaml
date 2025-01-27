@@ -1,10 +1,11 @@
-# this file is for my default dart/flutter analysis config
-# to use this as the default analytics file, include only this line in analysis-options.yaml:
+## this file is for my default dart/flutter analysis config
+## to use this as the default analytics file, include only this line in analysis-options.yaml:
+
 # include: package:localpkg/lints/default.yaml
 
-# resources:
-# https://dart.dev/go/core-lints
-# https://dart.dev/guides/language/analysis-options
+## resources:
+## - https://dart.dev/go/core-lints
+## - https://dart.dev/guides/language/analysis-options
 
 include: package:lints/recommended.yaml
 

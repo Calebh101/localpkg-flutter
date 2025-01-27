@@ -21,7 +21,7 @@ void print(dynamic input, {String? code, bool bold = false, String? color, bool 
 /// Bold: bolden the output
 /// Color: the ANSI color for the terminal (default is yellow)
 /// Trace: show stack trace (default is true)
-void warn(dynamic input, {String? code, bool bold = false, bool trace = true, String? color = "\x1B[33m"}) {
+void warn(dynamic input, {String? code, bool bold = false, bool trace = false, String? color = "\x1B[33m"}) {
   _handle(input, "warning", code, trace, color, bold);
 }
 

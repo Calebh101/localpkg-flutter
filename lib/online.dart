@@ -82,16 +82,21 @@ Map getFetchInfo({bool? debug}) {
   };
 }
 
-Future<http.Response> getServerResponse({required String endpoint, String method = "POST", Map? body, bool? debug, String? authToken}) async {
-  Map info = getFetchInfo(debug: debug);
+Future<http.Response> getServerResponse({required String endpoint, String method = "POST", Map? body, String? authToken}) async {
+  Map info = getFetchInfo();
   String host = info["host"];
   int mode = info["mode"];
   String protocol = 'http';
-  debug = info["debug"];
+  int? port;
+  bool debug = info["debug"];
   http.Response response;
 
   if (mode == 3) {
     protocol = 'https';
+  }
+
+  if (debug) {
+    port = 5000;
   }
 
   if (endpoint.startsWith('/')) {
@@ -103,7 +108,7 @@ Future<http.Response> getServerResponse({required String endpoint, String method
     endpoint = endpoint.replaceFirst('api/', '');
   }
 
-  String url = "$protocol://$host/api/$endpoint";
+  String url = "$protocol://$host${port != null ? ":$port" : ""}/api/$endpoint";
   Uri uri = Uri.parse(url);
 
   if (mode == 2) {
@@ -123,8 +128,8 @@ Future<dynamic> getServerJsonData(String endpoint) async {
   return await getServerData(method: "GET", endpoint: endpoint);
 }
 
-Future<dynamic> getServerData({required String endpoint, bool? debug, String? authToken, required String method, Map? body}) async {
-  http.Response response = await getServerResponse(method: method, body: body, endpoint: endpoint, debug: debug, authToken: authToken);
+Future<dynamic> getServerData({required String endpoint, String? authToken, required String method, Map? body}) async {
+  http.Response response = await getServerResponse(method: method, body: body, endpoint: endpoint, authToken: authToken);
   try {
     return jsonDecode(response.body);
   } catch (e) {
@@ -157,8 +162,8 @@ Future<bool> serverlaunch({required BuildContext context, required String servic
   }
 }
 
-Future<Map> _report({required String event, required Map report, String? token, bool? debug}) async {
-  return await getServerData(endpoint: 'analytics/add', method: 'POST', debug: debug, authToken: token, body: {
+Future<Map> _report({required String event, required Map report, String? token}) async {
+  return await getServerData(endpoint: 'analytics/add', method: 'POST', authToken: token, body: {
     "event": event,
     "report": report,
   });
@@ -198,14 +203,12 @@ class User {
   String email;
   String password;
   String username;
-  bool? debug;
   String? token;
 
   User({
     required this.email,
     required this.password,
     required this.username,
-    this.debug,
   });
 
   int _crashSafe = 0;
@@ -229,8 +232,8 @@ class User {
   }
 
   Future<Map> login() async {
-    Map info = getFetchInfo(debug: debug);
-    Map response = await getServerData(method: "POST", endpoint: "auth/login", debug: info["debug"], body: {"email": email, "password": password});
+    Map info = getFetchInfo();
+    Map response = await getServerData(method: "POST", endpoint: "auth/login", body: {"email": email, "password": password});
     if (response.containsKey("error")) {
       report(event: "error-login", report: {"error": response["error"]});
       return response;
@@ -242,8 +245,8 @@ class User {
   }
 
   Future<Map> register() async {
-    Map info = getFetchInfo(debug: debug);
-    Map response = await getServerData(endpoint: 'auth/register', method: "POST", debug: info["debug"], body: {"email": email, "password": password, "username": username});
+    Map info = getFetchInfo();
+    Map response = await getServerData(endpoint: 'auth/register', method: "POST", body: {"email": email, "password": password, "username": username});
     if (response.containsKey("error")) {
       report(event: "error-register", report: {"error": response["error"]});
       return response;
@@ -271,8 +274,8 @@ class User {
     }
     print("token: ${token.runtimeType}:${token?.isNotEmpty}");
     if (token?.isNotEmpty == true) {
-      Map info = getFetchInfo(debug: debug);
-      Map response = await getServerData(endpoint: endpoint, method: method, body: body, debug: info["debug"], authToken: token);
+      Map info = getFetchInfo();
+      Map response = await getServerData(endpoint: endpoint, method: method, body: body, authToken: token);
       return response;
     } else {
       Map response = await login();
