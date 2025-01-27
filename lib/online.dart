@@ -86,15 +86,30 @@ Future<http.Response> getServerResponse({required String endpoint, String method
   Map info = getFetchInfo(debug: debug);
   String host = info["host"];
   int mode = info["mode"];
+  String protocol = 'http';
   debug = info["debug"];
   http.Response response;
 
-  if (mode == 1) {
-    response = await _getServerResponse(url: Uri.parse('http://$host:5000$endpoint'), method: method, body: body, authToken: authToken);
-  } else if (mode == 2) {
+  if (mode == 3) {
+    protocol = 'https';
+  }
+
+  if (endpoint.startsWith('/')) {
+    endpoint = endpoint.replaceFirst('/', '');
+  }
+
+  if (endpoint.startsWith('api/')) {
+    warn('Endpoints should not start with \'api/\' or \'/api/\'. Prefixes like these are automatically handled.');
+    endpoint = endpoint.replaceFirst('api/', '');
+  }
+
+  String url = "$protocol://$host/api/$endpoint";
+  Uri uri = Uri.parse(url);
+
+  if (mode == 2) {
     throw UnimplementedError("Using self-signed certificates is deprecated.");
-  } else if (mode == 3) {
-    response = await _getServerResponse(url: Uri.parse('https://$host:5000$endpoint'), method: method, body: body, authToken: authToken);
+  } else if (mode == 1 || mode == 3) {
+    response = await _getServerResponse(url: uri, method: method, body: body, authToken: authToken);
   } else {
     throw Exception("Unknown mode: $mode");
   }
@@ -123,7 +138,7 @@ Future<bool> serverlaunch({required BuildContext context, required String servic
     return _status;
   }
   try {
-    http.Response response = await getServerResponse(endpoint: "/api/launch/check?service=all", method: "GET");
+    http.Response response = await getServerResponse(endpoint: "launch/check?service=all", method: "GET");
     if (response.statusCode == 200) {
       Map data = json.decode(response.body);
       Map general = data["general"];
@@ -143,7 +158,7 @@ Future<bool> serverlaunch({required BuildContext context, required String servic
 }
 
 Future<Map> _report({required String event, required Map report, String? token, bool? debug}) async {
-  return await getServerData(endpoint: '/api/analytics/add', method: 'POST', debug: debug, authToken: token, body: {
+  return await getServerData(endpoint: 'analytics/add', method: 'POST', debug: debug, authToken: token, body: {
     "event": event,
     "report": report,
   });
@@ -215,7 +230,7 @@ class User {
 
   Future<Map> login() async {
     Map info = getFetchInfo(debug: debug);
-    Map response = await getServerData(method: "POST", endpoint: "/api/auth/login", debug: info["debug"], body: {"email": email, "password": password});
+    Map response = await getServerData(method: "POST", endpoint: "auth/login", debug: info["debug"], body: {"email": email, "password": password});
     if (response.containsKey("error")) {
       report(event: "error-login", report: {"error": response["error"]});
       return response;
@@ -228,7 +243,7 @@ class User {
 
   Future<Map> register() async {
     Map info = getFetchInfo(debug: debug);
-    Map response = await getServerData(endpoint: '/api/auth/register', method: "POST", debug: info["debug"], body: {"email": email, "password": password, "username": username});
+    Map response = await getServerData(endpoint: 'auth/register', method: "POST", debug: info["debug"], body: {"email": email, "password": password, "username": username});
     if (response.containsKey("error")) {
       report(event: "error-register", report: {"error": response["error"]});
       return response;
