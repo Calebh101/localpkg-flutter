@@ -50,6 +50,18 @@ String formatTime({
   return formatted;
 }
 
+bool isWhole(num number) {
+  return number % 1 == 0;
+}
+
+String cleanNumber(num number) {
+  if (number is double && isWhole(number)) {
+    return "${number.toInt()}";
+  } else {
+    return "$number";
+  }
+}
+
 enum ColorType { theme, primary, secondary }
 
 Color getColor({required BuildContext context, required ColorType type}) {
