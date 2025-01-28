@@ -85,7 +85,15 @@ class _TestPageState extends State<TestPage> {
                 parseVersion('0.0.0C');
                 parseVersion('35.0.4A');
                 parseVersion('8.5.7T');
-                parseVersion('0.70.0');
+                parseVersion('0.70.0A');
+                parseVersion('0.70.1A');
+                parseVersion('0.70.2A');
+                parseVersion('0.71.0B');
+                parseVersion('0.71.1C');
+                parseVersion('0.71.2Z');
+                parseVersion('0.72.2');
+                parseVersion('1.72.2S');
+                parseVersion('2.0.0G');
               },
             ),
             TextButton(

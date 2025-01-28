@@ -147,10 +147,15 @@ Future<dynamic> getServerData({required String endpoint, String? authToken, requ
 
 double parseVersion(String input, {int base = 2}) {
   int letter = 0;
+  RegExp regex = RegExp(r'^[a-zA-Z0-9.]*$');
   String letters = input.replaceAll(RegExp(r'[^a-zA-Z]'), '');
 
   if (letters.length == 1) {
     letter = letters[0].codeUnitAt(0) - 65;
+  }
+
+  if (!regex.hasMatch(input)) {
+    throw Exception("Invalid version (not alphanumeric with periods): $input");
   }
 
   String inputS = input.replaceAll(RegExp(r'[^0-9.]'), '');
