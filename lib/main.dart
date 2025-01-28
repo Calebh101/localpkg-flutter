@@ -77,9 +77,21 @@ class _TestPageState extends State<TestPage> {
         child: Column(
           children: [
             TextButton(
+              child: Text("Test Version Parse"),
+              onPressed: () {
+                parseVersion('0.0.0A');
+                parseVersion('0.1.0D');
+                parseVersion('4.0.0A');
+                parseVersion('0.0.0C');
+                parseVersion('35.0.4A');
+                parseVersion('8.5.7T');
+                parseVersion('0.70.0');
+              },
+            ),
+            TextButton(
               child: Text("Test Server Launch"),
               onPressed: () {
-                serverlaunch(context: context, service: "general");
+                serverlaunch(context: context, service: "test", version: "0.0.0A");
               },
             ),
             TextButton(

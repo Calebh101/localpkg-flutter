@@ -11,9 +11,13 @@ bool? serverDisabled;
 bool _checkServerDisabled = false;
 bool _status = true;
 List<String> featureFlags = [];
+Map versions = {};
 final _serverDisabledFuture = Completer<String>();
 
 Future<http.Response> _getServerResponse({required Uri url, required String method, dynamic client, Map? body, String contentType = "application/json", String? authToken}) async {
+  body ??= {};
+  String? bodyS;
+
   Map<String, String> headers = {
     'Content-Type': contentType,
   };
@@ -22,19 +26,22 @@ Future<http.Response> _getServerResponse({required Uri url, required String meth
     headers["Authorization"] = "Bearer $authToken";
   }
 
-  String? bodyS;
-  if (body != null) {
+  if (body != {}) {
     bodyS = jsonEncode(body);
   } else {
     bodyS = "{}";
   }
 
-  print("${'-' * ((75 - " SERVER REQUEST ".length) ~/ 2)} SERVER REQUEST ${'-' * ((75 - " SERVER REQUEST ".length + 1) ~/ 2)}");
+  String title = "SERVER REQUEST";
+  int length = 50;
+
+  print("${'-' * ((length - " $title ".length) ~/ 2)} $title ${'-' * ((length - " $title ".length + 1) ~/ 2)}");
   print("method".padRight(10) + method);
   print("url".padRight(10) + url.toString());
   print("headers".padRight(10) + jsonEncode(headers));
   print("body".padRight(10) + jsonEncode(body));
-  print('-' * 75);
+  print("client".padRight(10) + client.runtimeType.toString());
+  print('-' * length);
 
   try {
     switch(method) {
@@ -138,26 +145,75 @@ Future<dynamic> getServerData({required String endpoint, String? authToken, requ
   }
 }
 
+double parseVersion(String input, {int base = 2}) {
+  int letter = 0;
+  String letters = input.replaceAll(RegExp(r'[^a-zA-Z]'), '');
+
+  if (letters.length == 1) {
+    letter = letters[0].codeUnitAt(0) - 65;
+  }
+
+  String inputS = input.replaceAll(RegExp(r'[^0-9.]'), '');
+  String code = "$inputS${".${letter.toString().padLeft(base, '0')}"}";
+
+  List<String> segments = code.split('.');
+  String result = '';
+
+  for (var segment in segments) {
+    result += segment.toString().padLeft(base, '0');
+  }
+
+  print("parsed version $input to $result");
+  return double.tryParse(result) ?? 0;
+}
+
 Future<bool> serverlaunch({required BuildContext context, required String service, bool override = false, String? version}) async {
-  if (_checkServerDisabled && !override) {
+  print("running server.launch...");
+  Map info = getFetchInfo();
+  if (_checkServerDisabled && !override && info["debug"] == false) {
     return _status;
   }
   try {
     http.Response response = await getServerResponse(endpoint: "launch/check?service=all", method: "GET");
     if (response.statusCode == 200) {
+      bool update = false;
+      bool generic = service == "general" || service == "all";
       Map data = json.decode(response.body);
       Map general = data["general"];
-      _status = _checkDisabled(context, general);
-      _status = service == "general" || service == "all" ? _status : _checkDisabled(context, data["services"][service]);
+
+      Map versionsXS = general["version"];
+      Map versions = {
+        "server": versionsXS["server"],
+        "account": versionsXS["account"],
+        "localpkg": versionsXS["localpkg"],
+      };
+
+      if (!generic) {
+        Map versionsSS = data["services"][service]["version"];
+        versions["current"] = versionsSS["current"];
+        versions["lowest"] = versionsSS["lowest"];
+        if (version != null) {
+          double current = parseVersion(version);
+          double lowest = parseVersion(versions["lowest"]);
+          if (current < lowest) {
+            update = true;
+          }
+        }
+      }
+
+      _status = _checkDisabled(context, general, update: update);
+      _status = generic ? _status : _checkDisabled(context, data["services"][service], update: update);
       _checkServerDisabled = true;
-      _serverDisabledFuture.complete('{"status":$_status}');
+      if (!_serverDisabledFuture.isCompleted) {
+        _serverDisabledFuture.complete('{"status":$_status}');
+      }
       return _status;
     } else {
-      print('server.launch error: ${response.statusCode}');
+      print('server.launch[2] error: ${response.statusCode}');
       return false;
     }
   } catch (e) {
-    print('server.launch error: $e');
+    print('server.launch[1] error: $e');
     return false;
   }
 }
@@ -174,7 +230,7 @@ Future<Map> report({required String event, required Map report}) async {
   return await _report(event: event, report: report);
 }
 
-bool _checkDisabled(context, data) {
+bool _checkDisabled(context, data, {required bool update}) {
   bool statusS = true;
   Map config = data["config"];
   Map message = data["message"];
