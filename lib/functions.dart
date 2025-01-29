@@ -50,6 +50,25 @@ String formatTime({
   return formatted;
 }
 
+String formatDuration(int ms, {int mode = 1}) {
+  // modes
+    // 1: hh:mm:ss.ms
+    // 2: mm:ss.ms
+    // 3: mm:ss
+    // 4: hh:mm
+
+  int hours = (ms ~/ 3600000);
+  int minutes = (ms % 3600000) ~/ 60000;
+  int seconds = (ms % 60000) ~/ 1000;
+  int remainingms = ms % 1000;
+
+  if (mode == 1) {
+    return '${hours.toString().padLeft(2, '0')}:${minutes.toString().padLeft(2, '0')}:${seconds.toString().padLeft(2, '0')}.${remainingms.toString().padLeft(3, '0')}';
+  } else {
+    throw Exception("Invalid mode: $mode");
+  }
+}
+
 bool isWhole(num number) {
   return number % 1 == 0;
 }
