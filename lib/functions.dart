@@ -53,9 +53,7 @@ String formatTime({
 String formatDuration(int ms, {int mode = 1}) {
   // modes
     // 1: hh:mm:ss.ms
-    // 2: mm:ss.ms
-    // 3: mm:ss
-    // 4: hh:mm
+    // 2: [hh]:mm:ss.ms
 
   int hours = (ms ~/ 3600000);
   int minutes = (ms % 3600000) ~/ 60000;
@@ -64,6 +62,8 @@ String formatDuration(int ms, {int mode = 1}) {
 
   if (mode == 1) {
     return '${hours.toString().padLeft(2, '0')}:${minutes.toString().padLeft(2, '0')}:${seconds.toString().padLeft(2, '0')}.${remainingms.toString().padLeft(3, '0')}';
+  } else if (mode == 2) {
+    return '${hours > 0 ? "${hours.toString().padLeft(2, '0')}:" : ""}${minutes.toString().padLeft(2, '0')}:${seconds.toString().padLeft(2, '0')}.${remainingms.toString().padLeft(3, '0')}';
   } else {
     throw Exception("Invalid mode: $mode");
   }
