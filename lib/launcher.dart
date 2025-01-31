@@ -1,7 +1,6 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:localpkg/dialogue.dart';
 import 'package:localpkg/environment.dart';
+import 'package:localpkg/error.dart';
 import 'package:localpkg/logger.dart';
 
 bool? allowedlaunch;
@@ -30,15 +29,33 @@ bool launchinit({required List? arguments, bool block = true, bool bypassDebug =
   }
 }
 
-void launchcheck(BuildContext context) {
+bool launchcheck() {
   if (allowedlaunch == true) {
     print("launch check passed");
+    return true;
   } else if (allowedlaunch == false) {
     print("launch check failed");
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      showConstantDialogue(context: context, title: "Unable to Run Application", message: "Please run this application from the Calebh101 launcher. If this is a mistake, please try to contact support.");
-  });
+    return false;
   } else if (allowedlaunch == null) {
     error("Launch check not ran\nPlease run launchinit() at the head main() function, with the required argument handler.");
+    return false;
+  } else {
+    print("launch check denied programming physics");
+    return false;
+  }
+}
+
+void launchcrash(List arguments, {bool bypassDebug = false}) {
+  if (allowedlaunch == null) {
+    launchinit(arguments: arguments, bypassDebug: bypassDebug);
+  }
+
+  if (launchcheck()) {
+    print("launch check passed");
+  } else {
+    print("launch check failed");
+    Future.delayed(Duration.zero, () {
+      CrashScreen(message: "Please run this app from the Calebh101 launcher.");
+    });
   }
 }

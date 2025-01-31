@@ -14,7 +14,7 @@ import 'package:http/http.dart' as http;
 
 void main(List<String> arguments) {
   print("${arguments.runtimeType}: $arguments");
-  launchinit(arguments: arguments);
+  launchcrash(arguments);
   runApp(MyApp());
 }
 
@@ -75,7 +75,6 @@ class _TestPageState extends State<TestPage> {
 
   @override
   void initState() {
-    launchcheck(context);
     user = User(email: email, username: username, password: password);
     super.initState();
   }
