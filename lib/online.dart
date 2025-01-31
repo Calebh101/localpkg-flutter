@@ -32,7 +32,7 @@ Future<http.Response> _getServerResponse({required Uri url, required String meth
     bodyS = "{}";
   }
 
-  String title = "SERVER REQUEST";
+  String title = "HTTP REQUEST";
   int length = 50;
 
   print("${'-' * ((length - " $title ".length) ~/ 2)} $title ${'-' * ((length - " $title ".length + 1) ~/ 2)}");
@@ -141,6 +141,7 @@ Future<dynamic> getServerData({required String endpoint, String? authToken, requ
     return jsonDecode(response.body);
   } catch (e) {
     warn("invalid response: ${response.body.runtimeType}");
+    return response.body;
   }
 }
 
@@ -157,6 +158,7 @@ Future<dynamic> getWebData({required Uri url, String? authToken, required String
     return jsonDecode(response.body);
   } catch (e) {
     warn("invalid response: ${response.body.runtimeType}");
+    return response.body;
   }
 }
 
