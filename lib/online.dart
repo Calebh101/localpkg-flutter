@@ -141,7 +141,24 @@ Future<dynamic> getServerData({required String endpoint, String? authToken, requ
     return jsonDecode(response.body);
   } catch (e) {
     warn("invalid response: ${response.body.runtimeType}");
-    print("response: ${response.body.replaceAll("\n", "[newline]")}");
+    print("response: ${response.body.replaceAll("\n", "[\\n]")}");
+  }
+}
+
+Future<http.Response> getWebResponse({required Uri url, String method = "POST", Map? body}) async {
+  Map info = getFetchInfo();
+  bool debug = info["debug"];
+  http.Response response = await _getServerResponse(url: url, method: method, body: body);
+  return response;
+}
+
+Future<dynamic> getWebData({required Uri url, String? authToken, required String method, Map? body}) async {
+  http.Response response = await getWebResponse(method: method, body: body, url: url);
+  try {
+    return jsonDecode(response.body);
+  } catch (e) {
+    warn("invalid response: ${response.body.runtimeType}");
+    print("response: ${response.body.replaceAll("\n", "[\\n]")}");
   }
 }
 
