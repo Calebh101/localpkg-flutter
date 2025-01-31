@@ -33,6 +33,7 @@ class CrashPageApp extends StatelessWidget {
   final String? message;
   final String? description;
   final String? code;
+  final bool support;
   final Function? reset;
 
   const CrashPageApp({
@@ -40,6 +41,7 @@ class CrashPageApp extends StatelessWidget {
     this.message,
     this.description,
     this.code,
+    this.support = true,
     this.reset,
   });
 
@@ -50,7 +52,7 @@ class CrashPageApp extends StatelessWidget {
       title: 'Calebh101 Launcher: Error',
       theme: brandTheme(seedColor: Colors.red),
       darkTheme: brandTheme(seedColor: Colors.red, darkMode: true),
-      home: CrashPage(message: message, description: description, code: code, reset: reset),
+      home: CrashPage(message: message, description: description, code: code, support: support, reset: reset),
     );
   }
 }
@@ -59,6 +61,7 @@ class CrashPage extends StatefulWidget {
   final String? message;
   final String? description;
   final String? code;
+  final bool support;
   final Function? reset;
 
   const CrashPage({
@@ -66,6 +69,7 @@ class CrashPage extends StatefulWidget {
     this.message,
     this.description,
     this.code,
+    this.support = true,
     this.reset,
   });
 
@@ -99,6 +103,7 @@ class _CrashPageState extends State<CrashPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  if (widget.support)
                   TextButton(
                     child: Text("Support"),
                     onPressed: () {
@@ -124,6 +129,6 @@ class _CrashPageState extends State<CrashPage> {
   }
 }
 
-void CrashScreen({String? message, String? description, String? code, Function? reset}) {
-  runApp(CrashPageApp(message: message, description: description, code: code, reset: reset));
+void CrashScreen({String? message, String? description, String? code, Function? reset, bool support = true}) {
+  runApp(CrashPageApp(message: message, description: description, code: code, support: support, reset: reset));
 }
