@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:localpkg/dialogue.dart';
+import 'package:localpkg/launcher.dart';
 import 'package:localpkg/online.dart';
 import 'package:localpkg/theme.dart';
 import 'package:localpkg/tipjar.dart';
@@ -10,7 +11,9 @@ import 'package:localpkg/widgets.dart';
 import 'package:quick_navbar/quick_navbar.dart';
 import 'package:http/http.dart' as http;
 
-void main() {
+void main(List<String> arguments) {
+  print("${arguments.runtimeType}: $arguments");
+  launchinit(arguments: arguments);
   runApp(const MyApp());
 }
 
@@ -66,6 +69,7 @@ class _TestPageState extends State<TestPage> {
 
   @override
   void initState() {
+    launchcheck(context);
     user = User(email: email, username: username, password: password);
     super.initState();
   }
