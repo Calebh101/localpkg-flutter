@@ -295,3 +295,39 @@ void support(context) {
 void feedback(context) {
   openUrlConf(context, Uri.parse("$host/$feedbackEndpoint"));
 }
+
+double parseVersion(String input, {int base = 2}) {
+  int letter = 0;
+  RegExp regex = RegExp(r'^[a-zA-Z0-9.]*$');
+  String letters = input.replaceAll(RegExp(r'[^a-zA-Z]'), '');
+
+  if (letters.length == 1) {
+    letter = letters[0].codeUnitAt(0) - 65;
+  }
+
+  if (!regex.hasMatch(input)) {
+    throw Exception("Invalid version (not alphanumeric with periods): $input");
+  }
+
+  String inputS = input.replaceAll(RegExp(r'[^0-9.]'), '');
+  String code = "$inputS${".${letter.toString().padLeft(base, '0')}"}";
+
+  List<String> segments = code.split('.');
+  String result = '';
+
+  for (var segment in segments) {
+    result += segment.toString().padLeft(base, '0');
+  }
+
+  print("parsed version $input to $result");
+  return double.tryParse(result) ?? 0;
+}
+
+bool isNewerVersion({required String current, required String latest}) {
+  double currentN = parseVersion(current);
+  double latestN = parseVersion(latest);
+  if (latestN > currentN) {
+    return true;
+  }
+  return false;
+}

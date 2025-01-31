@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:localpkg/dialogue.dart';
+import 'package:localpkg/functions.dart';
 import 'package:localpkg/logger.dart';
 
 bool useHttps = false;
@@ -160,33 +161,6 @@ Future<dynamic> getWebData({required Uri url, String? authToken, required String
     warn("invalid response: ${response.body.runtimeType}");
     return response.body;
   }
-}
-
-double parseVersion(String input, {int base = 2}) {
-  int letter = 0;
-  RegExp regex = RegExp(r'^[a-zA-Z0-9.]*$');
-  String letters = input.replaceAll(RegExp(r'[^a-zA-Z]'), '');
-
-  if (letters.length == 1) {
-    letter = letters[0].codeUnitAt(0) - 65;
-  }
-
-  if (!regex.hasMatch(input)) {
-    throw Exception("Invalid version (not alphanumeric with periods): $input");
-  }
-
-  String inputS = input.replaceAll(RegExp(r'[^0-9.]'), '');
-  String code = "$inputS${".${letter.toString().padLeft(base, '0')}"}";
-
-  List<String> segments = code.split('.');
-  String result = '';
-
-  for (var segment in segments) {
-    result += segment.toString().padLeft(base, '0');
-  }
-
-  print("parsed version $input to $result");
-  return double.tryParse(result) ?? 0;
 }
 
 Future<bool> serverlaunch({required BuildContext context, required String service, bool override = false, String? version}) async {

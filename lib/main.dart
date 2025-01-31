@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:localpkg/dialogue.dart';
 import 'package:localpkg/error.dart';
+import 'package:localpkg/functions.dart';
 import 'package:localpkg/launcher.dart';
 import 'package:localpkg/online.dart';
 import 'package:localpkg/theme.dart';
