@@ -14,8 +14,8 @@ import 'package:http/http.dart' as http;
 
 void main(List<String> arguments) {
   print("${arguments.runtimeType}: $arguments");
-  launchcrash(arguments);
   runApp(MyApp());
+  launchcrash(arguments);
 }
 
 class MyApp extends StatelessWidget {

@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 String _line = "----------------";
@@ -45,6 +46,9 @@ void stack({String? code, bool bold = false, String? color}) {
 }
 
 void _handle(dynamic input, String type, String? code, bool stackTrace, String? color, bool bold) {
+  if (kDebugMode) {
+    return;
+  }
   input = _encodeInput(input);
   String colorCode = "";
   if (color != null) {
