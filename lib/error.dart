@@ -93,9 +93,7 @@ class _CrashPageState extends State<CrashPage> {
                 size: 72,
               ),
               Text("Whoa!", style: TextStyle(fontSize: 32, color: Colors.redAccent)),
-              Text("A critical error occured.", style: TextStyle(fontSize: 20)),
-              if (widget.message != null)
-              Text(widget.message!, style: TextStyle(fontSize: 18)),
+              Text(widget.message ?? "A critical error occured.", style: TextStyle(fontSize: 18)),
               if (widget.description != null)
               Text(widget.description!, style: TextStyle(fontSize: 12)),
               if (widget.code != null)
