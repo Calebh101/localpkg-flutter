@@ -1,6 +1,8 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:localpkg/dialogue.dart';
+import 'package:localpkg/var.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:path_provider/path_provider.dart';
@@ -274,4 +276,12 @@ void navigate({required BuildContext context, required Widget page,
   } else {
     throw Exception("Invalid mode in navigate: $mode");
   }
+}
+
+void support(context) {
+  openUrlConf(context, Uri.parse("$host/$supportEndpoint"));
+}
+
+void feedback(context) {
+  openUrlConf(context, Uri.parse("$host/$feedbackEndpoint"));
 }
