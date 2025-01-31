@@ -141,7 +141,6 @@ Future<dynamic> getServerData({required String endpoint, String? authToken, requ
     return jsonDecode(response.body);
   } catch (e) {
     warn("invalid response: ${response.body.runtimeType}");
-    print("response: ${response.body.replaceAll("\n", "[\\n]")}");
   }
 }
 
@@ -158,7 +157,6 @@ Future<dynamic> getWebData({required Uri url, String? authToken, required String
     return jsonDecode(response.body);
   } catch (e) {
     warn("invalid response: ${response.body.runtimeType}");
-    print("response: ${response.body.replaceAll("\n", "[\\n]")}");
   }
 }
 
