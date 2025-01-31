@@ -182,7 +182,7 @@ class _TestPageState extends State<TestPage> {
             TextButton(
               child: Text("CRASH"),
               onPressed: () {
-                CrashScreen();
+                CrashScreen(message: "You", reset: () {});
               },
             ),
             BlockButton(text: "Info", action: () {

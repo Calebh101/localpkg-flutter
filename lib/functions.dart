@@ -166,7 +166,7 @@ String toTitleCase(String input) {
       .join(' ');
 }
 
-@Deprecated("Use shareText instead. shareText has a different parameter layout.")
+@Deprecated("Use shareText instead.")
 Future<bool> shareTextFile(bool allowShareContent, String subject, String content, String extension) async {
   try {
     final directory = await getApplicationDocumentsDirectory();
@@ -191,7 +191,7 @@ Future<bool> shareTextFile(bool allowShareContent, String subject, String conten
   }
 }
 
-Future<bool> shareText({required String content, required String filename,bool allowTextShare = true, String? subject}) async {
+Future<bool> shareText({required String content, required String filename, bool allowTextShare = true, String? subject}) async {
   try {
     final directory = await getApplicationDocumentsDirectory();
     final file = File('${directory.path}/$filename');
@@ -212,6 +212,16 @@ Future<bool> shareText({required String content, required String filename,bool a
       print("Unable to Share.share: action not allowed");
       return false;
     }
+  }
+}
+
+Future<bool> sharePlainText({required String content, String? subject}) async {
+  try {
+    await Share.share(content, subject: subject);
+    return true;
+  } catch (e) {
+    print("Unable to Share.share: $e");
+    return false;
   }
 }
 
