@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:localpkg/dialogue.dart';
+import 'package:localpkg/error.dart';
 import 'package:localpkg/launcher.dart';
 import 'package:localpkg/online.dart';
 import 'package:localpkg/theme.dart';
@@ -14,7 +15,7 @@ import 'package:http/http.dart' as http;
 void main(List<String> arguments) {
   print("${arguments.runtimeType}: $arguments");
   launchinit(arguments: arguments);
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -46,6 +47,11 @@ class MyApp extends StatelessWidget {
             "label": "Tip Jar",
             "icon": Icons.settings,
             "widget": TipJar(),
+          },
+          {
+            "label": "Crash Page",
+            "icon": Icons.error,
+            "widget": CrashPage(message: "What's up brother", description: null),
           },
         ],
         selectedColor: Colors.blue,
@@ -171,6 +177,12 @@ class _TestPageState extends State<TestPage> {
               child: Text("STACK CODE"),
               onPressed: () async {
                 stack(code: "200");
+              },
+            ),
+            TextButton(
+              child: Text("CRASH"),
+              onPressed: () {
+                CrashScreen();
               },
             ),
             BlockButton(text: "Info", action: () {

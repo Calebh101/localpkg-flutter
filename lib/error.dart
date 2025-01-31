@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:localpkg/dialogue.dart';
 import 'package:localpkg/functions.dart';
 import 'package:localpkg/logger.dart' as logger;
+import 'package:localpkg/theme.dart';
 
 class ManualError extends Error {
   final String message;
@@ -27,8 +29,45 @@ class ManualError extends Error {
   }
 }
 
+class CrashPageApp extends StatelessWidget {
+  final String? message;
+  final String? description;
+  final String? code;
+  final Function? reset;
+
+  const CrashPageApp({
+    super.key,
+    this.message,
+    this.description,
+    this.code,
+    this.reset,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Calebh101 Launcher: Error',
+      theme: brandTheme(seedColor: Colors.red),
+      darkTheme: brandTheme(seedColor: Colors.red, darkMode: true),
+      home: CrashPage(message: message, description: description, code: code, reset: reset),
+    );
+  }
+}
+
 class CrashPage extends StatefulWidget {
-  const CrashPage({super.key});
+  final String? message;
+  final String? description;
+  final String? code;
+  final Function? reset;
+
+  const CrashPage({
+    super.key,
+    this.message,
+    this.description,
+    this.code,
+    this.reset,
+  });
 
   @override
   State<CrashPage> createState() => _CrashPageState();
@@ -50,12 +89,32 @@ class _CrashPageState extends State<CrashPage> {
                 size: 72,
               ),
               Text("Whoa!", style: TextStyle(fontSize: 32, color: Colors.redAccent)),
-              Text("This application is meant to be run on desktop PCs or Macs. If this is a mistake, please contact support."),
-              TextButton(
-                child: Text("Support"),
-                onPressed: () {
-                  support(context);
-                },
+              Text("A critical error occured.", style: TextStyle(fontSize: 20)),
+              if (widget.message != null)
+              Text(widget.message!, style: TextStyle(fontSize: 18)),
+              if (widget.description != null)
+              Text(widget.description!, style: TextStyle(fontSize: 12)),
+              if (widget.code != null)
+              Text("Code ${widget.code}", style: TextStyle(fontSize: 12)),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  TextButton(
+                    child: Text("Support"),
+                    onPressed: () {
+                      support(context);
+                    },
+                  ),
+                  if (widget.reset != null)
+                  TextButton(
+                    child: Text("Reset"),
+                    onPressed: () async {
+                      if (await showConfirmDialogue(context: context, title: "Are you sure?", description: "Are you sure you want to delete all app data? This cannot be undone. Only use this if closing and reopening the app does not fix this error.") ?? false) {
+                        widget.reset!();
+                      }
+                    },
+                  ),
+                ],
               ),
             ],
           ),
@@ -63,4 +122,8 @@ class _CrashPageState extends State<CrashPage> {
       ),
     );
   }
+}
+
+void CrashScreen({String? message, String? description, String? code, Function? reset}) {
+  runApp(CrashPageApp(message: message, description: description, code: code, reset: reset));
 }
