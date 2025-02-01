@@ -1,5 +1,3 @@
-// This file is used for testing. This is not to be used as a public API.
-
 import 'package:flutter/material.dart';
 import 'package:localpkg/dialogue.dart';
 import 'package:localpkg/error.dart';
@@ -39,21 +37,8 @@ class MyApp extends StatelessWidget {
       ),
       home: QuickNavBar(
         items: [
-          {
-            "label": "Home",
-            "icon": Icons.home,
-            "widget": TestPage(),
-          },
-          {
-            "label": "Tip Jar",
-            "icon": Icons.settings,
-            "widget": TipJar(),
-          },
-          {
-            "label": "Crash Page",
-            "icon": Icons.error,
-            "widget": CrashPage(message: "What's up brother", description: null),
-          },
+          QuickNavBarItem(label: "Home", icon: Icons.home, widget: TestPage()),
+          QuickNavBarItem(label: "Tip Jar", icon: Icons.home, widget: TipJar()),
         ],
         selectedColor: Colors.blue,
       ),
