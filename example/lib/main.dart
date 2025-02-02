@@ -10,6 +10,7 @@ import 'package:localpkg/logger.dart';
 import 'package:localpkg/widgets.dart';
 import 'package:quick_navbar/quick_navbar.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main(List<String> arguments) {
   print("${arguments.runtimeType}: $arguments");
@@ -89,6 +90,21 @@ class _TestPageState extends State<TestPage> {
                 parseVersion('0.72.2');
                 parseVersion('1.72.2S');
                 parseVersion('2.0.0G');
+              },
+            ),
+            TextButton(
+              child: Text("Save SharedPreferences test"),
+              onPressed: () async {
+                SharedPreferences prefs = await SharedPreferences.getInstance();
+                prefs.setString('test', 'testing...');
+              },
+            ),
+            TextButton(
+              child: Text("Get SharedPreferences test"),
+              onPressed: () async {
+                SharedPreferences prefs = await SharedPreferences.getInstance();
+                String? value = prefs.getString('test');
+                print("value: $value");
               },
             ),
             TextButton(
