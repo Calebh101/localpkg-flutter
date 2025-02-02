@@ -37,11 +37,11 @@ Future<http.Response> _getServerResponse({required Uri url, required String meth
   int length = 50;
 
   print("${'-' * ((length - " $title ".length) ~/ 2)} $title ${'-' * ((length - " $title ".length + 1) ~/ 2)}");
-  print("method".padRight(10) + method);
-  print("url".padRight(10) + url.toString());
-  print("headers".padRight(10) + jsonEncode(headers));
-  print("body".padRight(10) + jsonEncode(body));
-  print("client".padRight(10) + client.runtimeType.toString());
+  print("${"method".padRight(10)} $method (${method.runtimeType})");
+  print('${"url".padRight(10)} $url (${url.runtimeType})');
+  print('${"headers".padRight(10)} (${headers.runtimeType})');
+  print('${"body".padRight(10)} (${body.runtimeType})');
+  print("${"client".padRight(10)} (${client.runtimeType})");
   print('-' * length);
 
   try {
