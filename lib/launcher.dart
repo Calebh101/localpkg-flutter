@@ -1,5 +1,5 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter_environments/flutter_environments.dart';
+import 'package:flutter_environments_plus/flutter_environments_plus.dart';
 import 'package:localpkg/error.dart';
 import 'package:localpkg/logger.dart';
 
@@ -14,7 +14,7 @@ bool launchinit({required List? arguments, bool block = true, bool bypassDebug =
     return valid;
   }
 
-  if ((kDebugMode && bypassDebug == false) || !Environment.desktop) {
+  if ((kDebugMode && bypassDebug == false) || !Environment.isDesktop) {
     return conclude(true, "invalid platform for launcher");
   }
 
