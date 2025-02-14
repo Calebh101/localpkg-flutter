@@ -1,5 +1,5 @@
 import 'package:flutter/foundation.dart';
-import 'package:localpkg/environment.dart';
+import 'package:flutter_environments/flutter_environments.dart';
 import 'package:localpkg/error.dart';
 import 'package:localpkg/logger.dart';
 
