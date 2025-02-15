@@ -5,7 +5,7 @@ import 'package:localpkg/logger.dart';
 
 bool? allowedlaunch;
 
-bool launchinit({required List? arguments, bool block = true, bool bypassDebug = false}) {
+bool launchinit({required List? arguments, bool enforce = true, bool bypassDebug = false}) {
   print("checking if allowed launch...");
 
   bool conclude(bool valid, String description) {
@@ -25,7 +25,7 @@ bool launchinit({required List? arguments, bool block = true, bool bypassDebug =
   if (arguments.contains('--launcher=true')) {
     return conclude(true, "arguments match");
   } else {
-    return conclude(false, "arguments don't match");
+    return conclude(!enforce, "arguments don't match");
   }
 }
 

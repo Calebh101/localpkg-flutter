@@ -15,7 +15,7 @@ List<String> featureFlags = [];
 Map versions = {};
 final _serverDisabledFuture = Completer<String>();
 
-Future<http.Response> _getServerResponse({required Uri url, required String method, dynamic client, Map? body, String contentType = "application/json", String? authToken}) async {
+Future<http.Response> _getServerResponse({required Uri url, required String method, dynamic client, Map? body, String contentType = "application/json", String? authToken, int timeout = 30000}) async {
   body ??= {};
   String? bodyS;
 
@@ -45,28 +45,40 @@ Future<http.Response> _getServerResponse({required Uri url, required String meth
   print('-' * length);
 
   try {
+    return await Future.any([__getServerResponse(method: method, url: url, headers: headers, body: bodyS, client: client),
+      Future.delayed(Duration(milliseconds: timeout), () {
+        throw Exception("Request timeout (timeout: $timeout)");
+      }),
+    ]);
+  } catch (e) {
+    throw Exception("Fetch error: $e");
+  }
+}
+
+Future<http.Response> __getServerResponse({required String method, required Uri url, required Map<String, String> headers, required String body, dynamic client}) async {
+  try {
     switch(method) {
       case 'GET':
         if (client == null) {
-          return await http.get(url);
+          return await http.get(url, headers: headers);
         } else {
-          return await client.get(url);
+          return await client.get(url, headers: headers);
         }
       case 'POST':
-        if (bodyS == "") {
+        if (body == "") {
           throw Exception("A body is required.");
         }
         if (client == null) {
           return await http.post(
             url,
             headers: headers,
-            body: bodyS,
+            body: body,
           );
         } else {
           return await client.post(
             url,
             headers: headers,
-            body: bodyS,
+            body: body,
           );
         }
       case 'OPTIONS':
@@ -321,7 +333,7 @@ class User {
   Future<Map> _request({required String method, required String endpoint, Map? body}) async {
     _crashSafe++;
     if (_crashSafe >= 3) {
-      error("crashSafe exception: _crashSafe is $_crashSafe");
+      error("Stack overflow (crashSafe) exception: _crashSafe is $_crashSafe");
       return {"error": "stack overflow"};
     }
     print("token: ${token.runtimeType}:${token?.isNotEmpty}");
