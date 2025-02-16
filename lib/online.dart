@@ -8,7 +8,7 @@ import 'package:localpkg/functions.dart';
 import 'package:localpkg/logger.dart';
 
 bool useHttps = false;
-bool analytics = true;
+bool analytics = false;
 bool? serverDisabled;
 bool _checkServerDisabled = false;
 bool _status = true;
@@ -231,6 +231,7 @@ Future<Map?> _report({required String event, required Map report, String? token}
   if (analytics == false) {
     return null;
   }
+
   return await getServerData(endpoint: 'analytics/add', method: 'POST', authToken: token, body: {
     "event": event,
     "report": report,
