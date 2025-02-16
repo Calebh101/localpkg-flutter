@@ -46,7 +46,7 @@ Future<http.Response> _getServerResponse({required Uri url, required String meth
   print('-' * length);
 
   try {
-    return await Future.any([__getServerResponse(method: method, url: url, headers: headers, body: body, client: client),
+    return await Future.any([__getServerResponse(method: method, url: url, headers: headers, body: bodyS, client: client),
       Future.delayed(Duration(milliseconds: timeout), () {
         throw Exception("Request timeout (timeout: $timeout)");
       }),
@@ -56,7 +56,7 @@ Future<http.Response> _getServerResponse({required Uri url, required String meth
   }
 }
 
-Future<http.Response> __getServerResponse({required String method, required Uri url, required Map<String, String> headers, required Map? body, dynamic client}) async {
+Future<http.Response> __getServerResponse({required String method, required Uri url, required Map<String, String> headers, required String body, dynamic client}) async {
   try {
     switch(method) {
       case 'GET':
@@ -70,6 +70,7 @@ Future<http.Response> __getServerResponse({required String method, required Uri 
           throw Exception("A body is required.");
         }
         if (client == null) {
+          print(body);
           return await http.post(
             url,
             headers: headers,
