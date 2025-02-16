@@ -302,7 +302,7 @@ class User {
 
   Future<Map> login() async {
     Map info = getFetchInfo();
-    Map response = await getServerData(method: "POST", endpoint: "auth/login", body: {"email": email, "password": password});
+    Map response = await getServerData(method: "POST", endpoint: "auth/login", body: {"email": email, "password": password, "username": username});
     if (response.containsKey("error")) {
       report(event: "error-login", report: {"error": response["error"]});
       return response;
