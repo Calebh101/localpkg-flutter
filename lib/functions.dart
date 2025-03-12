@@ -85,9 +85,9 @@ String cleanNumber(num number) {
 
 enum ColorType { theme, primary, secondary }
 
-Color getColor({required BuildContext context, required ColorType type}) {
+Color getColor({required BuildContext context, required ColorType type, Brightness? brightness}) {
   if (type == ColorType.theme) {
-    var brightness = MediaQuery.of(context).platformBrightness;
+    brightness ??= MediaQuery.of(context).platformBrightness;
     if (brightness == Brightness.dark) {
       return Colors.white;
     } else if (brightness == Brightness.light) {
