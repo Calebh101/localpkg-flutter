@@ -75,8 +75,12 @@ List<Color> buildGradientColors(List<GradientColor> colors) {
 extension GradientText on Text {
   Widget gradient({required List<GradientColor> colors}) {
     List<Color> gradientColors = buildGradientColors(colors);
-    assert(data == null, "Text data cannot be null.");
-    assert(gradientColors.isEmpty, "Gradient colors cannot be empty.");
+    assert(data != null, "Text data cannot be null.");
+    assert(gradientColors.isNotEmpty, "Gradient colors cannot be empty.");
+
+    if (textScaleFactor != null) {
+      print("textScaleFactor is deprecated and will not be used.");
+    }
 
     Widget widget = Text(
       data!,
@@ -88,7 +92,6 @@ extension GradientText on Text {
       locale: locale,
       softWrap: softWrap,
       overflow: overflow,
-      textScaleFactor: textScaleFactor,
       textScaler: textScaler,
       maxLines: maxLines,
       semanticsLabel: semanticsLabel,
