@@ -72,8 +72,7 @@ List<Color> buildGradientColors(List<GradientColor> colors) {
   return output;
 }
 
-extension on Text {
-  // ignore: unused_element
+extension GradientText on Text {
   Widget gradient({required List<GradientColor> colors}) {
     if (data == null) {
       throw Exception("Text data cannot be null.");
