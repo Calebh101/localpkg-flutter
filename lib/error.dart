@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:localpkg/dialogue.dart';
 import 'package:localpkg/functions.dart';
@@ -62,7 +64,9 @@ class CrashPage extends StatefulWidget {
   final String? description;
   final String? code;
   final bool support;
+  final bool close;
   final Function? reset;
+  final Function? closeFunction;
 
   const CrashPage({
     super.key,
@@ -71,6 +75,8 @@ class CrashPage extends StatefulWidget {
     this.code,
     this.support = true,
     this.reset,
+    this.close = false,
+    this.closeFunction,
   });
 
   @override
@@ -112,9 +118,18 @@ class _CrashPageState extends State<CrashPage> {
                   TextButton(
                     child: Text("Reset"),
                     onPressed: () async {
-                      if (await showConfirmDialogue(context: context, title: "Are you sure?", description: "Are you sure you want to delete all app data? This cannot be undone. Only use this if closing and reopening the app does not fix this error.") ?? false) {
+                      if (await showConfirmDialogue(context: context, title: "Are you sure?", description: "Are you sure you want to delete all app data? This cannot be undone. Only use this if closing and reopening the app or waiting for the issue to be resolved does not fix this issue.") ?? false) {
                         widget.reset!();
                       }
+                    },
+                  ),
+                  if (widget.close)
+                  TextButton(
+                    child: Text("Close"),
+                    onPressed: () {
+                      (widget.closeFunction ?? () {
+                        exit(0);
+                      })();
                     },
                   ),
                 ],
