@@ -53,6 +53,15 @@ ThemeData customTheme({
   );
 }
 
+class GradientColor {
+  final Color color;
+  final int intensity;
+
+  GradientColor(this.color, {this.intensity = 1}) {
+    assert(intensity >= 0, "Color intensity must be non-negative.");
+  }
+}
+
 List<Color> buildGradientColors(List<GradientColor> colors) {
   List<Color> output = [];
   for (GradientColor item in colors) {
@@ -61,13 +70,4 @@ List<Color> buildGradientColors(List<GradientColor> colors) {
     }
   }
   return output;
-}
-
-class GradientColor {
-  final Color color;
-  final int intensity;
-
-  GradientColor({required this.color, this.intensity = 1}) {
-    assert(intensity >= 0, "Color intensity must be non-negative.");
-  }
 }
