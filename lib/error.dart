@@ -36,7 +36,9 @@ class CrashPageApp extends StatelessWidget {
   final String? description;
   final String? code;
   final bool support;
+  final bool close;
   final Function? reset;
+  final Function? closeFunction;
 
   const CrashPageApp({
     super.key,
@@ -45,6 +47,8 @@ class CrashPageApp extends StatelessWidget {
     this.code,
     this.support = true,
     this.reset,
+    this.close = false,
+    this.closeFunction,
   });
 
   @override
@@ -54,7 +58,7 @@ class CrashPageApp extends StatelessWidget {
       title: 'Calebh101 Launcher: Error',
       theme: brandTheme(seedColor: Colors.red),
       darkTheme: brandTheme(seedColor: Colors.red, darkMode: true),
-      home: CrashPage(message: message, description: description, code: code, support: support, reset: reset),
+      home: CrashPage(message: message, description: description, code: code, support: support, reset: reset, close: close, closeFunction: closeFunction),
     );
   }
 }
@@ -142,6 +146,6 @@ class _CrashPageState extends State<CrashPage> {
   }
 }
 
-void CrashScreen({String? message, String? description, String? code, Function? reset, bool support = true}) {
-  runApp(CrashPageApp(message: message, description: description, code: code, support: support, reset: reset));
+void CrashScreen({String? message, String? description, String? code, Function? reset, bool support = true, bool close = false, Function? closeFunction}) {
+  runApp(CrashPageApp(message: message, description: description, code: code, support: support, reset: reset, close: close, closeFunction: closeFunction));
 }
