@@ -74,35 +74,36 @@ List<Color> buildGradientColors(List<GradientColor> colors) {
 
 extension GradientText on Text {
   Widget gradient({required List<GradientColor> colors}) {
-    if (data == null) {
-      throw Exception("Text data cannot be null.");
-    }
+    List<Color> gradientColors = buildGradientColors(colors);
+    assert(data == null, "Text data cannot be null.");
+    assert(gradientColors.isEmpty, "Gradient colors cannot be empty.");
 
-    return ShaderMask(
+    Widget widget = Text(
+      data!,
+      style: (style ?? TextStyle()).copyWith(color: gradientColors.length == 1 ? gradientColors[0] : Colors.white),
+      key: key,
+      strutStyle: strutStyle,
+      textAlign: textAlign,
+      textDirection: textDirection,
+      locale: locale,
+      softWrap: softWrap,
+      overflow: overflow,
+      textScaleFactor: textScaleFactor,
+      textScaler: textScaler,
+      maxLines: maxLines,
+      semanticsLabel: semanticsLabel,
+      textWidthBasis: textWidthBasis,
+      textHeightBehavior: textHeightBehavior,
+      selectionColor: selectionColor,
+    );
+
+    return  gradientColors.length == 1 ? widget : ShaderMask(
       shaderCallback: (bounds) => LinearGradient(
-        colors: buildGradientColors(colors),
+        colors: gradientColors,
       ).createShader(
         Rect.fromLTWH(0, 0, bounds.width, bounds.height),
       ),
-
-      child: Text(
-        data!,
-        style: (style ?? TextStyle()).copyWith(color: Colors.white),
-        key: key,
-        strutStyle: strutStyle,
-        textAlign: textAlign,
-        textDirection: textDirection,
-        locale: locale,
-        softWrap: softWrap,
-        overflow: overflow,
-        textScaleFactor: textScaleFactor,
-        textScaler: textScaler,
-        maxLines: maxLines,
-        semanticsLabel: semanticsLabel,
-        textWidthBasis: textWidthBasis,
-        textHeightBehavior: textHeightBehavior,
-        selectionColor: selectionColor,
-      ),
+      child: widget,
     );
   }
 }
