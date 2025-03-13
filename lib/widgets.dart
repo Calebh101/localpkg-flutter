@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:localpkg/theme.dart';
 import 'package:localpkg/tipjar.dart';
+
+export 'package:localpkg/theme.dart' show GradientColor, buildGradientColors;
 
 Widget Setting({
   required String title,
@@ -204,4 +207,26 @@ Widget Section({Widget? child, bool expanded = true}) {
   ) : Container(
     child: childS,
   );
+}
+
+class GradientText extends StatelessWidget {
+  final String data;
+  final TextStyle? style;
+  final List<GradientColor> colors;
+  const GradientText(this.data, {super.key, this.style, required this.colors});
+
+  @override
+  Widget build(BuildContext context) {
+    return ShaderMask(
+      shaderCallback: (bounds) => LinearGradient(
+        colors: buildGradientColors(colors),
+      ).createShader(
+        Rect.fromLTWH(0, 0, bounds.width, bounds.height),
+      ),
+      child: Text(
+        data,
+        style: (style ?? TextStyle()).copyWith(color: Colors.white),
+      ),
+    );
+  }
 }

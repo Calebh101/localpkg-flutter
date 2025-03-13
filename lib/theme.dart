@@ -52,3 +52,22 @@ ThemeData customTheme({
     iconSize: iconSize
   );
 }
+
+List<Color> buildGradientColors(List<GradientColor> colors) {
+  List<Color> output = [];
+  for (GradientColor item in colors) {
+    for (int i = 0; i < item.intensity; i++) {
+      output.add(item.color);
+    }
+  }
+  return output;
+}
+
+class GradientColor {
+  final Color color;
+  final int intensity;
+
+  GradientColor({required this.color, this.intensity = 1}) {
+    assert(intensity >= 0, "Color intensity must be non-negative.");
+  }
+}
