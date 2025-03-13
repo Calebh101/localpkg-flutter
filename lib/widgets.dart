@@ -209,6 +209,7 @@ Widget Section({Widget? child, bool expanded = true}) {
   );
 }
 
+@Deprecated("Use Text().gradient() instead.")
 class GradientText extends StatelessWidget {
   final String data;
   final TextStyle? style;

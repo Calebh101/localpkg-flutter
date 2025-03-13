@@ -71,3 +71,39 @@ List<Color> buildGradientColors(List<GradientColor> colors) {
   }
   return output;
 }
+
+extension on Text {
+  // ignore: unused_element
+  Widget gradient({required List<GradientColor> colors}) {
+    if (data == null) {
+      throw Exception("Text data cannot be null.");
+    }
+
+    return ShaderMask(
+      shaderCallback: (bounds) => LinearGradient(
+        colors: buildGradientColors(colors),
+      ).createShader(
+        Rect.fromLTWH(0, 0, bounds.width, bounds.height),
+      ),
+
+      child: Text(
+        data!,
+        style: (style ?? TextStyle()).copyWith(color: Colors.white),
+        key: key,
+        strutStyle: strutStyle,
+        textAlign: textAlign,
+        textDirection: textDirection,
+        locale: locale,
+        softWrap: softWrap,
+        overflow: overflow,
+        textScaleFactor: textScaleFactor,
+        textScaler: textScaler,
+        maxLines: maxLines,
+        semanticsLabel: semanticsLabel,
+        textWidthBasis: textWidthBasis,
+        textHeightBehavior: textHeightBehavior,
+        selectionColor: selectionColor,
+      ),
+    );
+  }
+}
