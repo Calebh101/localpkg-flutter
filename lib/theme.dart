@@ -72,7 +72,7 @@ List<Color> buildGradientColors(List<GradientColor> colors) {
   return output;
 }
 
-extension GradientText on Text {
+extension GradientTextExtension on Text {
   Widget gradient({required List<GradientColor> colors}) {
     List<Color> gradientColors = buildGradientColors(colors);
     assert(data != null, "Text data cannot be null.");
@@ -85,6 +85,45 @@ extension GradientText on Text {
     Widget widget = Text(
       data!,
       style: (style ?? TextStyle()).copyWith(color: gradientColors.length == 1 ? gradientColors[0] : Colors.white),
+      key: key,
+      strutStyle: strutStyle,
+      textAlign: textAlign,
+      textDirection: textDirection,
+      locale: locale,
+      softWrap: softWrap,
+      overflow: overflow,
+      textScaler: textScaler,
+      maxLines: maxLines,
+      semanticsLabel: semanticsLabel,
+      textWidthBasis: textWidthBasis,
+      textHeightBehavior: textHeightBehavior,
+      selectionColor: selectionColor,
+    );
+
+    return  gradientColors.length == 1 ? widget : ShaderMask(
+      shaderCallback: (bounds) => LinearGradient(
+        colors: gradientColors,
+      ).createShader(
+        Rect.fromLTWH(0, 0, bounds.width, bounds.height),
+      ),
+      child: widget,
+    );
+  }
+}
+
+class GradientText extends Text {
+  final List<GradientColor> colors;
+  GradientText(super.data, {required this.colors, super.key, super.style, super.strutStyle, super.textAlign, super.textDirection, super.locale, super.softWrap, super.overflow, @Deprecated('Use textScaler instead. textScaleFactor will not be used.') super.textScaleFactor, super.textScaler, super.maxLines, super.semanticsLabel, super.textWidthBasis, super.textHeightBehavior, super.selectionColor});
+
+  @override
+  Widget build(BuildContext context) {
+    List<Color> gradientColors = buildGradientColors(colors);
+    assert(data != null, "Text data cannot be null.");
+    assert(gradientColors.isNotEmpty, "Gradient colors cannot be empty.");
+
+    Widget widget = Text(
+      data!,
+      style: (style ?? TextStyle()).copyWith(color: gradientColors.length == 1 ? style?.color ?? gradientColors[0] : Colors.white),
       key: key,
       strutStyle: strutStyle,
       textAlign: textAlign,
