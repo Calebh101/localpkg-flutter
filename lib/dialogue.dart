@@ -141,11 +141,6 @@ void showConstantDialogue({required BuildContext context, String? title, String?
     barrierDismissible: false,
     builder: (BuildContext context) {
       return PopScope(
-        onPopInvokedWithResult : (didPop, result) {
-          if (didPop) {
-            throw Exception("Constant dialogue already popped.");
-          }
-        },
         child: AlertDialog(
           title: title != null ? Text(title) : SizedBox.shrink(),
           content: message != null ? Text(message) : SizedBox.shrink(),
