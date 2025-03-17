@@ -10,8 +10,9 @@ String _line = "----------------";
 /// Bold: bolden the output
 /// Color: the ANSI color for the terminal (default is default)
 /// Trace: show stack trace (default is false)
-void print(dynamic input, {String? code, bool bold = false, String? color, bool trace = false}) {
-  _handle(input, "log", code, trace, color, bold);
+/// Release mode: the log shows up during a release build, but doesn't have advanced formatting, and may appear with ANSI color codes as plaintext
+void print(dynamic input, {String? code, bool bold = false, String? color, bool trace = false, bool releaseMode = false}) {
+  _handle(input, "log", code, trace, color, bold, release: releaseMode);
 }
 
 /// Takes any input and code and outputs a warning
@@ -19,9 +20,10 @@ void print(dynamic input, {String? code, bool bold = false, String? color, bool 
 /// Code: the warn code
 /// Bold: bolden the output
 /// Color: the ANSI color for the terminal (default is yellow)
-/// Trace: show stack trace (default is true)
-void warn(dynamic input, {String? code, bool bold = false, bool trace = false, String? color = "\x1B[33m"}) {
-  _handle(input, "warning", code, trace, color, bold);
+/// Trace: show stack trace (default is false)
+/// Release mode: the log shows up during a release build, but doesn't have advanced formatting, and may appear with ANSI color codes as plaintext
+void warn(dynamic input, {String? code, bool bold = false, bool trace = false, String? color = "\x1B[33m", bool releaseMode = false}) {
+  _handle(input, "warning", code, trace, color, bold, release: releaseMode);
 }
 
 /// Takes any input and code and outputs an error
@@ -29,26 +31,30 @@ void warn(dynamic input, {String? code, bool bold = false, bool trace = false, S
 /// Code: the error code
 /// Color: the ANSI color for the terminal (default is red)
 /// Trace: show stack trace (default is true)
-void error(dynamic input, {String? code, String? color = "\x1B[31m", bool bold = false, bool trace = true}) {
-  _handle(input, "error", code, trace, color, bold);
+/// Release mode: the log shows up during a release build, but doesn't have advanced formatting, and may appear with ANSI color codes as plaintext
+void error(dynamic input, {String? code, String? color = "\x1B[31m", bool bold = false, bool trace = true, bool releaseMode = false}) {
+  _handle(input, "error", code, trace, color, bold, release: releaseMode);
 }
 
 /// Outputs the stack trace
 /// Code: the log code
 /// Bold: bolden the output
 /// Color: the ANSI color for the terminal (default is default)
+/// Release mode: the log shows up during a release build, but doesn't have advanced formatting, and may appear with ANSI color codes as plaintext
 /// You don't have a choice to show the stack trace here lol
 /// It looks weird though, calling a dedicated show stack trace function but disabling stack trace
-void stack({String? code, bool bold = false, String? color}) {
-  _handle("null", "stack", code, true, color, bold);
+void stack({String? code, bool bold = false, String? color, bool releaseMode = false}) {
+  _handle("null", "stack", code, true, color, bold, release: releaseMode);
 }
 
-void _handle(dynamic input, String type, String? code, bool stackTrace, String? color, bool bold) {
+void _handle(dynamic input, String type, String? code, bool stackTrace, String? color, bool bold, {bool release = false}) {
   if (!kDebugMode) {
     return;
   }
+
   input = _encodeInput(input);
   String colorCode = "";
+
   if (color != null) {
     if (_validColor(color)) {
       colorCode = color;
@@ -57,11 +63,18 @@ void _handle(dynamic input, String type, String? code, bool stackTrace, String? 
       return;
     }
   }
+
   String abbr = (type == "log" ? "log" : (type == "warning" ? "warn" : (type == "error" ? "err" : (type == "stack" ? "stack" : "null"))));
   String output = _getOutput(input, type.toUpperCase(), abbr.toUpperCase(), code, stackTrace);
   List<String> lines = output.split('\n');
-  for (String line in lines) {
-    debugPrint("${bold ? "\x1b[1m]" : ""}$colorCode$line\x1B[0m");
+
+  if (release) {
+    print("${type.toUpperCase()}: $output");
+  } else {
+    for (String line in lines) {
+      String text = "${bold ? "\x1b[1m]" : ""}$colorCode$line\x1B[0m";
+      debugPrint(text);
+    }
   }
 }
 
@@ -77,6 +90,7 @@ String _encodeInput(dynamic input) {
   if (input is Map) {
     input = jsonEncode(input);
   }
+
   return input;
 }
 
