@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
+import 'package:localpkg/private.dart';
 
 String _line = "----------------";
 
@@ -69,7 +70,7 @@ void _handle(dynamic input, String type, String? code, bool stackTrace, String? 
   List<String> lines = output.split('\n');
 
   if (release) {
-    print("${type.toUpperCase()}: $output");
+    defaultPrint("${type.toUpperCase()}: $output");
   } else {
     for (String line in lines) {
       String text = "${bold ? "\x1b[1m]" : ""}$colorCode$line\x1B[0m";
