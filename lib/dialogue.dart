@@ -191,7 +191,7 @@ Future<bool> showFirstTimeDialogue(context, String title, String description, [b
   if (!firstTimeDialogueShown) {
     print("showing first time dialogue");
     prefs.setBool("firstTimeDialogueShown", true);
-    selection = await showDialogue(context: context, title: title, content: Text(description)) ?? false;
+    selection = await showDialogue(context: context, title: title, content: SingleChildScrollView(child: Text(description))) ?? false;
   } else {
     print("not showing first time dialogue");
     selection = false;
