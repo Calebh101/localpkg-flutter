@@ -5,7 +5,7 @@ import 'package:localpkg/functions.dart';
 import 'package:localpkg/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-void showSnackBar(context, String content) {
+void showSnackBar(BuildContext context, String content) {
   ScaffoldMessenger.of(context).clearSnackBars();
   ScaffoldMessenger.of(context).showSnackBar(
     SnackBar(content: Text(content)),
