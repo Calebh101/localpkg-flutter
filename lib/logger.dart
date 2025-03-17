@@ -90,6 +90,8 @@ String _getLine(String abbr, String? code) {
 String _encodeInput(dynamic input) {
   if (input is Map) {
     input = jsonEncode(input);
+  } else if (input is! String) {
+    input = input.toString();
   }
 
   return input;
