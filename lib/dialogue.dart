@@ -183,7 +183,7 @@ Future<bool?> showConfirmDialogue({required BuildContext context, required Strin
   );
 }
 
-Future<bool> showFirstTimeDialogue(context, String title, String description, bool cancel) async {
+Future<bool> showFirstTimeDialogue(context, String title, String description, [bool cancel = false]) async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   bool firstTimeDialogueShown = prefs.getBool("firstTimeDialogueShown") ?? false;
   bool? selection = false;
