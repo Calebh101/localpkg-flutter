@@ -95,7 +95,7 @@ Future<http.Response> __getServerResponse({required String method, required Uri 
 
 Map getFetchInfo({bool? debug}) {
   debug ??= kDebugMode;
-  String host = debug ? "api.192.168.0.26" : "api.calebh101.com";
+  String host = debug ? "api.localhost" : "api.calebh101.com";
   int mode = useHttps ? 3 : 1;
   return {
     "debug": debug,
