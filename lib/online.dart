@@ -95,7 +95,7 @@ Future<http.Response> __getServerResponse({required String method, required Uri 
 
 Map getFetchInfo({bool? debug}) {
   debug ??= kDebugMode;
-  String host = debug ? "192.168.0.26" : "calebh101.com";
+  String host = debug ? "api.192.168.0.26" : "api.calebh101.com";
   int mode = useHttps ? 3 : 1;
   return {
     "debug": debug,
@@ -130,7 +130,7 @@ Future<http.Response> getServerResponse({required String endpoint, String method
     endpoint = endpoint.replaceFirst('api/', '');
   }
 
-  String url = "$protocol://$host${port != null ? ":$port" : ""}/api/$endpoint";
+  String url = "$protocol://$host${port != null ? ":$port" : ""}/v1/$endpoint";
   Uri uri = Uri.parse(url);
 
   if (mode == 2) {
