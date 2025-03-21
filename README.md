@@ -1,8 +1,20 @@
-# Personal @ localpkg
-
 ## Why?
 
-This is a Flutter package I made to keep all my global tools in one place. On all my machines, I keep this at /localpkg so it works on my main Linux computer, my side iMac 2011 that I upgraded so I can build to iOS. I will dual-boot or VM into Windows to build to Windows, but **A** that's not my biggest priority and **B** I don't know how to implement /localpkg as a package path on Windows.
+This is a Flutter package I made to keep all my global tools in one place.
+
+To use, include this in pubspec.yaml:
+
+```yaml
+dependencies:
+    localpkg:
+        git:
+            url: https://github.com/Calebh101/localpkg-flutter.git
+            ref: main
+```
+
+## What is "personal"?
+
+"personal" was the name of the package before I renamed it to "localpkg". It was referenced as localpkg before this, but the pubspec.yaml name was "personal".
 
 ## What does it have?
 
