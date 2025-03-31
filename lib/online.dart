@@ -7,7 +7,7 @@ import 'package:localpkg/dialogue.dart';
 import 'package:localpkg/functions.dart';
 import 'package:localpkg/logger.dart';
 
-bool useHttps = false;
+bool useHttps = kDebugMode;
 bool analytics = false;
 bool? serverDisabled;
 bool _checkServerDisabled = false;
