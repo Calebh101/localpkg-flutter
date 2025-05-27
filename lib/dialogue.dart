@@ -201,14 +201,13 @@ Future<bool> showFirstTimeDialogue(context, String title, String description, [b
   return selection;
 }
 
-Future<bool> showFirstTriggerDialogue({required BuildContext context, required String title, required List<Widget> children, bool cancel = false, String code = ""}) async {
+Future<bool> showFirstTriggerDialogue({required BuildContext context, required String title, required List<Widget> children, bool cancel = false, String key = "", bool ignorePrefs = false}) async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
-  bool shown = prefs.getBool(code) ?? false;
+  bool shown = ignorePrefs ? false : (prefs.getBool(key) ?? false);
   bool selection = false;
 
   if (!shown) {
-    print("showing first time dialogue");
-    prefs.setBool(code, true);
+    if (!ignorePrefs) prefs.setBool(key, true);
     int i = 0;
 
     for (Widget child in children) {
@@ -216,7 +215,6 @@ Future<bool> showFirstTriggerDialogue({required BuildContext context, required S
       i++;
     }
   } else {
-    print("not showing first time dialogue");
     selection = false;
   }
 
