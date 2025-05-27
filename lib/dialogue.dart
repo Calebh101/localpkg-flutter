@@ -183,6 +183,7 @@ Future<bool?> showConfirmDialogue({required BuildContext context, required Strin
   );
 }
 
+@Deprecated("Use showFirstTriggerDialogue instead.")
 Future<bool> showFirstTimeDialogue(context, String title, String description, [bool cancel = false]) async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   bool firstTimeDialogueShown = prefs.getBool("firstTimeDialogueShown") ?? false;
@@ -192,6 +193,23 @@ Future<bool> showFirstTimeDialogue(context, String title, String description, [b
     print("showing first time dialogue");
     prefs.setBool("firstTimeDialogueShown", true);
     selection = await showDialogue(context: context, title: title, content: SingleChildScrollView(child: Text(description))) ?? false;
+  } else {
+    print("not showing first time dialogue");
+    selection = false;
+  }
+
+  return selection;
+}
+
+Future<bool> showFirstTriggerDialogue({required BuildContext context, required String title, required Widget child, bool cancel = false, String code = ""}) async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  bool shown = prefs.getBool(code) ?? false;
+  bool selection = false;
+
+  if (!shown) {
+    print("showing first time dialogue");
+    prefs.setBool(code, true);
+    selection = await showDialogue(context: context, title: title, content: child) ?? false;
   } else {
     print("not showing first time dialogue");
     selection = false;
