@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:localpkg/theme.dart';
@@ -229,5 +230,72 @@ class GradientText extends StatelessWidget {
         style: (style ?? TextStyle()).copyWith(color: Colors.white),
       ),
     );
+  }
+}
+
+class ScrollWidget extends StatelessWidget {
+  final Key? scrollViewKey;
+  final Key? scrollbarKey;
+  final Widget child;
+  final bool showScrollbar;
+  final ScrollController? controller;
+  final bool? thumbVisibility;
+  final bool? trackVisibility;
+  final double? scrollbarThickness;
+  final Radius? scrollbarRadius;
+  final bool Function(ScrollNotification)? scrollbarNotificationsPredicate;
+  final bool? scrollbarInteractive;
+  final ScrollbarOrientation? scrollbarOrientation;
+
+  final Axis scrollViewScrollDirection;
+  final bool scrollViewReverse;
+  final EdgeInsetsGeometry? scrollViewPadding;
+  final bool? scrollViewPrimary;
+  final ScrollPhysics? scrollViewPhysics;
+  final DragStartBehavior scrollViewDragStartBehavior;
+  final Clip scrollViewClipBehavior;
+  final HitTestBehavior scrollViewHitTestBehavior;
+  final String? scrollViewRestorationId;
+  final ScrollViewKeyboardDismissBehavior scrollViewKeyboardDismissBehavior;
+
+  const ScrollWidget({super.key, this.scrollViewKey, this.scrollbarKey, required this.child, this.showScrollbar = true, this.controller, this.thumbVisibility, this.trackVisibility, this.scrollbarThickness, this.scrollbarRadius, this.scrollbarNotificationsPredicate, this.scrollbarInteractive, this.scrollbarOrientation, this.scrollViewScrollDirection = Axis.vertical, this.scrollViewReverse = false, this.scrollViewPadding, this.scrollViewPrimary, this.scrollViewPhysics, this.scrollViewDragStartBehavior = DragStartBehavior.start, this.scrollViewClipBehavior = Clip.hardEdge, this.scrollViewHitTestBehavior = HitTestBehavior.opaque, this.scrollViewRestorationId, this.scrollViewKeyboardDismissBehavior = ScrollViewKeyboardDismissBehavior.manual});
+
+  @override
+  Widget build(BuildContext context) {
+    Widget result;
+    Widget scrollView = SingleChildScrollView(
+      key: scrollViewKey,
+      child: child,
+      controller: controller,
+      scrollDirection: scrollViewScrollDirection,
+      reverse: scrollViewReverse,
+      padding: scrollViewPadding,
+      primary: scrollViewPrimary,
+      physics: scrollViewPhysics,
+      dragStartBehavior: scrollViewDragStartBehavior,
+      clipBehavior: scrollViewClipBehavior,
+      hitTestBehavior: scrollViewHitTestBehavior,
+      restorationId: scrollViewRestorationId,
+      keyboardDismissBehavior: scrollViewKeyboardDismissBehavior,
+    );
+
+    if (showScrollbar) {
+      result = Scrollbar(
+        key: scrollbarKey,
+        child: scrollView,
+        controller: controller,
+        thumbVisibility: thumbVisibility,
+        trackVisibility: trackVisibility,
+        thickness: scrollbarThickness,
+        radius: scrollbarRadius,
+        notificationPredicate: scrollbarNotificationsPredicate,
+        interactive: scrollbarInteractive,
+        scrollbarOrientation: scrollbarOrientation,
+      );
+    } else {
+      result = scrollView;
+    }
+
+    return result;
   }
 }
