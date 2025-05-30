@@ -233,6 +233,7 @@ class GradientText extends StatelessWidget {
   }
 }
 
+// ignore: must_be_immutable
 class ScrollWidget extends StatelessWidget {
   final Key? scrollViewKey;
   final Key? scrollbarKey;
@@ -258,7 +259,9 @@ class ScrollWidget extends StatelessWidget {
   final String? scrollViewRestorationId;
   final ScrollViewKeyboardDismissBehavior scrollViewKeyboardDismissBehavior;
 
-  const ScrollWidget({super.key, this.scrollViewKey, this.scrollbarKey, required this.child, this.showScrollbar = true, this.controller, this.thumbVisibility, this.trackVisibility, this.scrollbarThickness, this.scrollbarRadius, this.scrollbarNotificationsPredicate, this.scrollbarInteractive, this.scrollbarOrientation, this.scrollViewScrollDirection = Axis.vertical, this.scrollViewReverse = false, this.scrollViewPadding, this.scrollViewPrimary, this.scrollViewPhysics, this.scrollViewDragStartBehavior = DragStartBehavior.start, this.scrollViewClipBehavior = Clip.hardEdge, this.scrollViewHitTestBehavior = HitTestBehavior.opaque, this.scrollViewRestorationId, this.scrollViewKeyboardDismissBehavior = ScrollViewKeyboardDismissBehavior.manual});
+  ScrollWidget({super.key, this.scrollViewKey, this.scrollbarKey, required this.child, this.showScrollbar = true, this.controller, this.thumbVisibility, this.trackVisibility, this.scrollbarThickness, this.scrollbarRadius, this.scrollbarNotificationsPredicate, this.scrollbarInteractive, this.scrollbarOrientation, this.scrollViewScrollDirection = Axis.vertical, this.scrollViewReverse = false, this.scrollViewPadding, this.scrollViewPrimary, this.scrollViewPhysics, this.scrollViewDragStartBehavior = DragStartBehavior.start, this.scrollViewClipBehavior = Clip.hardEdge, this.scrollViewHitTestBehavior = HitTestBehavior.opaque, this.scrollViewRestorationId, this.scrollViewKeyboardDismissBehavior = ScrollViewKeyboardDismissBehavior.manual});
+
+  ScrollController defaultController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
@@ -266,7 +269,7 @@ class ScrollWidget extends StatelessWidget {
     Widget scrollView = SingleChildScrollView(
       key: scrollViewKey,
       child: child,
-      controller: controller,
+      controller: controller ?? defaultController,
       scrollDirection: scrollViewScrollDirection,
       reverse: scrollViewReverse,
       padding: scrollViewPadding,
@@ -283,7 +286,7 @@ class ScrollWidget extends StatelessWidget {
       result = Scrollbar(
         key: scrollbarKey,
         child: scrollView,
-        controller: controller,
+        controller: controller ?? defaultController,
         thumbVisibility: thumbVisibility,
         trackVisibility: trackVisibility,
         thickness: scrollbarThickness,
