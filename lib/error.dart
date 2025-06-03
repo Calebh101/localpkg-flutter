@@ -6,6 +6,7 @@ import 'package:localpkg/dialogue.dart';
 import 'package:localpkg/functions.dart';
 import 'package:localpkg/logger.dart' as logger;
 import 'package:localpkg/theme.dart';
+import 'package:readmore/readmore.dart';
 
 class ManualError extends Error {
   final String message;
@@ -42,6 +43,7 @@ class CrashPageApp extends StatelessWidget {
   final Function? reset;
   final Function? closeFunction;
   final VoidCallback? retryFunction;
+  final String? trace;
 
   const CrashPageApp({
     super.key,
@@ -54,6 +56,7 @@ class CrashPageApp extends StatelessWidget {
     this.copy = true,
     this.closeFunction,
     this.retryFunction,
+    this.trace,
   });
 
   @override
@@ -63,7 +66,7 @@ class CrashPageApp extends StatelessWidget {
       title: 'Calebh101 Launcher: Error',
       theme: brandTheme(seedColor: Colors.red),
       darkTheme: brandTheme(seedColor: Colors.red, darkMode: true),
-      home: CrashPage(message: message, description: description, code: code, support: support, reset: reset, close: close, closeFunction: closeFunction, retryFunction: retryFunction, copy: copy),
+      home: CrashPage(message: message, description: description, code: code, support: support, reset: reset, close: close, closeFunction: closeFunction, retryFunction: retryFunction, copy: copy, trace: trace),
     );
   }
 }
@@ -78,6 +81,7 @@ class CrashPage extends StatefulWidget {
   final Function? reset;
   final Function? closeFunction;
   final VoidCallback? retryFunction;
+  final String? trace;
 
   const CrashPage({
     super.key,
@@ -90,6 +94,7 @@ class CrashPage extends StatefulWidget {
     this.copy = true,
     this.closeFunction,
     this.retryFunction,
+    this.trace,
   });
 
   @override
@@ -118,6 +123,14 @@ class _CrashPageState extends State<CrashPage> {
                 Text(widget.description!, style: TextStyle(fontSize: 12)),
                 if (widget.code != null)
                 Text("Code ${widget.code}", style: TextStyle(fontSize: 12)),
+                if (widget.trace != null)
+                ReadMoreText(
+                  widget.trace!,
+                  trimLines: 3,
+                  trimMode: TrimMode.Line,
+                  trimCollapsedText: "Stack Trace",
+                  trimExpandedText: " Collapse",
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -167,6 +180,6 @@ class _CrashPageState extends State<CrashPage> {
   }
 }
 
-void CrashScreen({String? message, String? description, String? code, Function? reset, bool support = true, bool close = false, bool copy = true, Function? closeFunction, VoidCallback? retryFunction}) {
-  runApp(CrashPageApp(message: message, description: description, code: code, support: support, reset: reset, close: close, copy: copy, closeFunction: closeFunction, retryFunction: retryFunction));
+void CrashScreen({String? message, String? description, String? code, Function? reset, bool support = true, bool close = false, bool copy = true, Function? closeFunction, VoidCallback? retryFunction, String? trace}) {
+  runApp(CrashPageApp(message: message, description: description, code: code, support: support, reset: reset, close: close, copy: copy, closeFunction: closeFunction, retryFunction: retryFunction, trace: trace));
 }

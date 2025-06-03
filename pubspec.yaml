@@ -24,6 +24,7 @@ dependencies:
   http_server: ^1.0.0
   http: ^1.2.2
   flutter_environments_plus: ^1.0.0
+  readmore: ^3.0.0
 
 dev_dependencies:
   lints: ^4.0.0
