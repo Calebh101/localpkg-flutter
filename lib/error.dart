@@ -126,9 +126,9 @@ class _CrashPageState extends State<CrashPage> {
                 if (widget.trace != null)
                 ReadMoreText(
                   widget.trace!,
-                  trimLines: 1,
+                  trimLines: 0,
                   trimMode: TrimMode.Line,
-                  trimCollapsedText: "Stack Trace",
+                  trimCollapsedText: "Show Full Stack Trace",
                   trimExpandedText: "Collapse",
                 ),
                 Row(
