@@ -71,6 +71,7 @@ class CrashPage extends StatefulWidget {
   final bool close;
   final Function? reset;
   final Function? closeFunction;
+  final VoidCallback? retryFunction;
 
   const CrashPage({
     super.key,
@@ -81,6 +82,7 @@ class CrashPage extends StatefulWidget {
     this.reset,
     this.close = false,
     this.closeFunction,
+    this.retryFunction,
   });
 
   @override
@@ -135,6 +137,11 @@ class _CrashPageState extends State<CrashPage> {
                         exit(0);
                       })();
                     },
+                  ),
+                  if (widget.retryFunction != null)
+                  TextButton(
+                    child: Text("Retry"),
+                    onPressed: widget.retryFunction,
                   ),
                 ],
               ),
