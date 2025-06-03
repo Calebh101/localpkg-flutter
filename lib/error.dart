@@ -98,56 +98,58 @@ class _CrashPageState extends State<CrashPage> {
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(
-                Icons.warning_rounded,
-                color: Colors.amber,
-                size: 72,
-              ),
-              Text("Whoa!", style: TextStyle(fontSize: 32, color: Colors.redAccent)),
-              Text(widget.message ?? "A critical error occured.", style: TextStyle(fontSize: 18)),
-              if (widget.description != null)
-              Text(widget.description!, style: TextStyle(fontSize: 12)),
-              if (widget.code != null)
-              Text("Code ${widget.code}", style: TextStyle(fontSize: 12)),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  if (widget.support)
-                  TextButton(
-                    child: Text("Support"),
-                    onPressed: () {
-                      support(context);
-                    },
-                  ),
-                  if (widget.reset != null)
-                  TextButton(
-                    child: Text("Reset"),
-                    onPressed: () async {
-                      if (await showConfirmDialogue(context: context, title: "Are you sure?", description: "Are you sure you want to delete all app data? This cannot be undone. Only use this if closing and reopening the app or waiting for the issue to be resolved does not fix this issue.") ?? false) {
-                        widget.reset!();
-                      }
-                    },
-                  ),
-                  if (widget.close)
-                  TextButton(
-                    child: Text("Close"),
-                    onPressed: () {
-                      (widget.closeFunction ?? () {
-                        exit(0);
-                      })();
-                    },
-                  ),
-                  if (widget.retryFunction != null)
-                  TextButton(
-                    child: Text("Retry"),
-                    onPressed: widget.retryFunction,
-                  ),
-                ],
-              ),
-            ],
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.warning_rounded,
+                  color: Colors.amber,
+                  size: 72,
+                ),
+                Text("Whoa!", style: TextStyle(fontSize: 32, color: Colors.redAccent)),
+                Text(widget.message ?? "A critical error occured.", style: TextStyle(fontSize: 18)),
+                if (widget.description != null)
+                Text(widget.description!, style: TextStyle(fontSize: 12)),
+                if (widget.code != null)
+                Text("Code ${widget.code}", style: TextStyle(fontSize: 12)),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    if (widget.support)
+                    TextButton(
+                      child: Text("Support"),
+                      onPressed: () {
+                        support(context);
+                      },
+                    ),
+                    if (widget.reset != null)
+                    TextButton(
+                      child: Text("Reset"),
+                      onPressed: () async {
+                        if (await showConfirmDialogue(context: context, title: "Are you sure?", description: "Are you sure you want to delete all app data? This cannot be undone. Only use this if closing and reopening the app or waiting for the issue to be resolved does not fix this issue.") ?? false) {
+                          widget.reset!();
+                        }
+                      },
+                    ),
+                    if (widget.close)
+                    TextButton(
+                      child: Text("Close"),
+                      onPressed: () {
+                        (widget.closeFunction ?? () {
+                          exit(0);
+                        })();
+                      },
+                    ),
+                    if (widget.retryFunction != null)
+                    TextButton(
+                      child: Text("Retry"),
+                      onPressed: widget.retryFunction,
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),
