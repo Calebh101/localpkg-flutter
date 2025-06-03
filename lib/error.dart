@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:localpkg/dialogue.dart';
 import 'package:localpkg/functions.dart';
 import 'package:localpkg/logger.dart' as logger;
@@ -71,6 +72,7 @@ class CrashPage extends StatefulWidget {
   final String? code;
   final bool support;
   final bool close;
+  final bool copy;
   final Function? reset;
   final Function? closeFunction;
   final VoidCallback? retryFunction;
@@ -83,6 +85,7 @@ class CrashPage extends StatefulWidget {
     this.support = true,
     this.reset,
     this.close = false,
+    this.copy = true,
     this.closeFunction,
     this.retryFunction,
   });
@@ -146,6 +149,10 @@ class _CrashPageState extends State<CrashPage> {
                       child: Text("Retry"),
                       onPressed: widget.retryFunction,
                     ),
+                    if (widget.copy)
+                    TextButton(onPressed: () {
+                      Clipboard.setData(ClipboardData(text: "Message: ${widget.message}\nCode: ${widget.code}\n\nContent:\n${widget.description}"));
+                    }, child: Text("Copy")),
                   ],
                 ),
               ],
