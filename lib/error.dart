@@ -124,12 +124,17 @@ class _CrashPageState extends State<CrashPage> {
                 if (widget.code != null)
                 Text("Code ${widget.code}", style: TextStyle(fontSize: 12)),
                 if (widget.trace != null)
-                ReadMoreText(
-                  widget.trace!,
-                  trimLines: 0,
-                  trimMode: TrimMode.Line,
-                  trimCollapsedText: "Show Full Stack Trace",
-                  trimExpandedText: "Collapse",
+                Column(
+                  children: [
+                    Text("Stack Trace", style: TextStyle(fontSize: 18)),
+                    ReadMoreText(
+                      widget.trace!,
+                      trimLines: 2,
+                      trimMode: TrimMode.Line,
+                      trimCollapsedText: "Show Full Stack Trace",
+                      trimExpandedText: "Collapse",
+                    ),
+                  ],
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
