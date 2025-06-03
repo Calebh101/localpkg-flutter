@@ -38,6 +38,7 @@ class CrashPageApp extends StatelessWidget {
   final String? code;
   final bool support;
   final bool close;
+  final bool copy;
   final Function? reset;
   final Function? closeFunction;
   final VoidCallback? retryFunction;
@@ -50,6 +51,7 @@ class CrashPageApp extends StatelessWidget {
     this.support = true,
     this.reset,
     this.close = false,
+    this.copy = true,
     this.closeFunction,
     this.retryFunction,
   });
@@ -61,7 +63,7 @@ class CrashPageApp extends StatelessWidget {
       title: 'Calebh101 Launcher: Error',
       theme: brandTheme(seedColor: Colors.red),
       darkTheme: brandTheme(seedColor: Colors.red, darkMode: true),
-      home: CrashPage(message: message, description: description, code: code, support: support, reset: reset, close: close, closeFunction: closeFunction),
+      home: CrashPage(message: message, description: description, code: code, support: support, reset: reset, close: close, closeFunction: closeFunction, retryFunction: retryFunction, copy: copy),
     );
   }
 }
@@ -152,6 +154,7 @@ class _CrashPageState extends State<CrashPage> {
                     if (widget.copy)
                     TextButton(onPressed: () {
                       Clipboard.setData(ClipboardData(text: "Message: ${widget.message}\nCode: ${widget.code}\n\nContent:\n${widget.description}"));
+                      showSnackBar(context, "Copied to clipboard!");
                     }, child: Text("Copy")),
                   ],
                 ),
@@ -164,6 +167,6 @@ class _CrashPageState extends State<CrashPage> {
   }
 }
 
-void CrashScreen({String? message, String? description, String? code, Function? reset, bool support = true, bool close = false, Function? closeFunction, VoidCallback? retryFunction}) {
-  runApp(CrashPageApp(message: message, description: description, code: code, support: support, reset: reset, close: close, closeFunction: closeFunction, retryFunction: retryFunction));
+void CrashScreen({String? message, String? description, String? code, Function? reset, bool support = true, bool close = false, bool copy = true, Function? closeFunction, VoidCallback? retryFunction}) {
+  runApp(CrashPageApp(message: message, description: description, code: code, support: support, reset: reset, close: close, copy: copy, closeFunction: closeFunction, retryFunction: retryFunction));
 }
