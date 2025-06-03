@@ -39,6 +39,7 @@ class CrashPageApp extends StatelessWidget {
   final bool close;
   final Function? reset;
   final Function? closeFunction;
+  final VoidCallback? retryFunction;
 
   const CrashPageApp({
     super.key,
@@ -49,6 +50,7 @@ class CrashPageApp extends StatelessWidget {
     this.reset,
     this.close = false,
     this.closeFunction,
+    this.retryFunction,
   });
 
   @override
@@ -153,6 +155,6 @@ class _CrashPageState extends State<CrashPage> {
   }
 }
 
-void CrashScreen({String? message, String? description, String? code, Function? reset, bool support = true, bool close = false, Function? closeFunction}) {
-  runApp(CrashPageApp(message: message, description: description, code: code, support: support, reset: reset, close: close, closeFunction: closeFunction));
+void CrashScreen({String? message, String? description, String? code, Function? reset, bool support = true, bool close = false, Function? closeFunction, VoidCallback? retryFunction}) {
+  runApp(CrashPageApp(message: message, description: description, code: code, support: support, reset: reset, close: close, closeFunction: closeFunction, retryFunction: retryFunction));
 }
