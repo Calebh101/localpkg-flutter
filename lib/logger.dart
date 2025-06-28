@@ -3,6 +3,21 @@ import 'package:flutter/foundation.dart';
 import 'package:localpkg/private.dart';
 
 String _line = "----------------";
+int _traceMode = 0;
+
+enum TraceMode {
+  normal,
+  warnAndError,
+  all,
+}
+
+void setTraceMode(TraceMode mode) {
+  switch (mode) {
+    case TraceMode.normal: _traceMode = 0; break;
+    case TraceMode.warnAndError: _traceMode = 1; break;
+    case TraceMode.all: _traceMode = 2; break;
+  }
+}
 
 /// Takes any input and outputs a simple log
 /// If this file is imported, it will override any print() called to use custom logging
@@ -13,6 +28,7 @@ String _line = "----------------";
 /// Trace: show stack trace (default is false)
 /// Release mode: the log shows up during a release build, but doesn't have advanced formatting, and may appear with ANSI color codes as plaintext
 void print(dynamic input, {String? code, bool bold = false, String? color, bool trace = false, bool releaseMode = false}) {
+  if (_traceMode >= 2) trace = true;
   _handle(input, "log", code, trace, color, bold, release: releaseMode);
 }
 
@@ -24,6 +40,7 @@ void print(dynamic input, {String? code, bool bold = false, String? color, bool 
 /// Trace: show stack trace (default is false)
 /// Release mode: the log shows up during a release build, but doesn't have advanced formatting, and may appear with ANSI color codes as plaintext
 void warn(dynamic input, {String? code, bool bold = false, bool trace = false, String? color = "\x1B[33m", bool releaseMode = false}) {
+  if (_traceMode >= 1) trace = true;
   _handle(input, "warning", code, trace, color, bold, release: releaseMode);
 }
 
@@ -34,6 +51,7 @@ void warn(dynamic input, {String? code, bool bold = false, bool trace = false, S
 /// Trace: show stack trace (default is true)
 /// Release mode: the log shows up during a release build, but doesn't have advanced formatting, and may appear with ANSI color codes as plaintext
 void error(dynamic input, {String? code, String? color = "\x1B[31m", bool bold = false, bool trace = true, bool releaseMode = false}) {
+  if (_traceMode >= 1) trace = true;
   _handle(input, "error", code, trace, color, bold, release: releaseMode);
 }
 
