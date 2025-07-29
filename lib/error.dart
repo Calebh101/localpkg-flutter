@@ -188,3 +188,19 @@ class _CrashPageState extends State<CrashPage> {
 void CrashScreen({String? message, String? description, String? code, Function? reset, bool support = true, bool close = false, bool copy = true, Function? closeFunction, VoidCallback? retryFunction, String? trace}) {
   runApp(CrashPageApp(message: message, description: description, code: code, support: support, reset: reset, close: close, copy: copy, closeFunction: closeFunction, retryFunction: retryFunction, trace: trace));
 }
+
+extension StackTraceFormatter on StackTrace {
+  static String _format(String input, {int? end}) {
+    end ??= 16;
+    assert(end > 0, "end must be greater than 0.");
+    List<String> lines = input.split("\n");
+    bool expands = false;
+    if (lines.length > end) expands = true;
+    if (lines.length < end) end = lines.length;
+    return [...lines.sublist(0, end), if (expands) "And ${lines.length - end} more..."].join("\n");
+  }
+
+  String format({int? end}) {
+    return _format(toString(), end: end);
+  }
+}
