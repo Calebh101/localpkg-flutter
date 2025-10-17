@@ -1,21 +1,3 @@
-## Why?
+This was a project I started back in late 2024, to centralize a lot of functions that I used in my projects into one repository. But I was new to Dart, so I had no idea about a lot of things, like enums and named parameters. So I abandoned this version to move on to version 2, at [Calebh101/localpkg-flutter-2](https://github.com/Calebh101/localpkg-flutter-2).
 
-This is a Flutter package I made to keep all my global tools in one place.
-
-To use, include this in pubspec.yaml:
-
-```yaml
-dependencies:
-    localpkg:
-        git:
-            url: https://github.com/Calebh101/localpkg-flutter.git
-            ref: main
-```
-
-## What is "personal"?
-
-"personal" was the name of the package before I renamed it to "localpkg". It was referenced as localpkg before this, but the pubspec.yaml name was "personal".
-
-## What does it have?
-
-It has some basic stuff like input verification and alert dialogues, stuff that I only want to build once. Feel free to use it, but I won't be adding documentation, examples, changelogs, or official support for this package.
+Trust me, you do *not* want to look in version 1's code.
